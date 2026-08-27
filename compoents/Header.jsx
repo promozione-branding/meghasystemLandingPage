@@ -212,10 +212,35 @@ export default function Header() {
               </Link> */}
             </div>
 
+
+             <button
+                  type="button"
+                  onClick={handleGetInTouch}
+                  className="
+                  md:hidden
+                    w-30
+                    flex
+                    items-center
+                    justify-center
+                    gap-2
+                    border
+                    border-[#0d2461]/55
+                    text-[#0d2461]
+                    py-3.5
+                    text-sm
+                    font-semibold
+                    rounded-xl
+                    hover:bg-[#0d2461]/5
+                    transition-colors
+                  "
+                >
+                  Get in Touch
+                </button>
+
             {/* =================================================
                 MOBILE TOGGLE
             ================================================= */}
-            <button
+            {/* <button
               type="button"
               onClick={() => setMobileMenuOpen((prev) => !prev)}
               className="
@@ -236,7 +261,7 @@ export default function Header() {
               ) : (
                 <Menu className="w-6 h-6" />
               )}
-            </button>
+            </button> */}
           </div>
 
           {/* =====================================================

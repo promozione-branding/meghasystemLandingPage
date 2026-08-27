@@ -28,12 +28,12 @@ export default function page() {
     <AboutUs/>
     <Certificates/>
     <Hero4/>
+    <BuyNowBanner/>
     <TextMaskScroll />
     <CertificatesMarquee/>
     <Testimonials/>
     <WashroomCubiclesFAQ/>
     <ContactSection/>
-    <BuyNowBanner/>
     <FooterSection/>
     </>
   )

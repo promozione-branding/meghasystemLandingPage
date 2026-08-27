@@ -185,7 +185,7 @@ export default function Hero2() {
               ACTION BUTTON + DESCRIPTION
           ================================================= */}
 
-          <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
+          <div className="mt-4 hidden md:flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
             {/* CTA BUTTON */}
 
             <button
@@ -410,6 +410,54 @@ export default function Hero2() {
           </div>
         </div>
       )}
+
+      <div className="mt-0 flex flex-col py-5 px-5 md:hidden bg-white sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
+        {/* CTA BUTTON */}
+
+        <button
+          type="button"
+          onClick={handleConsultation}
+          className="
+                inline-flex
+                items-center
+                justify-center
+                gap-2.5
+                border
+                border-black
+                bg-transparent
+                px-6
+                py-2.5
+                text-xs
+                sm:text-sm
+                font-medium
+                text-black
+                transition-all
+                duration-200
+                hover:bg-black
+                hover:text-white
+                cursor-pointer
+                w-fit
+                shrink-0
+              "
+        >
+          <span>Book a Free Consultation</span>
+
+          <span className="text-sm leading-none">→</span>
+        </button>
+
+        {/* =================================================
+                TYPEWRITER DESCRIPTION
+            ================================================= */}
+
+        <p className="max-w-3xl text-xs sm:text-sm leading-relaxed text-gray-500 min-h-[48px]">
+          <TypewriterText
+            key={`description-${activeSlideIndex}`}
+            text={currentSlide.description}
+            speed={12}
+            onComplete={handleTypewriterComplete}
+          />
+        </p>
+      </div>
     </>
   );
 }

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -94,8 +93,32 @@ export default function Form2() {
   };
 
   return (
-    <section className="w-full bg-white py-8">
+    <section className="w-full bg-white py-10 md:py-5">
       <div className="mx-auto w-full max-w-7xl px-5">
+        
+        {/* HEADING */}
+        <div className="mb-7 text-center md:mb-5">
+          <h2
+            className="
+              text-3xl
+              font-extrabold
+              leading-tight
+              tracking-tight
+              text-[#042555]
+              sm:text-4xl
+              md:text-5xl
+            "
+          >
+            Transform your commercial space now!
+          </h2>
+
+          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 md:text-base">
+            Tell us what you need and our team will help you find the
+            perfect restroom partition solution.
+          </p>
+        </div>
+
+        {/* FORM */}
         <form
           onSubmit={handleSubmit}
           className="
@@ -285,4 +308,3 @@ export default function Form2() {
     </section>
   );
 }
-
