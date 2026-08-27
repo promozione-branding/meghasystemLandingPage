@@ -2,7 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import PopupForm from "@/components/PopupForm";
+import PopupForm from "./PopupForm";
 
 const projects = [
   {
@@ -193,6 +193,7 @@ export default function Hero4() {
 
   return (
     <div
+      id="project"
       ref={containerRef}
       className="
         relative

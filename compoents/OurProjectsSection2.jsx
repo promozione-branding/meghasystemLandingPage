@@ -81,6 +81,7 @@ export default function OurProjectsSection2() {
   return (
     <>
       <section
+      id="product"
         className="w-full overflow-hidden bg-white px-6 py-15 md:px-12 lg:px-16 xl:px-20"
         style={{
           fontFamily:

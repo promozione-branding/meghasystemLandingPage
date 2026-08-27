@@ -6,7 +6,7 @@ import { Award, Building2 } from "lucide-react";
 
 export default function AboutUs() {
   return (
-    <section className="relative w-full overflow-hidden border border-gray-200 bg-white py-8 font-sans text-[#0d2461] md:py-12">
+    <section id="about" className="relative w-full overflow-hidden border border-gray-200 bg-white py-8 font-sans text-[#0d2461] md:py-12">
 
       {/* Background Decorative Ambient Blobs */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">

@@ -44,7 +44,6 @@ export default function Header() {
           STICKY HEADER WRAPPER
       ===================================================== */}
       <div className="sticky top-0 z-[100] w-full">
-
         {/* =====================================================
             TOP ANNOUNCEMENT BAR
         ===================================================== */}
@@ -57,9 +56,7 @@ export default function Header() {
 
           <span className="text-[#f5bd24]">✦</span>
 
-          <span className="opacity-85 ml-1">
-            Where Hygiene Meets Design
-          </span>
+          <span className="opacity-85 ml-1">Where Hygiene Meets Design</span>
 
           <span className="opacity-30">|</span>
 
@@ -68,7 +65,7 @@ export default function Header() {
             className="inline-flex items-center gap-1.5 text-[#f5bd24] hover:text-white transition-colors font-bold"
           >
             <Phone className="w-3.5 h-3.5" />
-            98737 35713
+           +91 98737 35713
           </a>
         </div>
 
@@ -76,7 +73,6 @@ export default function Header() {
             MAIN NAVBAR
         ===================================================== */}
         <header className="relative w-full bg-white border-b border-[#0d2461]/10 font-sans">
-
           {/* Gold accent line */}
           <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#f5bd24] to-transparent opacity-80" />
 
@@ -133,14 +129,12 @@ export default function Header() {
                 DESKTOP NAVIGATION
             ================================================= */}
             <nav className="hidden xl:flex items-center gap-1 text-[15px] sm:text-[15.5px] font-bold text-[#0d2461]">
-
               {/* Home */}
               <Link
                 href="/"
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 Home
-
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
               </Link>
 
@@ -148,35 +142,29 @@ export default function Header() {
                   PRODUCTS DROPDOWN
               ================================================= */}
               <div className="relative group py-1.5 cursor-pointer">
-
                 <Link
-                  href="/"
+                  href="#product"
                   className="flex items-center gap-1.5 px-3 text-nowrap sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative"
                 >
                   <span>Our Products</span>
-
                 </Link>
-
-             
               </div>
 
               {/* About */}
-              <Link
-                href="/"
+              <a
+                href="#about"
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 About Us
-
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
-              </Link>
+              </a>
 
               {/* Contact */}
               <Link
-                href="/"
+                href="#contact"
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg text-nowrap hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 Contact Us
-
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
               </Link>
 
@@ -186,26 +174,23 @@ export default function Header() {
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 Articles
-
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
               </Link>
 
               {/* Projects */}
-              <Link
-                href="/"
+              <a
+                href="#project"
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 Projects
-
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
-              </Link>
+              </a>
             </nav>
 
             {/* =================================================
                 DESKTOP CTA
             ================================================= */}
             <div className="hidden xl:flex items-center gap-2.5 shrink-0">
-
               <button
                 onClick={() => setOpen(true)}
                 className="px-4.5 sm:px-5 py-2.5 text-[14px] font-bold text-[#0d2461] border border-[#0d2461]/30 rounded-lg hover:border-[#0d2461] hover:bg-[#0d2461]/5 transition-all duration-200"
@@ -225,7 +210,6 @@ export default function Header() {
 
                 <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </Link> */}
-
             </div>
 
             {/* =================================================
@@ -244,11 +228,7 @@ export default function Header() {
                 rounded-xl
                 transition-colors
               "
-              aria-label={
-                mobileMenuOpen
-                  ? "Close menu"
-                  : "Open menu"
-              }
+              aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileMenuOpen}
             >
               {mobileMenuOpen ? (
@@ -287,7 +267,6 @@ export default function Header() {
             `}
           >
             <div className="px-4 sm:px-6 py-5 space-y-1">
-
               {/* Home */}
               <Link
                 href="/"
@@ -414,7 +393,6 @@ export default function Header() {
                   MOBILE CTA
               ================================================= */}
               <div className="pt-4 mt-3 border-t border-[#0d2461]/10 space-y-2.5">
-
                 {/* <Link
                   href="/products"
                   onClick={closeMobileMenu}
@@ -461,7 +439,6 @@ export default function Header() {
                 >
                   Get in Touch
                 </button>
-
               </div>
 
               {/* Mobile phone */}
@@ -483,7 +460,6 @@ export default function Header() {
                 <Phone className="w-4 h-4 text-[#f5bd24]" />
                 +91 98737 35716
               </a>
-
             </div>
           </div>
         </header>
@@ -492,10 +468,7 @@ export default function Header() {
       {/* =====================================================
           POPUP
       ===================================================== */}
-      <PopupForm
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+      <PopupForm isOpen={open} onClose={() => setOpen(false)} />
     </>
   );
 }
