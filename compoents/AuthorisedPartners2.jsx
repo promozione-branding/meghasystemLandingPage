@@ -132,7 +132,7 @@ function PartnerCard({ partner }) {
         group
         relative
         flex
-        h-[240px]
+        h-[360px]
         w-full
         flex-col
         overflow-hidden

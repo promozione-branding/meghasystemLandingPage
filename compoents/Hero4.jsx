@@ -48,113 +48,49 @@ export default function Hero4() {
   // DESKTOP CARD 1
   // =========================================================
 
-  const card1Left = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["55%", "0%"]
-  );
+  const card1Left = useTransform(scrollYProgress, [0.08, 0.65], ["55%", "0%"]);
 
-  const card1Y = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["16vh", "96vh"]
-  );
+  const card1Y = useTransform(scrollYProgress, [0.08, 0.65], ["16vh", "96vh"]);
 
-  const card1Rotate = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [-5, 0]
-  );
+  const card1Rotate = useTransform(scrollYProgress, [0.08, 0.65], [-5, 0]);
 
-  const card1Scale = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [0.88, 1]
-  );
+  const card1Scale = useTransform(scrollYProgress, [0.08, 0.65], [0.88, 1]);
 
   // =========================================================
   // DESKTOP CARD 2
   // =========================================================
 
-  const card2Left = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["60%", "52%"]
-  );
+  const card2Left = useTransform(scrollYProgress, [0.08, 0.65], ["60%", "52%"]);
 
-  const card2Y = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["12vh", "96vh"]
-  );
+  const card2Y = useTransform(scrollYProgress, [0.08, 0.65], ["12vh", "96vh"]);
 
-  const card2Rotate = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [7, 0]
-  );
+  const card2Rotate = useTransform(scrollYProgress, [0.08, 0.65], [7, 0]);
 
-  const card2Scale = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [0.82, 1]
-  );
+  const card2Scale = useTransform(scrollYProgress, [0.08, 0.65], [0.82, 1]);
 
   // =========================================================
   // DESKTOP CARD 3
   // =========================================================
 
-  const card3Left = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["52%", "0%"]
-  );
+  const card3Left = useTransform(scrollYProgress, [0.08, 0.65], ["52%", "0%"]);
 
-  const card3Y = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["22vh", "146vh"]
-  );
+  const card3Y = useTransform(scrollYProgress, [0.08, 0.65], ["22vh", "146vh"]);
 
-  const card3Rotate = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [-10, 0]
-  );
+  const card3Rotate = useTransform(scrollYProgress, [0.08, 0.65], [-10, 0]);
 
-  const card3Scale = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [0.78, 1]
-  );
+  const card3Scale = useTransform(scrollYProgress, [0.08, 0.65], [0.78, 1]);
 
   // =========================================================
   // DESKTOP CARD 4
   // =========================================================
 
-  const card4Left = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["57%", "52%"]
-  );
+  const card4Left = useTransform(scrollYProgress, [0.08, 0.65], ["57%", "52%"]);
 
-  const card4Y = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    ["26vh", "146vh"]
-  );
+  const card4Y = useTransform(scrollYProgress, [0.08, 0.65], ["26vh", "146vh"]);
 
-  const card4Rotate = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [5, 0]
-  );
+  const card4Rotate = useTransform(scrollYProgress, [0.08, 0.65], [5, 0]);
 
-  const card4Scale = useTransform(
-    scrollYProgress,
-    [0.08, 0.65],
-    [0.72, 1]
-  );
+  const card4Scale = useTransform(scrollYProgress, [0.08, 0.65], [0.72, 1]);
 
   // =========================================================
   // CARD TRANSFORMS
@@ -216,7 +152,6 @@ export default function Hero4() {
           max-lg:px-5
         "
       >
-
         {/* =====================================================
             HERO SECTION
         ===================================================== */}
@@ -224,15 +159,15 @@ export default function Hero4() {
         <div
           className="
             min-h-[70vh]
-            pt-20
+            pt-5
             pb-8
             flex
             flex-col
             justify-center
 
             max-lg:min-h-0
-            max-lg:pt-24
-            max-lg:pb-16
+            max-lg:pt-14
+            max-lg:pb-0
             max-lg:justify-start
           "
         >
@@ -245,7 +180,6 @@ export default function Hero4() {
               items-center
             "
           >
-
             {/* LEFT HERO TEXT */}
 
             <div
@@ -256,7 +190,6 @@ export default function Hero4() {
                 max-lg:max-w-none
               "
             >
-
               <div
                 className="
                   inline-flex
@@ -295,10 +228,7 @@ export default function Hero4() {
                 "
               >
                 Made for the <br />
-
-                <span className="text-[#334155]">
-                  spaces that matter.
-                </span>
+                <span className="text-[#334155]">spaces that matter.</span>
               </h1>
 
               <p
@@ -314,52 +244,10 @@ export default function Hero4() {
                   max-lg:mb-7
                 "
               >
-                From high-traffic commercial environments to premium
-                interiors, Megha Systems manufactures toilet cubicle
-                systems where design, durability, and precision come
-                together.
+                From high-traffic commercial environments to premium interiors,
+                Megha Systems manufactures toilet cubicle systems where design,
+                durability, and precision come together.
               </p>
-
-              <button
-                type="button"
-                onClick={() => setOpen(true)}
-                className="
-                  px-6
-                  py-3.5
-                  rounded-full
-                  bg-[#0f172a]
-                  text-white
-                  font-semibold
-                  hover:bg-[#1e293b]
-                  transition-all
-                  shadow-md
-                  flex
-                  items-center
-                  gap-3
-
-                  max-lg:w-full
-                  max-lg:justify-center
-                "
-              >
-                <span
-                  className="
-                    w-6
-                    h-6
-                    rounded-full
-                    bg-blue-600
-                    text-white
-                    flex
-                    items-center
-                    justify-center
-                    text-xs
-                  "
-                >
-                  👤
-                </span>
-
-                Book a call with me
-              </button>
-
             </div>
 
             {/* RIGHT SPACER */}
@@ -371,7 +259,6 @@ export default function Hero4() {
                 max-lg:hidden
               "
             />
-
           </div>
         </div>
 
@@ -430,7 +317,6 @@ export default function Hero4() {
           "
         >
           <div className="max-w-7xl mx-auto relative h-full">
-
             {projects.map((project, idx) => {
               const transform = cardMotionTransforms[idx];
 
@@ -489,7 +375,6 @@ export default function Hero4() {
                 </motion.div>
               );
             })}
-
           </div>
         </div>
 
@@ -553,11 +438,7 @@ export default function Hero4() {
             POPUP
         ===================================================== */}
 
-        <PopupForm
-          isOpen={open}
-          onClose={() => setOpen(false)}
-        />
-
+        <PopupForm isOpen={open} onClose={() => setOpen(false)} />
       </div>
     </div>
   );
