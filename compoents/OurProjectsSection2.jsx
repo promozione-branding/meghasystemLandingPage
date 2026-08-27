@@ -34,9 +34,7 @@ const projects = [
     title: "Urinal Cubicles",
     description:
       "Our urinal cubicle solutions are designed for busy washrooms, combining smart space utilization, durable construction, and easy maintenance.",
-    image:
-      "https://media.istockphoto.com/id/508182124/photo/doors-from-toilets.jpg?s=612x612&w=0&k=20&c=ExswbkHEa6wG_h53KZcn2xbE_rKfcQ-c3duz2YSCuhQ=",
-    details:
+    image:"/new1.webp",    details:
       "Megha Systems urinal partitions provide privacy and efficient space utilization for commercial, institutional, and high-traffic washrooms. Our systems are manufactured using durable materials designed for regular use and easy maintenance.",
     features: [
       "Efficient space utilization",
