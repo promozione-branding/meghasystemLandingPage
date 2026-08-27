@@ -93,7 +93,7 @@ export default function Form2() {
   };
 
   return (
-    <section className="w-full bg-white py-10 md:py-5">
+    <section className="w-full bg-white py-2 md:py-5">
       <div className="mx-auto w-full max-w-7xl px-5">
         
         {/* HEADING */}
