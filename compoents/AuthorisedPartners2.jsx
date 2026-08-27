@@ -1,8 +1,9 @@
+
 "use client";
 
 import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode } from "swiper/modules";
+import { FreeMode, Autoplay } from "swiper/modules";
 import Link from "next/link";
 
 import "swiper/css";
@@ -43,7 +44,6 @@ export default function AuthorisedPartners2() {
         {/* ================= HEADER ================= */}
 
         <div className="mx-auto mb-5 max-w-[760px] text-center md:mb-8">
-
           <span className="mb-4 inline-block text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-500 md:text-xs">
             Authorised Channel Partner
           </span>
@@ -62,45 +62,60 @@ export default function AuthorisedPartners2() {
             materials, and professional expertise together to
             deliver reliable washroom solutions.
           </p>
-
         </div>
 
-        {/* ================= DESKTOP GRID ================= */}
+        {/* ================= AUTO SLIDER ================= */}
 
-        <div className="hidden gap-4 md:grid md:grid-cols-3 xl:grid-cols-6">
+        <Swiper
+          modules={[FreeMode, Autoplay]}
+          spaceBetween={16}
+          loop={true}
+          freeMode={{
+            enabled: true,
+            sticky: false,
+            momentum: false,
+          }}
+          autoplay={{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }}
+          speed={4000}
+          grabCursor={true}
+          slidesPerView={1}
+          breakpoints={{
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 10,
+            },
+            640: {
+              slidesPerView: 2.5,
+              spaceBetween: 12,
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 14,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 16,
+            },
+            1280: {
+              slidesPerView: 6,
+              spaceBetween: 16,
+            },
+          }}
+          className="!overflow-visible"
+        >
           {partners.map((partner) => (
-            <PartnerCard
+            <SwiperSlide
               key={partner.name}
-              partner={partner}
-            />
+              className="!h-auto"
+            >
+              <PartnerCard partner={partner} />
+            </SwiperSlide>
           ))}
-        </div>
-
-        {/* ================= MOBILE SWIPER ================= */}
-
-        <div className="md:hidden">
-          <Swiper
-            modules={[FreeMode]}
-            spaceBetween={5}
-            slidesPerView={2}
-            freeMode={{
-              enabled: true,
-              sticky: false,
-            }}
-            grabCursor={true}
-            className="!overflow-visible"
-          >
-            {partners.map((partner) => (
-              <SwiperSlide
-                key={partner.name}
-                className="!h-auto"
-              >
-                <PartnerCard partner={partner} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
-        </div>
-
+        </Swiper>
       </div>
     </section>
   );
@@ -118,12 +133,13 @@ function PartnerCard({ partner }) {
         relative
         flex
         h-[240px]
+        w-full
         flex-col
         overflow-hidden
         border
         border-[#deddd7]
         bg-white
-        p-2
+        p-3
         transition-all
         duration-500
 
@@ -135,11 +151,9 @@ function PartnerCard({ partner }) {
         md:p-6
       "
     >
-
       {/* ================= TOP ================= */}
 
       <div className="flex items-center justify-between">
-
         <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
           Authorised
         </span>
@@ -168,19 +182,18 @@ function PartnerCard({ partner }) {
         >
           ↗
         </Link>
-
       </div>
 
       {/* ================= LOGO ================= */}
 
       <div className="flex flex-1 items-center justify-center py-6">
-
         <img
           src={partner.logo}
           alt={`${partner.name} logo`}
           loading="lazy"
           className="
             block
+            h-auto
             max-h-full
             max-w-full
             w-auto
@@ -190,15 +203,12 @@ function PartnerCard({ partner }) {
             group-hover:scale-105
           "
         />
-
       </div>
 
       {/* ================= BOTTOM ================= */}
 
       <div className="border-t border-neutral-100 pt-4">
-
         <div className="flex items-center justify-between gap-2">
-
           <h3 className="text-sm font-medium tracking-tight text-[#181818] md:text-base">
             {partner.name}
           </h3>
@@ -206,9 +216,7 @@ function PartnerCard({ partner }) {
           <span className="text-[9px] uppercase tracking-[0.15em] text-neutral-400">
             Partner
           </span>
-
         </div>
-
       </div>
 
       {/* ================= HOVER LINE ================= */}
@@ -226,7 +234,7 @@ function PartnerCard({ partner }) {
           group-hover:w-full
         "
       />
-
     </div>
   );
 }
+

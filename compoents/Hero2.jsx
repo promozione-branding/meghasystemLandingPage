@@ -264,6 +264,7 @@ export default function Hero2() {
                 className="
                   absolute
                   z-[50]
+                  
                   top-25
                   left-5
                   md:left-30

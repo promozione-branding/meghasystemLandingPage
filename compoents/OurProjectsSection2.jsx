@@ -50,9 +50,7 @@ const projects = [
     title: "Kids Toilet Cubicles",
     description:
       "Safe, comfortable, and thoughtfully designed, our kids' cubicles create welcoming washroom spaces with child-friendly proportions, durable materials, and vibrant finishes.",
-    image:
-      "https://media.istockphoto.com/id/525755111/photo/toilet-doors.jpg?s=612x612&w=0&k=20&c=IOtQdiMHbA1b-751jRjV7x1sD3YYp1DbjvMNoOIV7R0=",
-    details:
+    image:"/1.webp",    details:
       "Our kids toilet cubicles are designed around the needs of younger users. We focus on safe proportions, practical layouts, durable construction, and visually engaging finishes to create comfortable washrooms for schools, malls, recreational spaces, and other child-focused environments.",
     features: [
       "Child-friendly proportions",
