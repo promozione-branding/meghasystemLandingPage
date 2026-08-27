@@ -69,7 +69,7 @@ export default function Navbar2() {
             className="inline-flex items-center gap-1.5 text-[#f5bd24] hover:text-white transition-colors font-bold"
           >
             <Phone className="w-3.5 h-3.5" />
-            98737 35713
+           +91 98737 35713
           </a>
         </div>
 
