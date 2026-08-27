@@ -12,6 +12,10 @@ import "swiper/css/pagination";
 
 import PopupForm from "./PopupForm";
 
+/* =========================================================
+   HERO SLIDES
+========================================================= */
+
 const HERO_SLIDES = [
   {
     id: 1,
@@ -20,7 +24,11 @@ const HERO_SLIDES = [
       "Designed with precision. With 500+ toilet cubicles installed at the Foxconn facility for Apple, our solutions bring together scale, precision, and dependable performance.",
     src: "/assets/hero_section_images/Apple-BKC-Mumbai-India-media-preview-hero_Full-Bleed-Image.jpg.slideshow-large.jpg.jpeg",
     alt: "Apple BKC Architectural Showcase",
+
+    // Heading color
+    color: "#ffffff",
   },
+
   {
     id: 2,
     title: "Where Design Meets Performance.",
@@ -28,7 +36,11 @@ const HERO_SLIDES = [
       "Built around performance. Delivered for Maruti Suzuki. With 4,000+ toilet cubicles installed at the Kadkhoda plant, our solutions are made for scale, precision, and demanding environments.",
     src: "/assets/hero_section_images/l53220260518130534.webp",
     alt: "Maruti Suzuki",
+
+    // Heading color
+    color: "#ffffff",
   },
+
   {
     id: 5,
     title: "Custom Cubicles for Every Space.",
@@ -36,7 +48,11 @@ const HERO_SLIDES = [
       "Designed for demanding footfall. Delivered across 50+ MCD & McDonald's outlets, our toilet cubicles combine durability, hygiene, and consistent performance across every location.",
     src: "/assets/hero_section_images/McDonald-1.jpg.jpeg",
     alt: "McDonald",
+
+    // Heading color
+    color: "#ffffff",
   },
+
   {
     id: 4,
     title: "Built for Modern Washrooms.",
@@ -44,8 +60,15 @@ const HERO_SLIDES = [
       "Made for high-traffic environments. Our toilet cubicle solutions across KFC outlets are built for everyday performance, easy maintenance, and lasting durability.",
     src: "/assets/hero_section_images/KFC-opens-first-outlet-in-Mokokchung-plans-expansion-to-Wokha-and-Mon.webp",
     alt: "KFC",
+
+    // Heading color
+    color: "#ffffff",
   },
 ];
+
+/* =========================================================
+   TYPEWRITER COMPONENT
+========================================================= */
 
 function TypewriterText({ text, speed = 35, onComplete, className = "" }) {
   const [displayedText, setDisplayedText] = useState("");
@@ -88,6 +111,10 @@ function TypewriterText({ text, speed = 35, onComplete, className = "" }) {
   );
 }
 
+/* =========================================================
+   HERO COMPONENT
+========================================================= */
+
 export default function Hero2() {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
@@ -97,7 +124,12 @@ export default function Hero2() {
   const videoRef = useRef(null);
   const slideTimerRef = useRef(null);
 
+  /* Current active slide */
   const currentSlide = HERO_SLIDES[activeSlideIndex] || HERO_SLIDES[0];
+
+  /* =========================================================
+     TYPEWRITER COMPLETE
+  ========================================================= */
 
   const handleTypewriterComplete = useCallback(() => {
     if (slideTimerRef.current) {
@@ -111,6 +143,10 @@ export default function Hero2() {
     }, 1800);
   }, []);
 
+  /* =========================================================
+     CLEANUP TIMER
+  ========================================================= */
+
   useEffect(() => {
     return () => {
       if (slideTimerRef.current) {
@@ -119,9 +155,17 @@ export default function Hero2() {
     };
   }, []);
 
+  /* =========================================================
+     CONSULTATION
+  ========================================================= */
+
   const handleConsultation = () => {
     setOpen(true);
   };
+
+  /* =========================================================
+     VIDEO SPEED
+  ========================================================= */
 
   useEffect(() => {
     if (videoRef.current) {
@@ -131,17 +175,19 @@ export default function Hero2() {
 
   return (
     <>
+      {/* =====================================================
+          HERO SECTION
+      ===================================================== */}
+
       <section className="w-full bg-white text-black font-sans antialiased pt-2 sm:pt-3 lg:pt-4 pb-8 sm:pb-10 lg:pb-12">
         <div className="mx-auto max-w-[1750px] px-4 lg:px-10">
-          {/* =====================================================
-              MAIN HEADLINE
-          ===================================================== */}
-
-          {/* =====================================================
+          {/* =================================================
               ACTION BUTTON + DESCRIPTION
-          ===================================================== */}
+          ================================================= */}
 
           <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
+            {/* CTA BUTTON */}
+
             <button
               type="button"
               onClick={handleConsultation}
@@ -169,10 +215,13 @@ export default function Hero2() {
               "
             >
               <span>Book a Free Consultation</span>
+
               <span className="text-sm leading-none">→</span>
             </button>
 
-            {/* Typewriter Description */}
+            {/* =================================================
+                TYPEWRITER DESCRIPTION
+            ================================================= */}
 
             <p className="max-w-3xl text-xs sm:text-sm leading-relaxed text-gray-500 min-h-[48px]">
               <TypewriterText
@@ -184,50 +233,75 @@ export default function Hero2() {
             </p>
           </div>
 
-          {/* =====================================================
+          {/* =================================================
               BOTTOM FEATURE GRID
-          ===================================================== */}
+          ================================================= */}
 
           <div className="mt-5 sm:mt-8 grid grid-cols-1 lg:grid-cols-1 gap-4 md:gap-6 items-stretch">
-            {/* =================================================
-                DESKTOP VIDEO
-            ================================================= */}
-
-            {/* =================================================
-                MOBILE VIDEO
-            ================================================= */}
-
-            {/* <div className="relative lg:hidden flex group/card bg-gradient-to-b from-[#f8f7f4] to-[#efeee9] border border-black/5 rounded-[22px] flex-col justify-between shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer overflow-hidden">
-                
-              <video
-                src="/assets/video/CLIP 4 COMPRESSED.mp4"
-                controls
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="auto"
-                className="w-full h-full object-fill"
-              />
-
-            </div> */}
-
             {/* =================================================
                 RIGHT SHOWCASE SLIDER
             ================================================= */}
 
-            <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[440px] xl:min-h-[480px] w-full overflow-hidden rounded-[22px] shadow-sm group/slider">
-              <h1 className="text-3xl absolute z-[50]  sm:text-6xl lg:text-[68px] xl:text-[76px] top-25 left-5 md:left-30 font-semibold tracking-[-0.04em] text-white leading-[1.02] max-w-7xl">
+            <div
+              className="
+                relative
+                min-h-[320px]
+                sm:min-h-[380px]
+                lg:min-h-[440px]
+                xl:min-h-[480px]
+                w-full
+                overflow-hidden
+                rounded-[22px]
+                shadow-sm
+                group/slider
+              "
+            >
+              {/* =================================================
+                  DYNAMIC HEADING
+              ================================================= */}
+
+              <h1
+                className="
+                  absolute
+                  z-[50]
+                  top-25
+                  left-5
+                  md:left-30
+                  max-w-7xl
+                  text-3xl
+                  sm:text-6xl
+                  lg:text-[68px]
+                  xl:text-[76px]
+                  font-semibold
+                  tracking-[-0.04em]
+                  leading-[1.02]
+                  transition-colors
+                  duration-700
+                  ease-in-out
+                "
+                style={{
+                  color: currentSlide.color,
+                }}
+              >
                 <TypewriterText
                   key={`title-${activeSlideIndex}`}
                   text={currentSlide.title}
                   speed={45}
                 />
               </h1>
+
+              {/* =================================================
+                  SWIPER
+              ================================================= */}
+
               <Swiper
                 modules={[EffectFade, Pagination]}
                 effect="fade"
+                fadeEffect={{
+                  crossFade: true,
+                }}
                 loop={true}
+                speed={800}
                 pagination={{
                   clickable: true,
                 }}
@@ -252,6 +326,8 @@ export default function Hero2() {
                       xl:min-h-[480px]
                     "
                   >
+                    {/* IMAGE */}
+
                     <Image
                       src={slide.src}
                       alt={slide.alt}
@@ -260,9 +336,7 @@ export default function Hero2() {
                       className="object-cover object-center"
                     />
 
-                    {/* Overlay */}
-
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent pointer-events-none" />
+                    <div className="absolute inset-0 bg-black/40 pointer-events-none z-10" />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -284,7 +358,9 @@ export default function Hero2() {
       {isVideoOpen && (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6 animate-in fade-in duration-300">
           <div className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            {/* Modal Header */}
+            {/* =================================================
+                MODAL HEADER
+            ================================================= */}
 
             <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-gradient-to-r from-[#0d2461] to-black">
               <div className="flex items-center gap-2.5">
@@ -298,16 +374,27 @@ export default function Hero2() {
               <button
                 type="button"
                 onClick={() => setIsVideoOpen(false)}
-                className="p-1.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors cursor-pointer"
+                className="
+                  p-1.5
+                  rounded-full
+                  bg-white/10
+                  text-white
+                  hover:bg-white/20
+                  transition-colors
+                  cursor-pointer
+                "
                 aria-label="Close video"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            {/* Video Player */}
+            {/* =================================================
+                VIDEO PLAYER
+            ================================================= */}
 
-            {/* <div className="relative aspect-video w-full bg-black">
+            {/* 
+            <div className="relative aspect-video w-full bg-black">
 
               <video
                 src="/assets/video/video_1.mp4"
@@ -318,7 +405,8 @@ export default function Hero2() {
                 Your browser does not support the video tag.
               </video>
 
-            </div> */}
+            </div>
+            */}
           </div>
         </div>
       )}
