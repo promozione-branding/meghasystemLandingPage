@@ -2,15 +2,9 @@
 
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import {
-  ArrowRight,
-  CheckCircle2,
-  Phone,
-  X,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2, Phone, X } from "lucide-react";
 import Link from "next/link";
 import PopupForm from "./PopupForm";
-
 
 const projects = [
   {
@@ -34,7 +28,8 @@ const projects = [
     title: "Urinal Cubicles",
     description:
       "Our urinal cubicle solutions are designed for busy washrooms, combining smart space utilization, durable construction, and easy maintenance.",
-    image:"/new1.webp",    details:
+    image: "/new1.webp",
+    details:
       "Megha Systems urinal partitions provide privacy and efficient space utilization for commercial, institutional, and high-traffic washrooms. Our systems are manufactured using durable materials designed for regular use and easy maintenance.",
     features: [
       "Efficient space utilization",
@@ -48,7 +43,8 @@ const projects = [
     title: "Kids Toilet Cubicles",
     description:
       "Safe, comfortable, and thoughtfully designed, our kids' cubicles create welcoming washroom spaces with child-friendly proportions, durable materials, and vibrant finishes.",
-    image:"/1.webp",    details:
+    image: "/1.webp",
+    details:
       "Our kids toilet cubicles are designed around the needs of younger users. We focus on safe proportions, practical layouts, durable construction, and visually engaging finishes to create comfortable washrooms for schools, malls, recreational spaces, and other child-focused environments.",
     features: [
       "Child-friendly proportions",
@@ -61,8 +57,7 @@ const projects = [
 
 export default function OurProjectsSection2() {
   const [selectedProject, setSelectedProject] = useState(null);
-    const [open, setOpen] = useState(false);
-
+  const [open, setOpen] = useState(false);
 
   const openProject = (project) => {
     setSelectedProject(project);
@@ -77,19 +72,16 @@ export default function OurProjectsSection2() {
   return (
     <>
       <section
-      id="product"
-        className="w-full overflow-hidden bg-white px-6 py-15 md:px-12 lg:px-16 xl:px-20"
+        id="product"
+        className="w-full overflow-hidden bg-white px-6 py-6 md:px-12 lg:px-16 xl:px-20"
         style={{
-          fontFamily:
-            "var(--font-jakarta), 'Helvetica Neue', sans-serif",
+          fontFamily: "var(--font-jakarta), 'Helvetica Neue', sans-serif",
         }}
       >
         <div className="mx-auto max-w-[1400px]">
           <div className="grid grid-cols-1 gap-x-12 lg:grid-cols-2 xl:gap-x-20">
-
             {/* LEFT COLUMN */}
             <div className="flex flex-col justify-between gap-5">
-
               {/* Heading */}
               <div className="pt-2">
                 <span className="mb-4 block text-[10px] font-bold uppercase tracking-[0.4em] text-neutral-400">
@@ -97,21 +89,16 @@ export default function OurProjectsSection2() {
                 </span>
 
                 <h2 className="mb-5 text-[2.6rem] leading-[1.08] tracking-[-0.02em] text-neutral-900 sm:text-5xl">
-                  <span className="font-light text-neutral-500">
-                    Solutions
-                  </span>{" "}
+                  <span className="font-light text-neutral-500">Solutions</span>{" "}
                   <span className="font-extrabold">for</span>
                   <br />
-                  <span className="font-extrabold">
-                    Every Washroom.
-                  </span>
+                  <span className="font-extrabold">Every Washroom.</span>
                 </h2>
 
                 <p className="max-w-xl text-[15px] font-normal leading-[1.75] text-neutral-500">
-                  Explore a complete range of toilet cubicle systems,
-                  from everyday commercial applications to premium
-                  spaces, kids&apos; washrooms, urinal partitions, and
-                  essential hardware.
+                  Explore a complete range of toilet cubicle systems, from
+                  everyday commercial applications to premium spaces, kids&apos;
+                  washrooms, urinal partitions, and essential hardware.
                 </p>
               </div>
 
@@ -126,7 +113,7 @@ export default function OurProjectsSection2() {
 
               {/* CTA */}
               <div
-                className="flex flex-col gap-6 rounded-3xl p-8"
+                className=" hidden md:flex flex-col gap-6 rounded-3xl p-8"
                 style={{ backgroundColor: "#f0eeec" }}
               >
                 <div>
@@ -135,16 +122,15 @@ export default function OurProjectsSection2() {
                   </h3>
 
                   <p className="text-[13px] font-normal leading-[1.75] text-neutral-400">
-                    From concept and customization to manufacturing
-                    and installation, Megha Systems delivers complete
-                    toilet cubicle solutions built around your space,
-                    requirements, and vision.
+                    From concept and customization to manufacturing and
+                    installation, Megha Systems delivers complete toilet cubicle
+                    solutions built around your space, requirements, and vision.
                   </p>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-4 border-t border-neutral-300/60 pt-5">
                   <button
-                     onClick={() => setOpen(true)}
+                    onClick={() => setOpen(true)}
                     className="inline-flex items-center gap-2 rounded-full border border-neutral-400 px-6 py-3 text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-300 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
                   >
                     Start Your Project
@@ -175,7 +161,6 @@ export default function OurProjectsSection2() {
 
             {/* RIGHT COLUMN */}
             <div className="mt-10 flex flex-col gap-10 lg:mt-0">
-
               {/* Project 02 Image */}
               <CategoryImage
                 project={projects[1]}
@@ -193,6 +178,52 @@ export default function OurProjectsSection2() {
 
               {/* Project 03 Info */}
               <ProjectInfo project={projects[2]} />
+
+              <div
+                className=" md:hidden flex flex-col gap-6 rounded-3xl p-8"
+                style={{ backgroundColor: "#f0eeec" }}
+              >
+                <div>
+                  <h3 className="mb-3 text-2xl font-extrabold leading-tight tracking-[-0.02em] text-neutral-900 sm:text-[1.7rem]">
+                    Let&apos;s Build Your Next Washroom.
+                  </h3>
+
+                  <p className="text-[13px] font-normal leading-[1.75] text-neutral-400">
+                    From concept and customization to manufacturing and
+                    installation, Megha Systems delivers complete toilet cubicle
+                    solutions built around your space, requirements, and vision.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap items-center gap-4 border-t border-neutral-300/60 pt-5">
+                  <button
+                    onClick={() => setOpen(true)}
+                    className="inline-flex items-center gap-2 rounded-full border border-neutral-400 px-6 py-3 text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-300 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
+                  >
+                    Start Your Project
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </button>
+
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">
+                      <Phone className="h-4 w-4" />
+                    </div>
+
+                    <div>
+                      <span className="block text-[10px] uppercase tracking-widest text-neutral-400">
+                        Talk to Our Experts
+                      </span>
+
+                      <a
+                        href="tel:+919873735713"
+                        className="text-sm font-bold text-neutral-900 transition-colors hover:text-neutral-600"
+                      >
+                        +91 9873735713
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -245,7 +276,6 @@ export default function OurProjectsSection2() {
               </button>
 
               <div className="grid max-h-[90vh] grid-cols-1 overflow-y-auto lg:grid-cols-2">
-
                 {/* Image */}
                 <div className="relative min-h-[280px] overflow-hidden bg-neutral-100 lg:min-h-[600px]">
                   <img
@@ -265,7 +295,6 @@ export default function OurProjectsSection2() {
 
                 {/* Content */}
                 <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
-
                   <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#f0ad00]">
                     Megha Systems
                   </span>
@@ -283,10 +312,7 @@ export default function OurProjectsSection2() {
                   {/* Features */}
                   <div className="mt-7 space-y-3">
                     {selectedProject.features.map((feature) => (
-                      <div
-                        key={feature}
-                        className="flex items-center gap-3"
-                      >
+                      <div key={feature} className="flex items-center gap-3">
                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f5bd24]/15 text-[#0d2461]">
                           <CheckCircle2 className="h-3.5 w-3.5" />
                         </div>
@@ -305,7 +331,6 @@ export default function OurProjectsSection2() {
                       className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#0d2461] px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#102d7a] hover:shadow-lg"
                     >
                       Get a Quote
-
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                     </button>
 
@@ -324,10 +349,7 @@ export default function OurProjectsSection2() {
         )}
       </AnimatePresence>
 
-         <PopupForm
-        isOpen={open}
-        onClose={() => setOpen(false)}
-      />
+      <PopupForm isOpen={open} onClose={() => setOpen(false)} />
     </>
   );
 }
@@ -346,7 +368,6 @@ function CategoryImage({ project, onClick }) {
       className="group relative block w-full cursor-pointer overflow-hidden rounded-3xl bg-neutral-100 text-left"
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
-
         <motion.img
           src={project.image}
           alt={project.title}

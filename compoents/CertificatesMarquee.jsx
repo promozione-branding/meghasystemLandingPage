@@ -30,10 +30,10 @@ export default function CertificatesMarquee() {
         <div className="group relative flex w-full items-center overflow-hidden py-4 lg:col-span-7 xl:col-span-8">
 
           {/* Left Fade */}
-          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-16 bg-gradient-to-r from-[#f8f9fa] via-[#f8f9fa]/90 to-transparent sm:w-32" />
+          <div className="pointer-events-none absolute bottom-0 left-0 top-0 z-10 w-5 bg-gradient-to-r from-[#f8f9fa] via-[#f8f9fa]/90 to-transparent sm:w-32" />
 
           {/* Right Fade */}
-          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-16 bg-gradient-to-l from-[#f8f9fa] via-[#f8f9fa]/90 to-transparent sm:w-32" />
+          <div className="pointer-events-none absolute bottom-0 right-0 top-0 z-10 w-5 bg-gradient-to-l from-[#f8f9fa] via-[#f8f9fa]/90 to-transparent sm:w-32" />
 
           {/* Moving Track */}
           <div className="animate-marquee-reverse flex w-max items-center gap-6 will-change-transform group-hover:[animation-play-state:paused] sm:gap-8">
