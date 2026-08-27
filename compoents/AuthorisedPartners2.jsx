@@ -66,56 +66,53 @@ export default function AuthorisedPartners2() {
 
         {/* ================= AUTO SLIDER ================= */}
 
-        <Swiper
-          modules={[FreeMode, Autoplay]}
-          spaceBetween={16}
-          loop={true}
-          freeMode={{
-            enabled: true,
-            sticky: false,
-            momentum: false,
-          }}
-          autoplay={{
-            delay: 0,
-            disableOnInteraction: false,
-            pauseOnMouseEnter: false,
-          }}
-          speed={4000}
-          grabCursor={true}
-          slidesPerView={1}
-          breakpoints={{
-            480: {
-              slidesPerView: 2,
-              spaceBetween: 10,
-            },
-            640: {
-              slidesPerView: 2.5,
-              spaceBetween: 12,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 14,
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 16,
-            },
-            1280: {
-              slidesPerView: 6,
-              spaceBetween: 16,
-            },
-          }}
-          className="!overflow-visible"
-        >
-          {partners.map((partner) => (
-            <SwiperSlide
-              key={partner.name}
-              className="!h-auto"
-            >
-              <PartnerCard partner={partner} />
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      <Swiper
+  modules={[FreeMode, Autoplay]}
+  spaceBetween={10}
+  loop={true}
+  freeMode={{
+    enabled: true,
+    sticky: false,
+    momentum: false,
+  }}
+  autoplay={{
+    delay: 0,
+    disableOnInteraction: false,
+    pauseOnMouseEnter: false,
+  }}
+  speed={4000}
+  grabCursor={true}
+  slidesPerView={2}
+  breakpoints={{
+    480: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+    },
+    640: {
+      slidesPerView: 2.5,
+      spaceBetween: 12,
+    },
+    768: {
+      slidesPerView: 4,
+      spaceBetween: 14,
+    },
+    1024: {
+      slidesPerView: 4,
+      spaceBetween: 16,
+    },
+    1280: {
+      slidesPerView: 4,
+      spaceBetween: 16,
+    },
+  }}
+  className="!overflow-visible"
+>
+  {partners.map((partner) => (
+    <SwiperSlide key={partner.name} className="!h-auto">
+      <PartnerCard partner={partner} />
+    </SwiperSlide>
+  ))}
+</Swiper>
       </div>
     </section>
   );
@@ -132,7 +129,7 @@ function PartnerCard({ partner }) {
         group
         relative
         flex
-        h-[360px]
+        h-[240px]
         w-full
         flex-col
         overflow-hidden
@@ -147,7 +144,7 @@ function PartnerCard({ partner }) {
         hover:border-[#20201e]
         hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)]
 
-        md:h-[270px]
+        md:h-[310px]
         md:p-6
       "
     >

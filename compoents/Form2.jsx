@@ -112,7 +112,7 @@ export default function Form2() {
             Transform your commercial space now!
           </h2>
 
-          <p className="mx-auto mt-3 max-w-2xl text-sm leading-6 text-slate-500 md:text-base">
+          <p className="mx-auto hidden md:block mt-3 max-w-2xl text-sm leading-6 text-slate-500 md:text-base">
             Tell us what you need and our team will help you find the
             perfect restroom partition solution.
           </p>

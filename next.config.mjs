@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
   reactCompiler: true,
-   images: {
+
+  // Generate static files in the "out" folder
+  output: "export",
+  
+
+  images: {
+       unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",

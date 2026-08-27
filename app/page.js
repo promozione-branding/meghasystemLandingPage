@@ -12,7 +12,7 @@ import Hero4 from '@/compoents/Hero4'
 import OurProjectsSection2 from '@/compoents/OurProjectsSection2'
 import Testimonials from '@/compoents/Testimonials'
 import TextMaskScroll from '@/compoents/TextMaskScroll'
-import WashroomCubiclesFAQ from '@/compoents/WashroomCubiclesFAQ'
+// import WashroomCubiclesFAQ from '@/compoents/WashroomCubiclesFAQ'
 import WhatsApp from '@/compoents/WhatsApp'
 import React from 'react'
 
@@ -32,7 +32,7 @@ export default function page() {
     <TextMaskScroll />
     <CertificatesMarquee/>
     <Testimonials/>
-    <WashroomCubiclesFAQ/>
+    {/* <WashroomCubiclesFAQ/> */}
     <ContactSection/>
     <FooterSection/>
     </>
