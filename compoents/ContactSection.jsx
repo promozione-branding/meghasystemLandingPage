@@ -1,14 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Share2,
-  Globe,
-  Video,
-} from "lucide-react";
+import { Phone, Mail, MapPin, Share2, Globe, Video } from "lucide-react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -42,10 +35,12 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="flex items-center justify-center bg-slate-50 p-4 py-12 font-sans antialiased text-slate-900 sm:p-6 lg:p-8">
+    <section
+      id="contact"
+      className="flex items-center justify-center bg-slate-50 p-4 py-12 font-sans antialiased text-slate-900 sm:p-6 lg:p-8"
+    >
       <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-8 lg:p-12">
         <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-
           {/* ================= LEFT INFO PANEL ================= */}
           <aside className="flex flex-col justify-between space-y-6 rounded-[16px] bg-[#E5E2E0] p-6 sm:p-8 lg:col-span-4">
             <div className="space-y-6">
@@ -55,7 +50,6 @@ export default function ContactSection() {
 
               {/* Info Cards */}
               <div className="space-y-4 pt-1">
-
                 {/* Phone */}
                 <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4.5">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
@@ -108,46 +102,11 @@ export default function ContactSection() {
                     </p>
 
                     <p className="mt-0.5 text-base font-semibold leading-snug tracking-tight text-black">
-                      Adore Business City, Sector 72-73,
-                      Faridabad, Haryana, 121004
+                      Adore Business City, Sector 72-73, Faridabad, Haryana,
+                      121004
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Social Links */}
-            <div className="space-y-2.5 border-t border-black/10 pt-4">
-              <p className="text-xs font-semibold text-slate-800">
-                Connect with us:
-              </p>
-
-              <div className="flex items-center gap-3">
-
-                <a
-                  href="#facebook"
-                  className="text-slate-800 transition-all hover:text-black"
-                  aria-label="Facebook"
-                >
-                  <Share2 className="h-4 w-4" />
-                </a>
-
-                <a
-                  href="#twitter"
-                  className="text-slate-800 transition-all hover:text-black"
-                  aria-label="Twitter"
-                >
-                  <Globe className="h-4 w-4" />
-                </a>
-
-                <a
-                  href="#youtube"
-                  className="text-slate-800 transition-all hover:text-black"
-                  aria-label="YouTube"
-                >
-                  <Video className="h-4 w-4" />
-                </a>
-
               </div>
             </div>
           </aside>
@@ -166,7 +125,6 @@ export default function ContactSection() {
             >
               {/* Name + Email */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
                     Name <span className="text-rose-500">*</span>
@@ -198,12 +156,10 @@ export default function ContactSection() {
                     className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
                   />
                 </div>
-
               </div>
 
               {/* Phone + Subject */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
                     Phone Number <span className="text-rose-500">*</span>
@@ -234,7 +190,6 @@ export default function ContactSection() {
                     className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
                   />
                 </div>
-
               </div>
 
               {/* Message */}

@@ -145,7 +145,7 @@ function PartnerCard({ partner }) {
         </span>
 
         <Link
-          href="/inquiry"
+          href="/"
           aria-label={`View ${partner.name}`}
           className="
             flex
