@@ -22,7 +22,7 @@ const HERO_SLIDES = [
     title: "Premium Cubicles, Made to Last.",
     description:
       "Designed with precision. With 500+ toilet cubicles installed at the Foxconn facility for Apple, our solutions bring together scale, precision, and dependable performance.",
-    src: "/assets/hero_section_images/Apple-BKC-Mumbai-India-media-preview-hero_Full-Bleed-Image.jpg.slideshow-large.jpg.jpeg",
+    src: "/1.jpeg",
     alt: "Apple BKC Architectural Showcase",
 
     // Heading color
@@ -34,7 +34,7 @@ const HERO_SLIDES = [
     title: "Where Design Meets Performance.",
     description:
       "Built around performance. Delivered for Maruti Suzuki. With 4,000+ toilet cubicles installed at the Kadkhoda plant, our solutions are made for scale, precision, and demanding environments.",
-    src: "/assets/hero_section_images/l53220260518130534.webp",
+    src: "/2.jpeg",
     alt: "Maruti Suzuki",
 
     // Heading color
@@ -46,7 +46,7 @@ const HERO_SLIDES = [
     title: "Custom Cubicles for Every Space.",
     description:
       "Designed for demanding footfall. Delivered across 50+ MCD & McDonald's outlets, our toilet cubicles combine durability, hygiene, and consistent performance across every location.",
-    src: "/assets/hero_section_images/McDonald-1.jpg.jpeg",
+    src: "/3.jpeg",
     alt: "McDonald",
 
     // Heading color
@@ -58,7 +58,7 @@ const HERO_SLIDES = [
     title: "Built for Modern Washrooms.",
     description:
       "Made for high-traffic environments. Our toilet cubicle solutions across KFC outlets are built for everyday performance, easy maintenance, and lasting durability.",
-    src: "/assets/hero_section_images/KFC-opens-first-outlet-in-Mokokchung-plans-expansion-to-Wokha-and-Mon.webp",
+    src: "/4.jpeg",
     alt: "KFC",
 
     // Heading color

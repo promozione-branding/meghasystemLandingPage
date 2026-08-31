@@ -13,7 +13,7 @@ const projects = [
     description:
       "Created for premium environments, our luxury cubicles bring together sophisticated finishes, premium materials, and precision detailing to make every washroom feel considered.",
     image:
-      "https://media.istockphoto.com/id/2263983512/photo/public-toilet-design-with-contrasting-colors-modern-and-minimalist-design.jpg?s=612x612&w=0&k=20&c=JbEjk32IzXFUalLs7fb8GYpc8P7FZw65mCJWMt3ozhY=",
+      "/11.avif",
     details:
       "Our luxury toilet cubicles are designed for premium commercial and hospitality environments where aesthetics, durability, and attention to detail matter. We offer refined finishes and practical configurations that create a sophisticated washroom experience.",
     features: [
