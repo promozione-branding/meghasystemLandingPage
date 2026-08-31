@@ -248,7 +248,7 @@ export default function Hero2() {
                 min-h-[320px]
                 sm:min-h-[380px]
                 lg:min-h-[440px]
-                xl:min-h-[480px]
+                xl:min-h-[580px]
                 w-full
                 overflow-hidden
                 rounded-[22px]
@@ -321,10 +321,6 @@ export default function Hero2() {
                       relative
                       w-full
                       h-full
-                      min-h-[320px]
-                      sm:min-h-[380px]
-                      lg:min-h-[440px]
-                      xl:min-h-[480px]
                     "
                   >
                     {/* IMAGE */}
@@ -334,7 +330,7 @@ export default function Hero2() {
                       alt={slide.alt}
                       fill
                       priority={slide.id === 1}
-                      className="object-cover object-center"
+                      className="object-cover"
                     />
 
                     <div className="absolute inset-0 bg-black/40 pointer-events-none z-10" />

@@ -37,7 +37,7 @@ export default function WhatsApp() {
       sm:w-14
     "
   >
-    <Phone className="h-5 w-5 sm:h-10 sm:w-10" />
+    <Phone className="h-5 w-5 sm:h-8 sm:w-8" />
 
     {/* Tooltip */}
     <span
@@ -88,7 +88,7 @@ export default function WhatsApp() {
       sm:w-14
     "
   >
-    <FaWhatsapp className="h-6 w-6 sm:h-10 sm:w-10" />
+    <FaWhatsapp className="h-6 w-6 sm:h-9 sm:w-9" />
 
     {/* Tooltip */}
     <span
