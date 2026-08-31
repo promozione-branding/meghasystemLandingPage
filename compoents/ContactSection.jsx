@@ -1,37 +1,107 @@
 "use client";
 
 import React, { useState } from "react";
-import { Phone, Mail, MapPin, Share2, Globe, Video } from "lucide-react";
+import axios from "axios";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
-    name: "",
+    contactPerson: "",
     email: "",
     phone: "",
-    subject: "",
+    product: "",
     message: "",
   });
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState(false);
+
+  // Handle input changes
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
+    const { name, value } = e.target;
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    setError("");
+    setSuccess(false);
   };
 
-  const handleSubmit = (e) => {
+  // Submit form
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Submitted Form:", formData);
+    setError("");
+    setSuccess(false);
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      subject: "",
-      message: "",
-    });
+    // Validation
+    if (
+      !formData.contactPerson.trim() ||
+      !formData.email.trim() ||
+      !formData.phone.trim() ||
+      !formData.product.trim()
+    ) {
+      setError("Please fill in all required fields.");
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const data = {
+        platform: "Megha System Contact Form",
+        platformEmail: "contact@meghasystems.com",
+
+        name: formData.contactPerson.trim(),
+        email: formData.email.trim(),
+        company: "NA",
+        phone: formData.phone.trim(),
+        product: formData.product.trim(),
+        place: "N/A",
+        message: formData.message.trim() || "Product enquiry",
+      };
+
+      const response = await axios.post(
+        "https://brandbnalo.com/api/form/add",
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        },
+      );
+
+      console.log("Form submitted successfully:", response.data);
+
+      // Show success
+      setSuccess(true);
+
+      // Reset form
+      setFormData({
+        contactPerson: "",
+        email: "",
+        phone: "",
+        product: "",
+        message: "",
+      });
+
+      // Hide success message
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000);
+    } catch (err) {
+      console.error("Form submission error:", err);
+
+      setError(
+        err?.response?.data?.message ||
+          "Unable to submit your enquiry. Please try again.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -125,6 +195,7 @@ export default function ContactSection() {
             >
               {/* Name + Email */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {/* Name */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
                     Name <span className="text-rose-500">*</span>
@@ -132,15 +203,17 @@ export default function ContactSection() {
 
                   <input
                     type="text"
-                    name="name"
+                    name="contactPerson"
                     required
                     placeholder="Your Name"
-                    value={formData.name}
+                    value={formData.contactPerson}
                     onChange={handleChange}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
+                {/* Email */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
                     Email <span className="text-rose-500">*</span>
@@ -153,13 +226,15 @@ export default function ContactSection() {
                     placeholder="Your Email"
                     value={formData.email}
                     onChange={handleChange}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
               </div>
 
-              {/* Phone + Subject */}
+              {/* Phone + Product */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {/* Phone */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
                     Phone Number <span className="text-rose-500">*</span>
@@ -172,22 +247,26 @@ export default function ContactSection() {
                     placeholder="+91"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
+                {/* Product */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
-                    Subject
+                    Product <span className="text-rose-500">*</span>
                   </label>
 
                   <input
                     type="text"
-                    name="subject"
-                    placeholder="Write Subject"
-                    value={formData.subject}
+                    name="product"
+                    required
+                    placeholder="Enter Product"
+                    value={formData.product}
                     onChange={handleChange}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
               </div>
@@ -204,17 +283,33 @@ export default function ContactSection() {
                   placeholder="Write your message here..."
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full resize-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300"
+                  disabled={loading}
+                  className="w-full resize-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                 />
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="rounded-[8px] bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+                  {error}
+                </div>
+              )}
+
+              {/* Success Message */}
+              {success && (
+                <div className="rounded-[8px] bg-green-50 px-4 py-3 text-sm font-medium text-green-600">
+                  Thank you! Your enquiry has been submitted successfully.
+                </div>
+              )}
 
               {/* Submit */}
               <div className="pt-2">
                 <button
                   type="submit"
-                  className="inline-flex cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-4 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98]"
+                  disabled={loading}
+                  className="inline-flex min-w-[150px] cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-4 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  Send Message
+                  {loading ? "Sending..." : "Send Message"}
                 </button>
               </div>
             </form>

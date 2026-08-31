@@ -61,11 +61,11 @@ export default function Header() {
           <span className="opacity-30">|</span>
 
           <a
-            href="tel:+919873735716"
+            href="tel:+919873735713"
             className="inline-flex items-center gap-1.5 text-[#f5bd24] hover:text-white transition-colors font-bold"
           >
             <Phone className="w-3.5 h-3.5" />
-           +91 98737 35713
+            +91 98737 35713
           </a>
         </div>
 
@@ -212,11 +212,10 @@ export default function Header() {
               </Link> */}
             </div>
 
-
-             <button
-                  type="button"
-                  onClick={handleGetInTouch}
-                  className="
+            <button
+              type="button"
+              onClick={handleGetInTouch}
+              className="
                   md:hidden
                     w-30
                     flex
@@ -233,9 +232,9 @@ export default function Header() {
                     hover:bg-[#0d2461]/5
                     transition-colors
                   "
-                >
-                  Get in Touch
-                </button>
+            >
+              Get in Touch
+            </button>
 
             {/* =================================================
                 MOBILE TOGGLE
