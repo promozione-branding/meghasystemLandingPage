@@ -22,7 +22,7 @@ const HERO_SLIDES = [
     title: "Premium Cubicles, Made to Last.",
     description:
       "Designed with precision. With 500+ toilet cubicles installed at the Foxconn facility for Apple, our solutions bring together scale, precision, and dependable performance.",
-    src: "/1.jpeg",
+    src: "/1.png",
     alt: "Apple BKC Architectural Showcase",
 
     // Heading color
@@ -34,7 +34,7 @@ const HERO_SLIDES = [
     title: "Where Design Meets Performance.",
     description:
       "Built around performance. Delivered for Maruti Suzuki. With 4,000+ toilet cubicles installed at the Kadkhoda plant, our solutions are made for scale, precision, and demanding environments.",
-    src: "/2.jpeg",
+    src: "/2.png",
     alt: "Maruti Suzuki",
 
     // Heading color
@@ -46,7 +46,7 @@ const HERO_SLIDES = [
     title: "Custom Cubicles for Every Space.",
     description:
       "Designed for demanding footfall. Delivered across 50+ MCD & McDonald's outlets, our toilet cubicles combine durability, hygiene, and consistent performance across every location.",
-    src: "/3.jpeg",
+    src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png",
     alt: "McDonald",
 
     // Heading color
@@ -58,7 +58,7 @@ const HERO_SLIDES = [
     title: "Built for Modern Washrooms.",
     description:
       "Made for high-traffic environments. Our toilet cubicle solutions across KFC outlets are built for everyday performance, easy maintenance, and lasting durability.",
-    src: "/4.jpeg",
+    src: "/4.png",
     alt: "KFC",
 
     // Heading color
@@ -245,10 +245,7 @@ export default function Hero2() {
             <div
               className="
                 relative
-                min-h-[320px]
-                sm:min-h-[380px]
-                lg:min-h-[440px]
-                xl:min-h-[580px]
+                h-full
                 w-full
                 overflow-hidden
                 rounded-[22px]
@@ -312,7 +309,7 @@ export default function Hero2() {
                 onSlideChange={(swiper) => {
                   setActiveSlideIndex(swiper.realIndex);
                 }}
-                className="w-full h-full hero-swiper text-white"
+                className="w-full h-[80vh] hero-swiper text-white"
               >
                 {HERO_SLIDES.map((slide) => (
                   <SwiperSlide
@@ -328,9 +325,10 @@ export default function Hero2() {
                     <Image
                       src={slide.src}
                       alt={slide.alt}
-                      fill
+                      width={100}
+                      height={100}
                       priority={slide.id === 1}
-                      className="object-cover"
+                      className="object-cover h-full w-full"
                     />
 
                     <div className="absolute inset-0 bg-black/40 pointer-events-none z-10" />
