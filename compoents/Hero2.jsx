@@ -309,7 +309,7 @@ export default function Hero2() {
                 onSlideChange={(swiper) => {
                   setActiveSlideIndex(swiper.realIndex);
                 }}
-                className="w-full h-[80vh] hero-swiper text-white"
+                className="w-full md:h-[80vh] h-full hero-swiper text-white"
               >
                 {HERO_SLIDES.map((slide) => (
                   <SwiperSlide
