@@ -60,11 +60,6 @@ export default function FooterSection() {
               <h3 className="font-serif text-3xl font-medium leading-tight text-white sm:text-4xl">
                 Luxury Systems for iconic spaces.
               </h3>
-
-              <p className="text-base font-light leading-relaxed text-white/80">
-                Plot No.341/1,2,3 & 4, Safdar Nagar, Borabanda,
-                Hyderabad-500018
-              </p>
             </div>
 
             {/* Newsletter */}
