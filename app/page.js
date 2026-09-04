@@ -3,6 +3,7 @@ import AuthorisedPartners2 from '@/compoents/AuthorisedPartners2'
 import BuyNowBanner from '@/compoents/BuyNowBanner'
 import Certificates from '@/compoents/Certificates'
 import CertificatesMarquee from '@/compoents/CertificatesMarquee'
+import ClientMarquee from '@/compoents/Clients'
 import ContactSection from '@/compoents/ContactSection'
 import FooterSection from '@/compoents/Footer'
 import Form2 from '@/compoents/Form2'
@@ -19,22 +20,23 @@ import React from 'react'
 export default function page() {
   return (
     <>
-    <WhatsApp/>
-    <Header/>
-    <Hero2/>
-    <Form2/>
-    <AuthorisedPartners2/>
-    <OurProjectsSection2/>
-    <AboutUs/>
-    <Certificates/>
-    <Hero4/>
-    <BuyNowBanner/>
-    <TextMaskScroll />
-    <CertificatesMarquee/>
-    <Testimonials/>
-    {/* <WashroomCubiclesFAQ/> */}
-    <ContactSection/>
-    <FooterSection/>
+      <WhatsApp />
+      <Header />
+      <Hero2 />
+      <Form2 />
+      <AuthorisedPartners2 />
+      <OurProjectsSection2 />
+      <AboutUs />
+      <Certificates />
+      <Hero4 />
+      <BuyNowBanner />
+      <ClientMarquee />
+      <TextMaskScroll />
+      <CertificatesMarquee />
+      <Testimonials />
+      {/* <WashroomCubiclesFAQ/> */}
+      <ContactSection />
+      <FooterSection />
     </>
   )
 }
