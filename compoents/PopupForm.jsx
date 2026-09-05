@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -8,6 +9,7 @@ import {
   CheckCircle2,
   Loader2,
   Mail,
+  MapPin,
   Phone,
   User,
   X,
@@ -27,6 +29,7 @@ export default function PopupForm({ isOpen, onClose }) {
     contactPerson: "",
     phone: "",
     email: "",
+    place: "",
     product: "",
     message: "",
   });
@@ -59,6 +62,7 @@ export default function PopupForm({ isOpen, onClose }) {
     };
   }, [isOpen, onClose]);
 
+  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -70,16 +74,19 @@ export default function PopupForm({ isOpen, onClose }) {
     setError("");
   };
 
+  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
 
+    // React validation
     if (
-      !formData.contactPerson ||
-      !formData.phone ||
-      !formData.email ||
+      !formData.contactPerson.trim() ||
+      !formData.phone.trim() ||
+      !formData.email.trim() ||
+      !formData.place.trim() ||
       !formData.product ||
-      !formData.message
+      !formData.message.trim()
     ) {
       setError("Please fill in all fields.");
       return;
@@ -96,7 +103,7 @@ export default function PopupForm({ isOpen, onClose }) {
         company: "NA",
         phone: formData.phone,
         product: formData.product,
-        place: "N/A",
+        place: formData.place,
         message: formData.message,
       };
 
@@ -109,14 +116,17 @@ export default function PopupForm({ isOpen, onClose }) {
 
       setSuccess(true);
 
+      // Reset form
       setFormData({
         contactPerson: "",
         phone: "",
         email: "",
+        place: "",
         product: "",
         message: "",
       });
 
+      // Close after success
       setTimeout(() => {
         setSuccess(false);
         onClose();
@@ -158,7 +168,9 @@ export default function PopupForm({ isOpen, onClose }) {
             <div className="relative hidden w-[38%] flex-col justify-between overflow-hidden bg-[#0d2461] p-8 lg:flex xl:p-10">
               {/* Decorative circles */}
               <div className="absolute -right-28 -top-28 h-72 w-72 rounded-full border border-white/[0.07]" />
+
               <div className="absolute -bottom-28 -left-28 h-72 w-72 rounded-full border border-white/[0.06]" />
+
               <div className="absolute bottom-10 right-[-80px] h-48 w-48 rounded-full bg-[#f5bd24]/10 blur-[70px]" />
 
               <div className="relative z-10">
@@ -253,7 +265,7 @@ export default function PopupForm({ isOpen, onClose }) {
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="overflow-y-auto p-6 sm:p-8 lg:p-10">
+              <div className="overflow-y-auto p-6 sm:p-8 lg:p-7">
                 {success ? (
                   /* SUCCESS */
                   <motion.div
@@ -277,7 +289,7 @@ export default function PopupForm({ isOpen, onClose }) {
                 ) : (
                   <>
                     {/* Form heading */}
-                    <div className="mb-4 pr-10 md:mb-8">
+                    <div className="mb-4 pr-10 md:mb-5">
                       <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#0d2461]/40">
                         Project Enquiry
                       </p>
@@ -286,12 +298,12 @@ export default function PopupForm({ isOpen, onClose }) {
                         Tell us what you need.
                       </h3>
 
-                      <p className="mt-2 hidden text-sm leading-6 text-gray-400 md:flex">
+                      <p className="mt-1 hidden text-sm leading-6 text-gray-400 md:flex">
                         Fill in your details and we&apos;ll get back to you.
                       </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-3">
                       {/* Name + Phone */}
                       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                         <FormInput
@@ -301,6 +313,7 @@ export default function PopupForm({ isOpen, onClose }) {
                           onChange={handleChange}
                           placeholder="Enter your name"
                           icon={User}
+                          required
                         />
 
                         <FormInput
@@ -311,10 +324,11 @@ export default function PopupForm({ isOpen, onClose }) {
                           onChange={handleChange}
                           placeholder="+91 XXXXX XXXXX"
                           icon={Phone}
+                          required
                         />
                       </div>
 
-                      {/* Email + Product */}
+                      {/* Email + Place */}
                       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                         <FormInput
                           label="Email Address"
@@ -324,42 +338,54 @@ export default function PopupForm({ isOpen, onClose }) {
                           onChange={handleChange}
                           placeholder="your@email.com"
                           icon={Mail}
+                          required
                         />
 
-                        {/* Product */}
-                        <div>
-                          <label
-                            htmlFor="product"
-                            className="mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d2461]/60"
-                          >
-                            Product / Requirement
-                          </label>
+                        <FormInput
+                          label="Place"
+                          name="place"
+                          value={formData.place}
+                          onChange={handleChange}
+                          placeholder="Enter your city / place"
+                          icon={MapPin}
+                          required
+                        />
+                      </div>
 
-                          <select
-                            id="product"
-                            name="product"
-                            value={formData.product}
-                            onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-gray-200 bg-[#fafafa] px-4 text-sm text-[#0d2461] outline-none transition-all focus:border-[#0d2461] focus:bg-white focus:ring-4 focus:ring-[#0d2461]/5"
-                          >
-                            <option value="" disabled>
-                              Select a product
+                      {/* Product */}
+                      <div>
+                        <label
+                          htmlFor="product"
+                          className="mb-1 block text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d2461]/60"
+                        >
+                          Product / Requirement
+                        </label>
+
+                        <select
+                          id="product"
+                          name="product"
+                          value={formData.product}
+                          onChange={handleChange}
+                          required
+                          className="h-12 w-full rounded-xl border border-gray-200 bg-[#fafafa] px-4 text-sm text-[#0d2461] outline-none transition-all focus:border-[#0d2461] focus:bg-white focus:ring-4 focus:ring-[#0d2461]/5"
+                        >
+                          <option value="" disabled>
+                            Select a product
+                          </option>
+
+                          {products.map((product) => (
+                            <option key={product} value={product}>
+                              {product}
                             </option>
-
-                            {products.map((product) => (
-                              <option key={product} value={product}>
-                                {product}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
+                          ))}
+                        </select>
                       </div>
 
                       {/* Message */}
                       <div>
                         <label
                           htmlFor="message"
-                          className="mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d2461]/60"
+                          className="mb-1 block text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d2461]/60"
                         >
                           Message
                         </label>
@@ -367,10 +393,11 @@ export default function PopupForm({ isOpen, onClose }) {
                         <textarea
                           id="message"
                           name="message"
-                          rows={4}
+                          rows={2}
                           value={formData.message}
                           onChange={handleChange}
                           placeholder="Tell us about your project..."
+                          required
                           className="w-full resize-none rounded-xl border border-gray-200 bg-[#fafafa] px-4 py-3 text-sm leading-6 text-[#0d2461] outline-none transition-all placeholder:text-gray-400 focus:border-[#0d2461] focus:bg-white focus:ring-4 focus:ring-[#0d2461]/5"
                         />
                       </div>
@@ -432,6 +459,7 @@ function FormInput({
   onChange,
   placeholder,
   icon: Icon,
+  required = false,
 }) {
   return (
     <div>
@@ -454,9 +482,11 @@ function FormInput({
           value={value}
           onChange={onChange}
           placeholder={placeholder}
+          required={required}
           className="h-12 w-full rounded-xl border border-gray-200 bg-[#fafafa] pl-11 pr-4 text-sm text-[#0d2461] outline-none transition-all placeholder:text-gray-400 focus:border-[#0d2461] focus:bg-white focus:ring-4 focus:ring-[#0d2461]/5"
         />
       </div>
     </div>
   );
 }
+
