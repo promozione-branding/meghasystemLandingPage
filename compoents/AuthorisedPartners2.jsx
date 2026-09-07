@@ -1,56 +1,51 @@
 
 "use client";
 
-import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { FreeMode, Autoplay } from "swiper/modules";
+import React, { memo } from "react";
+import Image from "next/image";
 import Link from "next/link";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
 
 import "swiper/css";
-import "swiper/css/free-mode";
 
 const partners = [
-  {
-    name: "TESA",
-    logo: "/assets/clients/14 (1).webp",
-  },
-  {
-    name: "STYLAM",
-    logo: "/assets/clients/15 (2).webp",
-  },
-  {
-    name: "CENTURYPLY",
-    logo: "/assets/clients/16 (2).webp",
-  },
-  {
-    name: "CROWN",
-    logo: "/assets/clients/17 (2).webp",
-  },
-  {
-    name: "VIRGO",
-    logo: "/assets/clients/18 (2).webp",
-  },
-  {
-    name: "GREENPLY",
-    logo: "/assets/clients/19 (1).webp",
-  },
+  { name: "TESA", logo: "/assets/clients/14 (1).webp" },
+  { name: "STYLAM", logo: "/assets/clients/15 (2).webp" },
+  { name: "CENTURYPLY", logo: "/assets/clients/16 (2).webp" },
+  { name: "CROWN", logo: "/assets/clients/17 (2).webp" },
+  { name: "VIRGO", logo: "/assets/clients/18 (2).webp" },
+  { name: "GREENPLY", logo: "/assets/clients/19 (1).webp" },
 ];
 
 export default function AuthorisedPartners2() {
   return (
-    <section className="overflow-hidden bg-[#f4f3ef] py-10 md:py-15">
+    <section
+      className="overflow-hidden bg-[#f4f3ef] py-10 md:py-14"
+      aria-labelledby="partners-heading"
+    >
       <div className="mx-auto w-full px-4 sm:px-6 md:px-10 lg:px-15">
 
-        {/* ================= HEADER ================= */}
-
-        <div className="mx-auto mb-5 max-w-[760px] text-center md:mb-8">
+        {/* Header */}
+        <header className="mx-auto mb-6 max-w-[760px] text-center md:mb-8">
           <span className="mb-4 inline-block text-[11px] font-bold uppercase tracking-[0.22em] text-neutral-500 md:text-xs">
             Authorised Channel Partner
           </span>
 
-          <h2 className="text-[40px] font-medium leading-[0.95] tracking-[-0.045em] text-[#181818] sm:text-5xl md:text-6xl lg:text-[68px]">
+          <h2
+            id="partners-heading"
+            className="
+              text-[40px]
+              font-medium
+              leading-[0.95]
+              tracking-[-0.045em]
+              text-[#181818]
+              sm:text-5xl
+              md:text-6xl
+              lg:text-[68px]
+            "
+          >
             Partnered with
-
             <span className="mt-1 block text-neutral-400">
               Brands That Lead.
             </span>
@@ -62,58 +57,58 @@ export default function AuthorisedPartners2() {
             materials, and professional expertise together to
             deliver reliable washroom solutions.
           </p>
-        </div>
+        </header>
 
-        {/* ================= AUTO SLIDER ================= */}
-
-      <Swiper
-  modules={[FreeMode, Autoplay]}
-  spaceBetween={10}
-  loop={true}
-  freeMode={{
-    enabled: true,
-    sticky: false,
-    momentum: false,
-  }}
-  autoplay={{
-    delay: 0,
-    disableOnInteraction: false,
-    pauseOnMouseEnter: false,
-  }}
-  speed={4000}
-  grabCursor={true}
-  slidesPerView={2}
-  breakpoints={{
-    480: {
-      slidesPerView: 2,
-      spaceBetween: 10,
-    },
-    640: {
-      slidesPerView: 2.5,
-      spaceBetween: 12,
-    },
-    768: {
-      slidesPerView: 4,
-      spaceBetween: 14,
-    },
-    1024: {
-      slidesPerView: 4,
-      spaceBetween: 16,
-    },
-    1280: {
-      slidesPerView: 4,
-      spaceBetween: 16,
-    },
-  }}
-  className="!overflow-visible"
->
-  {partners.map((partner) => (
-    <SwiperSlide key={partner.name} className="!h-auto">
-      <PartnerCard partner={partner} />
-    </SwiperSlide>
-  ))}
-</Swiper>
+        {/* Partners Slider */}
+        <Swiper
+          modules={[Autoplay]}
+          loop
+          speed={4500}
+          slidesPerView={2}
+          spaceBetween={10}
+          allowTouchMove
+          grabCursor
+          autoplay={{
+            delay: 0,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2.5,
+              spaceBetween: 12,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 14,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 16,
+            },
+          }}
+          className="partners-swiper"
+        >
+          {partners.map((partner, index) => (
+            <SwiperSlide key={partner.name} className="!h-auto">
+              <PartnerCard
+                partner={partner}
+                priority={index < 2}
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </div>
+
+      {/* Reduced motion */}
+      <style jsx global>{`
+        @media (prefers-reduced-motion: reduce) {
+          .partners-swiper .swiper-wrapper {
+            transform: none !important;
+            transition-duration: 0ms !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }
@@ -122,9 +117,9 @@ export default function AuthorisedPartners2() {
    PARTNER CARD
 ===================================================== */
 
-function PartnerCard({ partner }) {
+const PartnerCard = memo(function PartnerCard({ partner, priority }) {
   return (
-    <div
+    <article
       className="
         group
         relative
@@ -137,19 +132,16 @@ function PartnerCard({ partner }) {
         border-[#deddd7]
         bg-white
         p-3
-        transition-all
+        transition-[transform,border-color,box-shadow]
         duration-500
-
         hover:-translate-y-1
         hover:border-[#20201e]
         hover:shadow-[0_15px_40px_rgba(0,0,0,0.07)]
-
-        md:h-[310px]
+        md:h-[320px]
         md:p-6
       "
     >
-      {/* ================= TOP ================= */}
-
+      {/* Top */}
       <div className="flex items-center justify-between">
         <span className="text-[9px] font-semibold uppercase tracking-[0.18em] text-neutral-400">
           Authorised
@@ -170,7 +162,7 @@ function PartnerCard({ partner }) {
             border-neutral-200
             text-xs
             text-neutral-400
-            transition-all
+            transition-[transform,border-color,color]
             duration-500
             group-hover:rotate-45
             group-hover:border-neutral-800
@@ -181,29 +173,31 @@ function PartnerCard({ partner }) {
         </Link>
       </div>
 
-      {/* ================= LOGO ================= */}
-
-      <div className="flex flex-1 items-center justify-center py-6">
-        <img
-          src={partner.logo}
-          alt={`${partner.name} logo`}
-          loading="lazy"
-          className="
-            block
-            h-auto
-            max-h-full
-            max-w-full
-            w-auto
-            object-contain
-            transition-all
-            duration-500
-            group-hover:scale-105
-          "
-        />
+      {/* Logo */}
+      <div className="relative flex flex-1 items-center justify-center py-6">
+        <div className="relative h-[110px] w-[85%] md:h-[170px]">
+          <Image
+            src={partner.logo}
+            alt={`${partner.name} logo`}
+            fill
+            priority={priority}
+            sizes="
+              (max-width: 639px) 38vw,
+              (max-width: 767px) 32vw,
+              (max-width: 1023px) 22vw,
+              20vw
+            "
+            className="
+              object-contain
+              transition-transform
+              duration-500
+              group-hover:scale-105
+            "
+          />
+        </div>
       </div>
 
-      {/* ================= BOTTOM ================= */}
-
+      {/* Bottom */}
       <div className="border-t border-neutral-100 pt-4">
         <div className="flex items-center justify-between gap-2">
           <h3 className="text-sm font-medium tracking-tight text-[#181818] md:text-base">
@@ -216,9 +210,9 @@ function PartnerCard({ partner }) {
         </div>
       </div>
 
-      {/* ================= HOVER LINE ================= */}
-
+      {/* Hover Line */}
       <span
+        aria-hidden="true"
         className="
           absolute
           bottom-0
@@ -226,12 +220,13 @@ function PartnerCard({ partner }) {
           h-[2px]
           w-0
           bg-[#181818]
-          transition-all
+          transition-[width]
           duration-500
           group-hover:w-full
         "
       />
-    </div>
+    </article>
   );
-}
+});
+
 

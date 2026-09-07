@@ -1,9 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Phone, X } from "lucide-react";
-import Link from "next/link";
+import {
+  ArrowRight,
+  CheckCircle2,
+  Phone,
+  X,
+} from "lucide-react";
 import PopupForm from "./PopupForm";
 
 const projects = [
@@ -12,8 +17,7 @@ const projects = [
     title: "Luxury Toilet Cubicles",
     description:
       "Created for premium environments, our luxury cubicles bring together sophisticated finishes, premium materials, and precision detailing to make every washroom feel considered.",
-    image:
-      "/11.avif",
+    image: "/11.avif",
     details:
       "Our luxury toilet cubicles are designed for premium commercial and hospitality environments where aesthetics, durability, and attention to detail matter. We offer refined finishes and practical configurations that create a sophisticated washroom experience.",
     features: [
@@ -57,188 +61,134 @@ const projects = [
 
 export default function OurProjectsSection2() {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [open, setOpen] = useState(false);
+  const [isQuoteOpen, setIsQuoteOpen] = useState(false);
+
+  /*
+   * Lock body scroll while category modal is open.
+   * Automatically restores scroll when modal closes/unmounts.
+   */
+  useEffect(() => {
+    if (!selectedProject) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [selectedProject]);
 
   const openProject = (project) => {
     setSelectedProject(project);
-    document.body.style.overflow = "hidden";
   };
 
   const closeProject = () => {
     setSelectedProject(null);
-    document.body.style.overflow = "";
+  };
+
+  const openQuote = () => {
+    setIsQuoteOpen(true);
+  };
+
+  const closeQuote = () => {
+    setIsQuoteOpen(false);
   };
 
   return (
     <>
       <section
         id="product"
-        className="w-full overflow-hidden bg-white px-6 py-6 md:px-12 lg:px-16 xl:px-20"
+        className="w-full overflow-hidden bg-white px-4 py-8 sm:px-6 sm:py-10 md:px-10 md:py-12 lg:px-16 lg:py-16 xl:px-20"
         style={{
           fontFamily: "var(--font-jakarta), 'Helvetica Neue', sans-serif",
         }}
       >
         <div className="mx-auto max-w-[1400px]">
-          <div className="grid grid-cols-1 gap-x-12 lg:grid-cols-2 xl:gap-x-20">
-            {/* LEFT COLUMN */}
-            <div className="flex flex-col justify-between gap-5">
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-x-12 xl:gap-x-20">
+            {/* =====================================================
+                LEFT COLUMN
+            ===================================================== */}
+            <div className="flex flex-col gap-6 md:gap-7">
               {/* Heading */}
-              <div className="pt-2">
-                <span className="mb-4 block text-[10px] font-bold uppercase tracking-[0.4em] text-neutral-400">
+              <div className="pt-0.5 md:pt-2">
+                <span className="mb-3 block text-[9px] font-bold uppercase tracking-[0.35em] text-neutral-400 sm:text-[10px] sm:tracking-[0.4em]">
                   OUR CATEGORIES
                 </span>
 
-                <h2 className="mb-5 text-[2.6rem] leading-[1.08] tracking-[-0.02em] text-neutral-900 sm:text-5xl">
-                  <span className="font-light text-neutral-500">Solutions</span>{" "}
-                  <span className="font-extrabold">for</span>
+                <h2 className="mb-4 text-[2.15rem] font-extrabold leading-[1.08] tracking-[-0.03em] text-neutral-900 sm:text-4xl md:text-5xl">
+                  <span className="font-light text-neutral-500">
+                    Solutions
+                  </span>{" "}
+                  <span>for</span>
                   <br />
-                  <span className="font-extrabold">Every Washroom.</span>
+                  <span>Every Washroom.</span>
                 </h2>
 
-                <p className="max-w-xl text-[15px] font-normal leading-[1.75] text-neutral-500">
+                <p className="max-w-xl text-[13px] leading-[1.7] text-neutral-500 sm:text-[15px] sm:leading-[1.75]">
                   Explore a complete range of toilet cubicle systems, from
                   everyday commercial applications to premium spaces, kids&apos;
                   washrooms, urinal partitions, and essential hardware.
                 </p>
               </div>
 
-              {/* Project 01 Image */}
+              {/* Project 01 */}
               <CategoryImage
                 project={projects[0]}
                 onClick={() => openProject(projects[0])}
               />
 
-              {/* Project 01 Info */}
               <ProjectInfo project={projects[0]} />
 
-              {/* CTA */}
-              <div
-                className=" hidden md:flex flex-col gap-6 rounded-3xl p-8"
-                style={{ backgroundColor: "#f0eeec" }}
-              >
-                <div>
-                  <h3 className="mb-3 text-2xl font-extrabold leading-tight tracking-[-0.02em] text-neutral-900 sm:text-[1.7rem]">
-                    Let&apos;s Build Your Next Washroom.
-                  </h3>
-
-                  <p className="text-[13px] font-normal leading-[1.75] text-neutral-400">
-                    From concept and customization to manufacturing and
-                    installation, Megha Systems delivers complete toilet cubicle
-                    solutions built around your space, requirements, and vision.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 border-t border-neutral-300/60 pt-5">
-                  <button
-                    onClick={() => setOpen(true)}
-                    className="inline-flex items-center gap-2 rounded-full border border-neutral-400 px-6 py-3 text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-300 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
-                  >
-                    Start Your Project
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">
-                      <Phone className="h-4 w-4" />
-                    </div>
-
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-widest text-neutral-400">
-                        Talk to Our Experts
-                      </span>
-
-                      <a
-                        href="tel:+919873735713"
-                        className="text-sm font-bold text-neutral-900 transition-colors hover:text-neutral-600"
-                      >
-                        +91 9873735713
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Desktop CTA */}
+              <ProjectCTA
+                onClick={openQuote}
+                className="hidden md:flex"
+              />
             </div>
 
-            {/* RIGHT COLUMN */}
-            <div className="mt-10 flex flex-col gap-10 lg:mt-0">
-              {/* Project 02 Image */}
+            {/* =====================================================
+                RIGHT COLUMN
+            ===================================================== */}
+            <div className="flex flex-col gap-7 md:gap-9 lg:mt-0">
+              {/* Project 02 */}
               <CategoryImage
                 project={projects[1]}
                 onClick={() => openProject(projects[1])}
               />
 
-              {/* Project 02 Info */}
               <ProjectInfo project={projects[1]} />
 
-              {/* Project 03 Image */}
+              {/* Project 03 */}
               <CategoryImage
                 project={projects[2]}
                 onClick={() => openProject(projects[2])}
               />
 
-              {/* Project 03 Info */}
               <ProjectInfo project={projects[2]} />
 
-              <div
-                className=" md:hidden flex flex-col gap-6 rounded-3xl p-8"
-                style={{ backgroundColor: "#f0eeec" }}
-              >
-                <div>
-                  <h3 className="mb-3 text-2xl font-extrabold leading-tight tracking-[-0.02em] text-neutral-900 sm:text-[1.7rem]">
-                    Let&apos;s Build Your Next Washroom.
-                  </h3>
-
-                  <p className="text-[13px] font-normal leading-[1.75] text-neutral-400">
-                    From concept and customization to manufacturing and
-                    installation, Megha Systems delivers complete toilet cubicle
-                    solutions built around your space, requirements, and vision.
-                  </p>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-4 border-t border-neutral-300/60 pt-5">
-                  <button
-                    onClick={() => setOpen(true)}
-                    className="inline-flex items-center gap-2 rounded-full border border-neutral-400 px-6 py-3 text-xs font-bold uppercase tracking-widest text-neutral-900 transition-all duration-300 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white"
-                  >
-                    Start Your Project
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white">
-                      <Phone className="h-4 w-4" />
-                    </div>
-
-                    <div>
-                      <span className="block text-[10px] uppercase tracking-widest text-neutral-400">
-                        Talk to Our Experts
-                      </span>
-
-                      <a
-                        href="tel:+919873735713"
-                        className="text-sm font-bold text-neutral-900 transition-colors hover:text-neutral-600"
-                      >
-                        +91 9873735713
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {/* Mobile CTA */}
+              <ProjectCTA
+                onClick={openQuote}
+                className="flex md:hidden"
+              />
             </div>
           </div>
         </div>
       </section>
 
-      {/* CATEGORY POPUP */}
+      {/* =========================================================
+          CATEGORY MODAL
+      ========================================================= */}
       <AnimatePresence>
         {selectedProject && (
           <motion.div
-            className="fixed inset-0 z-[999] flex items-center justify-center bg-[#0d2461]/70 p-4 backdrop-blur-md sm:p-6"
+            className="fixed inset-0 z-[999] flex items-center justify-center bg-[#0d2461]/70 p-3 backdrop-blur-sm sm:p-5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onMouseDown={(e) => {
-              if (e.target === e.currentTarget) {
+            transition={{ duration: 0.2 }}
+            onMouseDown={(event) => {
+              if (event.target === event.currentTarget) {
                 closeProject();
               }
             }}
@@ -246,8 +196,8 @@ export default function OurProjectsSection2() {
             <motion.div
               initial={{
                 opacity: 0,
-                y: 30,
-                scale: 0.96,
+                y: 20,
+                scale: 0.98,
               }}
               animate={{
                 opacity: 1,
@@ -256,68 +206,80 @@ export default function OurProjectsSection2() {
               }}
               exit={{
                 opacity: 0,
-                y: 20,
-                scale: 0.96,
+                y: 15,
+                scale: 0.98,
               }}
               transition={{
-                duration: 0.3,
+                duration: 0.25,
                 ease: [0.21, 0.47, 0.32, 0.98],
               }}
-              className="relative max-h-[90vh] w-full max-w-[1000px] overflow-hidden rounded-[24px] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.25)]"
+              className="relative max-h-[94vh] w-full max-w-[1000px] overflow-hidden rounded-[20px] bg-white shadow-[0_30px_100px_rgba(0,0,0,0.25)] sm:rounded-[24px]"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-title"
             >
-              {/* Close Button */}
+              {/* Close */}
               <button
                 type="button"
                 onClick={closeProject}
-                aria-label="Close"
-                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-lg backdrop-blur transition-all hover:scale-105 hover:bg-white"
+                aria-label="Close project details"
+                className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-neutral-900 shadow-lg backdrop-blur transition-transform hover:scale-105 sm:right-4 sm:top-4 sm:h-10 sm:w-10"
               >
-                <X className="h-5 w-5" />
+                <X className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
 
-              <div className="grid max-h-[90vh] grid-cols-1 overflow-y-auto lg:grid-cols-2">
-                {/* Image */}
-                <div className="relative min-h-[280px] overflow-hidden bg-neutral-100 lg:min-h-[600px]">
-                  <img
+              <div className="grid max-h-[94vh] grid-cols-1 overflow-y-auto lg:grid-cols-2">
+                {/* Modal Image */}
+                <div className="relative aspect-[4/3] overflow-hidden bg-neutral-100 lg:aspect-auto lg:min-h-[600px]">
+                  <Image
                     src={selectedProject.image}
                     alt={selectedProject.title}
-                    className="absolute inset-0 h-full w-full object-cover"
+                    fill
+                    sizes="(max-width: 1023px) 100vw, 50vw"
+                    className="object-cover"
+                    priority
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-                  <div className="absolute bottom-6 left-6">
-                    <span className="text-6xl font-light leading-none text-white/50">
+                  <div className="absolute bottom-4 left-5 sm:bottom-6 sm:left-6">
+                    <span className="text-5xl font-light leading-none text-white/50 sm:text-6xl">
                       {selectedProject.number}
                     </span>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col justify-center p-7 sm:p-10 lg:p-12">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-[#f0ad00]">
+                {/* Modal Content */}
+                <div className="flex flex-col justify-center p-6 sm:p-9 lg:p-12">
+                  <span className="text-[9px] font-bold uppercase tracking-[0.3em] text-[#f0ad00] sm:text-[10px]">
                     Megha Systems
                   </span>
 
-                  <h2 className="mt-3 text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] text-[#0d2461] sm:text-4xl">
+                  <h2
+                    id="project-title"
+                    className="mt-2.5 text-2xl font-extrabold leading-[1.08] tracking-[-0.03em] text-[#0d2461] sm:text-4xl"
+                  >
                     {selectedProject.title}
                   </h2>
 
-                  <div className="mt-6 h-px w-12 bg-[#f5bd24]" />
+                  <div className="mt-5 h-px w-10 bg-[#f5bd24] sm:mt-6 sm:w-12" />
 
-                  <p className="mt-6 text-sm leading-7 text-neutral-500 sm:text-[15px]">
+                  <p className="mt-5 text-[13px] leading-6 text-neutral-500 sm:mt-6 sm:text-[15px] sm:leading-7">
                     {selectedProject.details}
                   </p>
 
                   {/* Features */}
-                  <div className="mt-7 space-y-3">
+                  <div className="mt-6 space-y-2.5 sm:mt-7 sm:space-y-3">
                     {selectedProject.features.map((feature) => (
-                      <div key={feature} className="flex items-center gap-3">
+                      <div
+                        key={feature}
+                        className="flex items-center gap-2.5 sm:gap-3"
+                      >
                         <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#f5bd24]/15 text-[#0d2461]">
                           <CheckCircle2 className="h-3.5 w-3.5" />
                         </div>
 
-                        <span className="text-sm font-medium text-neutral-700">
+                        <span className="text-[13px] font-medium text-neutral-700 sm:text-sm">
                           {feature}
                         </span>
                       </div>
@@ -325,19 +287,21 @@ export default function OurProjectsSection2() {
                   </div>
 
                   {/* CTA */}
-                  <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <div className="mt-7 flex flex-col gap-2.5 sm:mt-8 sm:flex-row sm:gap-3">
                     <button
-                      onClick={() => setOpen(true)}
-                      className="group inline-flex items-center justify-center gap-2 rounded-full bg-[#0d2461] px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#102d7a] hover:shadow-lg"
+                      type="button"
+                      onClick={openQuote}
+                      className="group inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-[#0d2461] px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-white transition-all hover:-translate-y-0.5 hover:bg-[#102d7a] hover:shadow-lg sm:text-xs"
                     >
                       Get a Quote
+
                       <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                     </button>
 
                     <button
                       type="button"
                       onClick={closeProject}
-                      className="inline-flex items-center justify-center rounded-full border border-neutral-200 px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-neutral-700 transition-all hover:border-neutral-900 hover:bg-neutral-50"
+                      className="inline-flex min-h-11 items-center justify-center rounded-full border border-neutral-200 px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-neutral-700 transition-all hover:border-neutral-900 hover:bg-neutral-50 sm:text-xs"
                     >
                       Close
                     </button>
@@ -349,7 +313,13 @@ export default function OurProjectsSection2() {
         )}
       </AnimatePresence>
 
-      <PopupForm isOpen={open} onClose={() => setOpen(false)} />
+      {/* Quote Popup */}
+      {isQuoteOpen && (
+        <PopupForm
+          isOpen={isQuoteOpen}
+          onClose={closeQuote}
+        />
+      )}
     </>
   );
 }
@@ -363,30 +333,22 @@ function CategoryImage({ project, onClick }) {
     <motion.button
       type="button"
       onClick={onClick}
-      whileHover="hover"
+      aria-label={`View details for ${project.title}`}
       initial="rest"
-      className="group relative block w-full cursor-pointer overflow-hidden rounded-3xl bg-neutral-100 text-left"
+      whileHover="hover"
+      whileTap={{ scale: 0.995 }}
+      className="group relative block w-full overflow-hidden rounded-2xl bg-neutral-100 text-left sm:rounded-3xl"
     >
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl">
-        <motion.img
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl sm:rounded-3xl">
+        <Image
           src={project.image}
           alt={project.title}
-          variants={{
-            rest: {
-              scale: 1,
-            },
-            hover: {
-              scale: 1.05,
-            },
-          }}
-          transition={{
-            duration: 0.7,
-            ease: [0.21, 0.47, 0.32, 0.98],
-          }}
-          className="h-full w-full object-cover"
+          fill
+          sizes="(max-width: 639px) 100vw, (max-width: 1023px) 90vw, 50vw"
+          className="object-cover"
         />
 
-        {/* Dark Overlay */}
+        {/* Desktop hover overlay */}
         <motion.div
           variants={{
             rest: {
@@ -396,17 +358,17 @@ function CategoryImage({ project, onClick }) {
               opacity: 1,
             },
           }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 bg-[#0d2461]/35"
+          transition={{ duration: 0.25 }}
+          className="pointer-events-none absolute inset-0 hidden bg-[#0d2461]/35 sm:block"
         />
 
-        {/* View Button */}
+        {/* Desktop view button */}
         <motion.div
           variants={{
             rest: {
               opacity: 0,
-              scale: 0.85,
-              y: 10,
+              scale: 0.9,
+              y: 8,
             },
             hover: {
               opacity: 1,
@@ -414,28 +376,31 @@ function CategoryImage({ project, onClick }) {
               y: 0,
             },
           }}
-          transition={{ duration: 0.3 }}
-          className="absolute inset-0 flex items-center justify-center"
+          transition={{ duration: 0.25 }}
+          className="pointer-events-none absolute inset-0 hidden items-center justify-center sm:flex"
         >
           <div className="rounded-full bg-white px-5 py-3 text-[10px] font-bold uppercase tracking-[0.2em] text-[#0d2461] shadow-xl">
             View Details
           </div>
         </motion.div>
 
-        {/* Bottom Category Name */}
-        <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
-          <div>
-            <span className="text-[10px] font-bold uppercase tracking-[0.25em] text-white/70">
+        {/* Mobile subtle overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent sm:hidden" />
+
+        {/* Bottom content */}
+        <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between sm:bottom-5 sm:left-5 sm:right-5">
+          <div className="min-w-0 pr-3">
+            <span className="text-[8px] font-bold uppercase tracking-[0.2em] text-white/75 sm:text-[10px] sm:tracking-[0.25em]">
               Category {project.number}
             </span>
 
-            <h3 className="mt-1 text-lg font-bold text-white">
+            <h3 className="mt-1 truncate text-base font-bold text-white sm:text-lg">
               {project.title}
             </h3>
           </div>
 
-          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#0d2461]">
-            <ArrowRight className="h-4 w-4" />
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white text-[#0d2461] sm:h-9 sm:w-9">
+            <ArrowRight className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </div>
         </div>
       </div>
@@ -449,9 +414,9 @@ function CategoryImage({ project, onClick }) {
 
 function ProjectInfo({ project }) {
   return (
-    <div className="flex items-start gap-5">
+    <div className="flex items-start gap-3.5 sm:gap-5">
       <span
-        className="shrink-0 select-none text-[3.5rem] font-light leading-none"
+        className="shrink-0 select-none text-[2.8rem] font-light leading-none sm:text-[3.5rem]"
         style={{
           color: "#e2e8f0",
           letterSpacing: "-0.03em",
@@ -460,14 +425,72 @@ function ProjectInfo({ project }) {
         {project.number}
       </span>
 
-      <div>
-        <h3 className="mb-1.5 text-[1.15rem] font-bold tracking-[-0.01em] text-neutral-900">
+      <div className="pt-0.5">
+        <h3 className="mb-1 text-base font-bold tracking-[-0.01em] text-neutral-900 sm:mb-1.5 sm:text-[1.15rem]">
           {project.title}
         </h3>
 
-        <p className="max-w-xs text-[13px] leading-[1.7] text-neutral-500">
+        <p className="max-w-xl text-[12px] leading-[1.65] text-neutral-500 sm:max-w-xs sm:text-[13px] sm:leading-[1.7]">
           {project.description}
         </p>
+      </div>
+    </div>
+  );
+}
+
+/* =============================================================
+   PROJECT CTA
+============================================================= */
+
+function ProjectCTA({ onClick, className = "" }) {
+  return (
+    <div
+      className={`flex-col gap-5 rounded-2xl p-6 sm:gap-6 sm:rounded-3xl sm:p-8 ${className}`}
+      style={{
+        backgroundColor: "#f0eeec",
+      }}
+    >
+      <div>
+        <h3 className="mb-2.5 text-xl font-extrabold leading-tight tracking-[-0.02em] text-neutral-900 sm:mb-3 sm:text-[1.7rem]">
+          Let&apos;s Build Your Next Washroom.
+        </h3>
+
+        <p className="text-[12px] leading-[1.7] text-neutral-400 sm:text-[13px] sm:leading-[1.75]">
+          From concept and customization to manufacturing and installation,
+          Megha Systems delivers complete toilet cubicle solutions built
+          around your space, requirements, and vision.
+        </p>
+      </div>
+
+      <div className="flex flex-col items-start gap-4 border-t border-neutral-300/60 pt-5 sm:flex-row sm:flex-wrap sm:items-center">
+        <button
+          type="button"
+          onClick={onClick}
+          className="inline-flex min-h-11 items-center gap-2 rounded-full border border-neutral-400 px-5 py-3 text-[10px] font-bold uppercase tracking-widest text-neutral-900 transition-all duration-300 hover:border-neutral-900 hover:bg-neutral-900 hover:text-white sm:px-6 sm:text-xs"
+        >
+          Start Your Project
+
+          <ArrowRight className="h-3.5 w-3.5" />
+        </button>
+
+        <div className="flex items-center gap-3">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-white sm:h-10 sm:w-10">
+            <Phone className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+          </div>
+
+          <div>
+            <span className="block text-[8px] uppercase tracking-widest text-neutral-400 sm:text-[10px]">
+              Talk to Our Experts
+            </span>
+
+            <a
+              href="tel:+919873735713"
+              className="text-[13px] font-bold text-neutral-900 transition-colors hover:text-neutral-600 sm:text-sm"
+            >
+              +91 9873735713
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );

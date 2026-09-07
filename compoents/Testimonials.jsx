@@ -46,14 +46,14 @@ export default function Testimonials() {
   return (
     <section className="w-full overflow-hidden bg-white pt-10 pb-20">
       <div className="mx-auto max-w-[1536px] px-5 sm:px-8 lg:px-12">
-
         {/* ================= MAIN AREA ================= */}
         <div className="relative grid grid-cols-1 lg:grid-cols-[48%_52%]">
-
           {/* ================= LEFT IMAGE ================= */}
           <div className="relative z-10">
             <div className="relative aspect-[1.34/1] w-full overflow-hidden rounded-[14px]">
-              <img
+              <Image
+                width={100}
+                height={100}
                 src="/4.jpeg"
                 alt="Refined toilet cubicle interior"
                 className="h-full w-full object-cover"
@@ -68,7 +68,6 @@ export default function Testimonials() {
 
           {/* ================= RIGHT CONTENT ================= */}
           <div className="relative z-20 pt-10 lg:pl-6 lg:pt-5 xl:pl-8">
-
             {/* Label */}
             <div className="mb-6 flex items-center gap-4">
               <span className="text-sm font-bold uppercase tracking-[0.35em] text-[#0d2461] sm:text-base lg:text-lg">
@@ -85,9 +84,8 @@ export default function Testimonials() {
 
             {/* Description */}
             <p className="mt-7 max-w-[590px] text-sm leading-6 text-gray-500 sm:text-[15px]">
-              It fits the visual style much better and connects naturally
-              with Megha Systems&apos; 5,000+ projects / 50,000+
-              installations story.
+              It fits the visual style much better and connects naturally with
+              Megha Systems&apos; 5,000+ projects / 50,000+ installations story.
             </p>
           </div>
 
@@ -201,7 +199,6 @@ export default function Testimonials() {
 
             {/* ================= SLIDER CONTROLS ================= */}
             <div className="mt-6 flex items-center justify-center gap-5">
-
               {/* Previous */}
               <button
                 type="button"
@@ -256,7 +253,6 @@ export default function Testimonials() {
               >
                 <ChevronRight size={17} />
               </button>
-
             </div>
           </div>
         </div>
