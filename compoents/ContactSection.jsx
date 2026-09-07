@@ -1,11 +1,10 @@
-
 "use client";
 
 import React, { useState } from "react";
 import axios from "axios";
 import { Phone, Mail, MapPin } from "lucide-react";
 
-const products = [
+const PROJECT_TYPES = [
   "Corporate office",
   "Hotel",
   "Hospital",
@@ -17,12 +16,27 @@ const products = [
   "Residential",
 ];
 
+const PRODUCTS = [
+  "Not sure — need guidance",
+  "Toilet cubicles",
+  "Toilet partitions",
+  "Urinal partitions",
+  "Shower cubicles",
+  "Hardware & accessories",
+  "Custom washroom solution",
+];
+
 export default function ContactSection() {
   const [formData, setFormData] = useState({
-    contactPerson: "",
+    name: "",
+    company: "",
     email: "",
     phone: "",
+    location: "",
+    projectType: "",
+    cubicles: "",
     product: "",
+    timeline: "",
     message: "",
   });
 
@@ -48,11 +62,11 @@ export default function ContactSection() {
     setError("");
     setSuccess(false);
 
+    // Required field validation
     if (
-      !formData.contactPerson.trim() ||
+      !formData.name.trim() ||
       !formData.email.trim() ||
-      !formData.phone.trim() ||
-      !formData.product.trim()
+      !formData.phone.trim()
     ) {
       setError("Please fill in all required fields.");
       return;
@@ -61,16 +75,40 @@ export default function ContactSection() {
     try {
       setLoading(true);
 
+      // Keep the same API structure.
+      // Extra quote details are included inside message.
       const data = {
         platform: "Megha System Contact Form",
         platformEmail: "contact@meghasystems.com",
-        name: formData.contactPerson.trim(),
+
+        name: formData.name.trim(),
+
         email: formData.email.trim(),
-        company: "NA",
+
+        company: formData.company.trim() || "NA",
+
         phone: formData.phone.trim(),
-        product: formData.product.trim(),
-        place: "N/A",
-        message: formData.message.trim() || "Product enquiry",
+
+        product: formData.product.trim() || "N/A",
+
+        place: formData.location.trim() || "N/A",
+
+        message: `
+Project Enquiry Details:
+
+Project Location: ${formData.location.trim() || "N/A"}
+
+Project Type: ${formData.projectType.trim() || "N/A"}
+
+Approx. Number of Cubicles: ${formData.cubicles || "N/A"}
+
+Product / Solution Interested In: ${formData.product.trim() || "N/A"}
+
+Expected Timeline: ${formData.timeline.trim() || "N/A"}
+
+Message:
+${formData.message.trim() || "No additional message provided."}
+        `.trim(),
       };
 
       const response = await axios.post(
@@ -80,30 +118,37 @@ export default function ContactSection() {
           headers: {
             "Content-Type": "application/json",
           },
-        }
+        },
       );
 
       console.log("Form submitted successfully:", response.data);
 
       setSuccess(true);
 
+      // Reset form
       setFormData({
-        contactPerson: "",
+        name: "",
+        company: "",
         email: "",
         phone: "",
+        location: "",
+        projectType: "",
+        cubicles: "",
         product: "",
+        timeline: "",
         message: "",
       });
 
+      // Hide success message after 4 seconds
       setTimeout(() => {
         setSuccess(false);
-      }, 3000);
+      }, 4000);
     } catch (err) {
       console.error("Form submission error:", err);
 
       setError(
         err?.response?.data?.message ||
-          "Unable to submit your enquiry. Please try again."
+          "Unable to submit your enquiry. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -112,23 +157,38 @@ export default function ContactSection() {
 
   return (
     <section
-      id="contact"
+      id="quote"
       className="flex items-center justify-center bg-slate-50 p-4 py-12 font-sans antialiased text-slate-900 sm:p-6 lg:p-8"
     >
       <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-8 lg:p-12">
         <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-
-          {/* LEFT INFO PANEL */}
+          {/* =====================================================
+              LEFT CONTACT PANEL
+          ====================================================== */}
           <aside className="flex flex-col justify-between space-y-6 rounded-[16px] bg-[#E5E2E0] p-6 sm:p-8 lg:col-span-4">
             <div className="space-y-6">
-              <h2 className="text-4xl font-bold leading-[1.2] tracking-tight text-black">
-                Let's Talk Beautiful Spaces.
-              </h2>
+              {/* Heading */}
+              <div>
+                <p className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-slate-600">
+                  Get a quote
+                </p>
 
+                <h2 className="text-4xl font-bold leading-[1.2] tracking-tight text-black">
+                  Planning a washroom project?
+                  <br />
+                  Let&apos;s build it right.
+                </h2>
+
+                <p className="mt-4 text-sm leading-6 text-slate-600">
+                  Share a few details and our team will get back to you with a
+                  proposal and next steps.
+                </p>
+              </div>
+
+              {/* Contact Details */}
               <div className="space-y-4 pt-1">
-
-                {/* Phone */}
-                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4.5">
+                {/* ================= PHONE ================= */}
+                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
                     <Phone className="h-5 w-5 stroke-[1.5]" />
                   </div>
@@ -142,13 +202,20 @@ export default function ContactSection() {
                       href="tel:+919873735713"
                       className="mt-0.5 block text-base font-semibold tracking-tight text-black"
                     >
-                      +91 9873735713
+                      +91 98737 35713
+                    </a>
+
+                    <a
+                      href="tel:+919873735716"
+                      className="block text-sm font-medium text-slate-700"
+                    >
+                      +91 98737 35716
                     </a>
                   </div>
                 </div>
 
-                {/* Email */}
-                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4.5">
+                {/* ================= EMAIL ================= */}
+                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
                     <Mail className="h-5 w-5 stroke-[1.5]" />
                   </div>
@@ -167,69 +234,133 @@ export default function ContactSection() {
                   </div>
                 </div>
 
-                {/* Address */}
-                <div className="flex items-start gap-3.5 rounded-[12px] bg-[#F0EDED] p-4.5">
+                {/* ================= WHATSAPP ================= */}
+                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
+                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
+                    <Phone className="h-5 w-5 stroke-[1.5]" />
+                  </div>
+
+                  <div>
+                    <p className="text-[12px] leading-tight text-slate-600">
+                      WhatsApp
+                    </p>
+
+                    <a
+                      href="https://wa.me/919873735713"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 block text-base font-semibold tracking-tight text-black"
+                    >
+                      +91 98737 35713
+                    </a>
+                  </div>
+                </div>
+
+                {/* ================= ADDRESS ================= */}
+                <div className="flex items-start gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
                   <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
                     <MapPin className="h-5 w-5 stroke-[1.5]" />
                   </div>
 
                   <div>
                     <p className="text-[12px] leading-tight text-slate-600">
-                      Visit Us
+                      Head Office &amp; Factory
                     </p>
 
                     <p className="mt-0.5 text-base font-semibold leading-snug tracking-tight text-black">
-                      Adore Business City, Sector 72-73, Faridabad, Haryana,
-                      121004
+                      Plot P10/J-3, Adore Business City, Sector 72-73,
+                      Faridabad, Haryana 121004
                     </p>
                   </div>
                 </div>
-
               </div>
             </div>
           </aside>
 
-          {/* RIGHT FORM PANEL */}
+          {/* =====================================================
+              RIGHT FORM PANEL
+          ====================================================== */}
           <main className="flex flex-col justify-between py-2 sm:pr-2 lg:col-span-8">
+            {/* Heading */}
             <header>
-              <h2 className="text-5xl font-bold leading-tight tracking-tight text-black">
-                Send Us a Message
+              <h2 className="text-4xl font-bold leading-tight tracking-tight text-black sm:text-5xl">
+                Request a Quote
               </h2>
+
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+                Tell us about your project and requirements. Our team will
+                contact you with the right solution.
+              </p>
             </header>
 
+            {/* ================= FORM ================= */}
             <form
               onSubmit={handleSubmit}
               className="relative z-10 mt-8 space-y-5"
             >
-
-              {/* Name + Email */}
+              {/* =================================================
+                  NAME + COMPANY
+              ================================================== */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-
                 {/* Name */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-800">
+                  <label
+                    htmlFor="name"
+                    className="text-sm font-medium text-slate-800"
+                  >
                     Name <span className="text-rose-500">*</span>
                   </label>
 
                   <input
+                    id="name"
                     type="text"
-                    name="contactPerson"
+                    name="name"
                     required
                     placeholder="Your Name"
-                    value={formData.contactPerson}
+                    value={formData.name}
                     onChange={handleChange}
                     disabled={loading}
                     className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
 
+                {/* Company */}
+                <div className="space-y-2">
+                  <label
+                    htmlFor="company"
+                    className="text-sm font-medium text-slate-800"
+                  >
+                    Company
+                  </label>
+
+                  <input
+                    id="company"
+                    type="text"
+                    name="company"
+                    placeholder="Company Name"
+                    value={formData.company}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  />
+                </div>
+              </div>
+
+              {/* =================================================
+                  EMAIL + PHONE
+              ================================================== */}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {/* Email */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-800">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-slate-800"
+                  >
                     Email <span className="text-rose-500">*</span>
                   </label>
 
                   <input
+                    id="email"
                     type="email"
                     name="email"
                     required
@@ -240,18 +371,18 @@ export default function ContactSection() {
                     className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
-              </div>
-
-              {/* Phone + Product */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
 
                 {/* Phone */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-800">
-                    Phone Number <span className="text-rose-500">*</span>
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-slate-800"
+                  >
+                    Phone <span className="text-rose-500">*</span>
                   </label>
 
                   <input
+                    id="phone"
                     type="tel"
                     name="phone"
                     required
@@ -262,47 +393,107 @@ export default function ContactSection() {
                     className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   />
                 </div>
+              </div>
 
-                {/* Product Dropdown */}
+              {/* =================================================
+                  PROJECT LOCATION + PROJECT TYPE
+              ================================================== */}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {/* Location */}
+                <div className="space-y-2">
+                  <label
+                    htmlFor="location"
+                    className="text-sm font-medium text-slate-800"
+                  >
+                    Project Location
+                  </label>
+
+                  <input
+                    id="location"
+                    type="text"
+                    name="location"
+                    placeholder="City / Location"
+                    value={formData.location}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  />
+                </div>
+
+                {/* Project Type */}
+                <div className="space-y-2">
+                  <label
+                    htmlFor="projectType"
+                    className="text-sm font-medium text-slate-800"
+                  >
+                    Project Type
+                  </label>
+
+                  <select
+                    id="projectType"
+                    name="projectType"
+                    value={formData.projectType}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full appearance-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  >
+                    <option value="">Select Project Type</option>
+
+                    {PROJECT_TYPES.map((type) => (
+                      <option key={type} value={type}>
+                        {type}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              {/* =================================================
+                  CUBICLES + PRODUCT
+              ================================================== */}
+              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {/* Cubicles */}
+                <div className="space-y-2">
+                  <label
+                    htmlFor="cubicles"
+                    className="text-sm font-medium text-slate-800"
+                  >
+                    Approx. Number of Cubicles
+                  </label>
+
+                  <input
+                    id="cubicles"
+                    type="number"
+                    name="cubicles"
+                    min="1"
+                    placeholder="e.g. 20"
+                    value={formData.cubicles}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  />
+                </div>
+
+                {/* Product */}
                 <div className="space-y-2">
                   <label
                     htmlFor="product"
                     className="text-sm font-medium text-slate-800"
                   >
-                    Product <span className="text-rose-500">*</span>
+                    Product / Solution
                   </label>
 
                   <select
                     id="product"
                     name="product"
-                    required
                     value={formData.product}
                     onChange={handleChange}
                     disabled={loading}
-                    className="
-                      w-full
-                      appearance-none
-                      rounded-[8px]
-                      border
-                      border-slate-100
-                      bg-[#F8F7F7]
-                      px-5
-                      py-3.5
-                      text-base
-                      text-slate-900
-                      transition-all
-                      focus:outline-none
-                      focus:ring-1
-                      focus:ring-slate-300
-                      disabled:cursor-not-allowed
-                      disabled:opacity-60
-                    "
+                    className="w-full appearance-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    <option value="" disabled>
-                      Select Product
-                    </option>
+                    <option value="">Select Product / Solution</option>
 
-                    {products.map((product) => (
+                    {PRODUCTS.map((product) => (
                       <option key={product} value={product}>
                         {product}
                       </option>
@@ -311,7 +502,32 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              {/* Message */}
+              {/* =================================================
+                  EXPECTED TIMELINE
+              ================================================== */}
+              <div className="space-y-2">
+                <label
+                  htmlFor="timeline"
+                  className="text-sm font-medium text-slate-800"
+                >
+                  Expected Timeline
+                </label>
+
+                <input
+                  id="timeline"
+                  type="text"
+                  name="timeline"
+                  placeholder="e.g. Within 3 months"
+                  value={formData.timeline}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                />
+              </div>
+
+              {/* =================================================
+                  MESSAGE
+              ================================================== */}
               <div className="space-y-2">
                 <label
                   htmlFor="message"
@@ -324,7 +540,7 @@ export default function ContactSection() {
                   id="message"
                   name="message"
                   rows={4}
-                  placeholder="Write your message here..."
+                  placeholder="Tell us about your project..."
                   value={formData.message}
                   onChange={handleChange}
                   disabled={loading}
@@ -332,35 +548,44 @@ export default function ContactSection() {
                 />
               </div>
 
-              {/* Error */}
+              {/* =================================================
+                  ERROR
+              ================================================== */}
               {error && (
                 <div className="rounded-[8px] bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
                   {error}
                 </div>
               )}
 
-              {/* Success */}
+              {/* =================================================
+                  SUCCESS
+              ================================================== */}
               {success && (
                 <div className="rounded-[8px] bg-green-50 px-4 py-3 text-sm font-medium text-green-600">
-                  Thank you! Your enquiry has been submitted successfully.
+                  Thank you — your enquiry has been received. Our team will get
+                  back to you shortly.
                 </div>
               )}
 
-              {/* Submit */}
+              {/* =================================================
+                  SUBMIT BUTTON
+              ================================================== */}
               <div className="pt-2">
                 <button
                   type="submit"
                   disabled={loading}
-                  className="inline-flex min-w-[150px] cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-4 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+                  className="inline-flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-4 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  {loading ? "Sending..." : "Send Message"}
+                  {loading ? "Submitting..." : "Request a Quote"}
                 </button>
               </div>
             </form>
           </main>
         </div>
 
-        {/* BACKGROUND SVG */}
+        {/* =====================================================
+            BACKGROUND ARCHITECTURAL SVG
+        ====================================================== */}
         <div className="pointer-events-none absolute -bottom-8 -right-8 z-0 h-[380px] w-[380px] opacity-[0.14] sm:h-[460px] sm:w-[460px]">
           <svg
             viewBox="0 0 500 500"
@@ -385,11 +610,15 @@ export default function ContactSection() {
             />
 
             <path d="M250 160 L330 200 L330 290 L250 250 Z" />
+
             <path d="M250 160 L170 200 L170 290 L250 250 Z" />
+
             <path d="M250 160 L330 120 L250 80 L170 120 Z" />
 
             <path d="M250 80 L250 160" strokeWidth="2.5" />
+
             <path d="M170 120 L170 200" strokeWidth="2" />
+
             <path d="M330 120 L330 200" strokeWidth="2" />
 
             <path
@@ -399,24 +628,35 @@ export default function ContactSection() {
             />
 
             <path d="M240 215 L240 255" />
+
             <path d="M320 175 L320 215" />
 
             <path d="M270 170 L285 162 L285 178 L270 186 Z" />
+
             <path d="M277 183 L277 190" />
 
             <path d="M330 200 L410 240 L410 330 L330 290 Z" />
+
             <path d="M330 200 L410 160 L330 120" />
+
             <path d="M410 160 L410 240" strokeWidth="2" />
 
             <path d="M170 200 L90 240 L90 330 L170 290 Z" />
+
             <path d="M170 200 L90 160 L170 120" />
+
             <path d="M90 160 L90 240" strokeWidth="2" />
 
             <ellipse cx="260" cy="275" rx="14" ry="8" />
+
             <path d="M260 275 L260 300" />
+
             <path d="M260 300 L248 310" />
+
             <path d="M260 300 L272 310" />
+
             <path d="M260 300 L260 312" />
+
             <path d="M248 260 C248 245, 272 245, 272 260 L272 272 C272 272, 248 272, 248 272 Z" />
           </svg>
         </div>
@@ -424,4 +664,3 @@ export default function ContactSection() {
     </section>
   );
 }
-

@@ -4,15 +4,10 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const products = [
-  "Corporate office",
-  "Hotel",
-  "Hospital",
-  "Shopping mall",
-  "School / University",
-  "Airport",
-  "Factory / Industrial",
-  "Government / Public infrastructure",
-  "Residential",
+  "Public Restroom",
+  "Kids Restrooms",
+  "Urinal Partitions",
+  "Luxe Partition System",
 ];
 
 export default function Form2() {
@@ -68,7 +63,10 @@ export default function Form2() {
         message: "Product enquiry",
       };
 
-      const res = await axios.post("https://brandbnalo.com/api/form/add", data);
+      const res = await axios.post(
+        "https://brandbnalo.com/api/form/add",
+        data
+      );
 
       console.log("Form submitted:", res.data);
 
@@ -97,6 +95,7 @@ export default function Form2() {
   return (
     <section className="w-full bg-white py-2 md:py-5">
       <div className="mx-auto w-full max-w-7xl px-5">
+        
         {/* HEADING */}
         <div className="mb-7 text-center md:mb-5">
           <h2
@@ -114,8 +113,8 @@ export default function Form2() {
           </h2>
 
           <p className="mx-auto hidden md:block mt-3 max-w-2xl text-sm leading-6 text-slate-500 md:text-base">
-            Tell us what you need and our team will help you find the perfect
-            restroom partition solution.
+            Tell us what you need and our team will help you find the
+            perfect restroom partition solution.
           </p>
         </div>
 
@@ -256,7 +255,7 @@ export default function Form2() {
                 lg:flex-1
               "
             >
-              <option value="">Select Product</option>
+              <option value="">Select Project</option>
 
               {products.map((product) => (
                 <option key={product} value={product}>
