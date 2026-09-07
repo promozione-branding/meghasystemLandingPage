@@ -255,7 +255,7 @@ export default function Form2() {
                 lg:flex-1
               "
             >
-              <option value="">Select Project</option>
+              <option value="">Select Product</option>
 
               {products.map((product) => (
                 <option key={product} value={product}>

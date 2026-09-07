@@ -8,6 +8,7 @@ import {
   CheckCircle2,
   Loader2,
   Mail,
+  MapPin,
   Phone,
   User,
   X,
@@ -27,6 +28,7 @@ export default function PopupForm({ isOpen, onClose }) {
     contactPerson: "",
     phone: "",
     email: "",
+    place: "",
     product: "",
     message: "",
   });
@@ -78,6 +80,7 @@ export default function PopupForm({ isOpen, onClose }) {
       !formData.contactPerson ||
       !formData.phone ||
       !formData.email ||
+      !formData.place ||
       !formData.product ||
       !formData.message
     ) {
@@ -91,12 +94,13 @@ export default function PopupForm({ isOpen, onClose }) {
       const data = {
         platform: "Megha System Contact Form",
         platformEmail: "contact@meghasystems.com",
+
         name: formData.contactPerson,
         email: formData.email,
         company: "NA",
         phone: formData.phone,
         product: formData.product,
-        place: "N/A",
+        place: formData.place,
         message: formData.message,
       };
 
@@ -113,6 +117,7 @@ export default function PopupForm({ isOpen, onClose }) {
         contactPerson: "",
         phone: "",
         email: "",
+        place: "",
         product: "",
         message: "",
       });
@@ -154,14 +159,18 @@ export default function PopupForm({ isOpen, onClose }) {
             }}
             className="relative flex max-h-[92vh] w-full max-w-[900px] overflow-hidden rounded-[26px] bg-white shadow-[0_35px_100px_rgba(0,0,0,0.3)]"
           >
-            {/* LEFT PANEL */}
+            {/* =====================================================
+                LEFT PANEL
+            ====================================================== */}
             <div className="relative hidden w-[38%] flex-col justify-between overflow-hidden bg-[#0d2461] p-8 lg:flex xl:p-10">
+
               {/* Decorative circles */}
               <div className="absolute -right-28 -top-28 h-72 w-72 rounded-full border border-white/[0.07]" />
               <div className="absolute -bottom-28 -left-28 h-72 w-72 rounded-full border border-white/[0.06]" />
               <div className="absolute bottom-10 right-[-80px] h-48 w-48 rounded-full bg-[#f5bd24]/10 blur-[70px]" />
 
               <div className="relative z-10">
+
                 {/* Brand */}
                 <div className="flex items-center gap-3">
                   <img
@@ -241,8 +250,11 @@ export default function PopupForm({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* RIGHT PANEL */}
+            {/* =====================================================
+                RIGHT PANEL
+            ====================================================== */}
             <div className="relative flex min-w-0 flex-1 flex-col bg-white">
+
               {/* Close button */}
               <button
                 type="button"
@@ -254,6 +266,7 @@ export default function PopupForm({ isOpen, onClose }) {
               </button>
 
               <div className="overflow-y-auto p-6 sm:p-8 lg:p-10">
+
                 {success ? (
                   /* SUCCESS */
                   <motion.div
@@ -291,9 +304,16 @@ export default function PopupForm({ isOpen, onClose }) {
                       </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
-                      {/* Name + Phone */}
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-4"
+                    >
+
+                      {/* =================================================
+                          NAME + PHONE
+                      ================================================== */}
                       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
                         <FormInput
                           label="Your Name"
                           name="contactPerson"
@@ -312,10 +332,14 @@ export default function PopupForm({ isOpen, onClose }) {
                           placeholder="+91 XXXXX XXXXX"
                           icon={Phone}
                         />
+
                       </div>
 
-                      {/* Email + Product */}
+                      {/* =================================================
+                          EMAIL + PLACE
+                      ================================================== */}
                       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
                         <FormInput
                           label="Email Address"
                           name="email"
@@ -326,36 +350,51 @@ export default function PopupForm({ isOpen, onClose }) {
                           icon={Mail}
                         />
 
-                        {/* Product */}
-                        <div>
-                          <label
-                            htmlFor="product"
-                            className="mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d2461]/60"
-                          >
-                            Project / Requirement
-                          </label>
+                        <FormInput
+                          label="Place"
+                          name="place"
+                          type="text"
+                          value={formData.place}
+                          onChange={handleChange}
+                          placeholder="Enter your city / place"
+                          icon={MapPin}
+                        />
 
-                          <select
-                            id="product"
-                            name="product"
-                            value={formData.product}
-                            onChange={handleChange}
-                            className="h-12 w-full rounded-xl border border-gray-200 bg-[#fafafa] px-4 text-sm text-[#0d2461] outline-none transition-all focus:border-[#0d2461] focus:bg-white focus:ring-4 focus:ring-[#0d2461]/5"
-                          >
-                            <option value="" disabled>
-                              Select a product
-                            </option>
-
-                            {products.map((product) => (
-                              <option key={product} value={product}>
-                                {product}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
                       </div>
 
-                      {/* Message */}
+                      {/* =================================================
+                          PRODUCT
+                      ================================================== */}
+                      <div>
+                        <label
+                          htmlFor="product"
+                          className="mb-2 block text-[11px] font-bold uppercase tracking-[0.12em] text-[#0d2461]/60"
+                        >
+                          Product / Requirement
+                        </label>
+
+                        <select
+                          id="product"
+                          name="product"
+                          value={formData.product}
+                          onChange={handleChange}
+                          className="h-12 w-full rounded-xl border border-gray-200 bg-[#fafafa] px-4 text-sm text-[#0d2461] outline-none transition-all focus:border-[#0d2461] focus:bg-white focus:ring-4 focus:ring-[#0d2461]/5"
+                        >
+                          <option value="" disabled>
+                            Select a product
+                          </option>
+
+                          {products.map((product) => (
+                            <option key={product} value={product}>
+                              {product}
+                            </option>
+                          ))}
+                        </select>
+                      </div>
+
+                      {/* =================================================
+                          MESSAGE
+                      ================================================== */}
                       <div>
                         <label
                           htmlFor="message"
@@ -375,7 +414,9 @@ export default function PopupForm({ isOpen, onClose }) {
                         />
                       </div>
 
-                      {/* Error */}
+                      {/* =================================================
+                          ERROR
+                      ================================================== */}
                       {error && (
                         <motion.div
                           initial={{ opacity: 0, y: -5 }}
@@ -386,7 +427,9 @@ export default function PopupForm({ isOpen, onClose }) {
                         </motion.div>
                       )}
 
-                      {/* Submit */}
+                      {/* =================================================
+                          SUBMIT
+                      ================================================== */}
                       <button
                         type="submit"
                         disabled={loading}
@@ -408,9 +451,11 @@ export default function PopupForm({ isOpen, onClose }) {
                       <p className="text-center text-[10px] text-gray-400">
                         Our team typically responds within one business day.
                       </p>
+
                     </form>
                   </>
                 )}
+
               </div>
             </div>
           </motion.div>
