@@ -16,12 +16,15 @@ import {
 } from "lucide-react";
 
 const products = [
-  "Toilet Cubicles",
-  "Washroom Partitions",
-  "Urinal Cubicles",
-  "Kids Toilet Cubicles",
-  "HPL 12 MM Boards",
-  "Other",
+   "Corporate office",
+  "Hotel",
+  "Hospital",
+  "Shopping mall",
+  "School / University",
+  "Airport",
+  "Factory / Industrial",
+  "Government / Public infrastructure",
+  "Residential",
 ];
 
 export default function PopupForm({ isOpen, onClose }) {

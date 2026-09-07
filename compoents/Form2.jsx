@@ -4,10 +4,15 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const products = [
-  "Public Restroom",
-  "Kids Restrooms",
-  "Urinal Partitions",
-  "Luxe Partition System",
+   "Corporate office",
+  "Hotel",
+  "Hospital",
+  "Shopping mall",
+  "School / University",
+  "Airport",
+  "Factory / Industrial",
+  "Government / Public infrastructure",
+  "Residential",
 ];
 
 export default function Form2() {
