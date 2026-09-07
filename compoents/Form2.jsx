@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const products = [
-   "Corporate office",
+  "Corporate office",
   "Hotel",
   "Hospital",
   "Shopping mall",
@@ -68,10 +68,7 @@ export default function Form2() {
         message: "Product enquiry",
       };
 
-      const res = await axios.post(
-        "https://brandbnalo.com/api/form/add",
-        data
-      );
+      const res = await axios.post("https://brandbnalo.com/api/form/add", data);
 
       console.log("Form submitted:", res.data);
 
@@ -100,7 +97,6 @@ export default function Form2() {
   return (
     <section className="w-full bg-white py-2 md:py-5">
       <div className="mx-auto w-full max-w-7xl px-5">
-        
         {/* HEADING */}
         <div className="mb-7 text-center md:mb-5">
           <h2
@@ -118,8 +114,8 @@ export default function Form2() {
           </h2>
 
           <p className="mx-auto hidden md:block mt-3 max-w-2xl text-sm leading-6 text-slate-500 md:text-base">
-            Tell us what you need and our team will help you find the
-            perfect restroom partition solution.
+            Tell us what you need and our team will help you find the perfect
+            restroom partition solution.
           </p>
         </div>
 

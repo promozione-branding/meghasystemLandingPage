@@ -1,8 +1,14 @@
+
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useCallback,
+  memo,
+} from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectFade, Pagination } from "swiper/modules";
 
@@ -24,11 +30,8 @@ const HERO_SLIDES = [
       "Designed with precision. With 500+ toilet cubicles installed at the Foxconn facility for Apple, our solutions bring together scale, precision, and dependable performance.",
     src: "/1.png",
     alt: "Apple BKC Architectural Showcase",
-
-    // Heading color
     color: "#ffffff",
   },
-
   {
     id: 2,
     title: "Where Design Meets Performance.",
@@ -36,23 +39,17 @@ const HERO_SLIDES = [
       "Built around performance. Delivered for Maruti Suzuki. With 4,000+ toilet cubicles installed at the Kadkhoda plant, our solutions are made for scale, precision, and demanding environments.",
     src: "/2.png",
     alt: "Maruti Suzuki",
-
-    // Heading color
     color: "#ffffff",
   },
-
   {
     id: 5,
     title: "Custom Cubicles for Every Space.",
     description:
       "Designed for demanding footfall. Delivered across 50+ MCD & McDonald's outlets, our toilet cubicles combine durability, hygiene, and consistent performance across every location.",
     src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png",
-    alt: "McDonald",
-
-    // Heading color
+    alt: "McDonald's",
     color: "#ffffff",
   },
-
   {
     id: 4,
     title: "Built for Modern Washrooms.",
@@ -60,43 +57,74 @@ const HERO_SLIDES = [
       "Made for high-traffic environments. Our toilet cubicle solutions across KFC outlets are built for everyday performance, easy maintenance, and lasting durability.",
     src: "/4.png",
     alt: "KFC",
-
-    // Heading color
     color: "#ffffff",
   },
 ];
 
 /* =========================================================
-   TYPEWRITER COMPONENT
+   TYPEWRITER
 ========================================================= */
 
-function TypewriterText({ text, speed = 35, onComplete, className = "" }) {
+const TypewriterText = memo(function TypewriterText({
+  text,
+  speed = 35,
+  onComplete,
+  className = "",
+}) {
   const [displayedText, setDisplayedText] = useState("");
-  const [isTyping, setIsTyping] = useState(true);
+
+  const frameRef = useRef(null);
+  const lastTimeRef = useRef(0);
+  const indexRef = useRef(0);
 
   useEffect(() => {
-    let index = 0;
+    indexRef.current = 0;
+    lastTimeRef.current = 0;
 
     setDisplayedText("");
-    setIsTyping(true);
 
-    const timer = setInterval(() => {
-      index += 1;
+    const animate = (time) => {
+      if (!lastTimeRef.current) {
+        lastTimeRef.current = time;
+      }
 
-      setDisplayedText(text.slice(0, index));
+      const elapsed = time - lastTimeRef.current;
 
-      if (index >= text.length) {
-        clearInterval(timer);
-        setIsTyping(false);
+      if (elapsed >= speed) {
+        const charactersToAdd = Math.max(
+          1,
+          Math.floor(elapsed / speed)
+        );
 
-        if (onComplete) {
-          onComplete();
+        indexRef.current = Math.min(
+          indexRef.current + charactersToAdd,
+          text.length
+        );
+
+        setDisplayedText(text.slice(0, indexRef.current));
+
+        lastTimeRef.current = time;
+
+        if (indexRef.current >= text.length) {
+          frameRef.current = null;
+
+          if (onComplete) {
+            onComplete();
+          }
+
+          return;
         }
       }
-    }, speed);
+
+      frameRef.current = requestAnimationFrame(animate);
+    };
+
+    frameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      clearInterval(timer);
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+      }
     };
   }, [text, speed, onComplete]);
 
@@ -104,95 +132,110 @@ function TypewriterText({ text, speed = 35, onComplete, className = "" }) {
     <span className={className}>
       {displayedText}
 
-      {isTyping && (
-        <span className="ml-1 inline-block animate-pulse font-light">|</span>
+      {displayedText.length < text.length && (
+        <span className="ml-1 inline-block font-light opacity-70">
+          |
+        </span>
       )}
     </span>
   );
-}
+});
 
 /* =========================================================
    HERO COMPONENT
 ========================================================= */
 
 export default function Hero2() {
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const [activeSlideIndex, setActiveSlideIndex] = useState(0);
   const [open, setOpen] = useState(false);
 
   const swiperRef = useRef(null);
-  const videoRef = useRef(null);
   const slideTimerRef = useRef(null);
 
-  /* Current active slide */
-  const currentSlide = HERO_SLIDES[activeSlideIndex] || HERO_SLIDES[0];
+  const currentSlide =
+    HERO_SLIDES[activeSlideIndex] || HERO_SLIDES[0];
+
+  /* =========================================================
+     CLEAR SLIDE TIMER
+  ========================================================= */
+
+  const clearSlideTimer = useCallback(() => {
+    if (slideTimerRef.current) {
+      clearTimeout(slideTimerRef.current);
+      slideTimerRef.current = null;
+    }
+  }, []);
 
   /* =========================================================
      TYPEWRITER COMPLETE
   ========================================================= */
 
   const handleTypewriterComplete = useCallback(() => {
-    if (slideTimerRef.current) {
-      clearTimeout(slideTimerRef.current);
-    }
+    clearSlideTimer();
 
     slideTimerRef.current = setTimeout(() => {
-      if (swiperRef.current) {
+      if (
+        swiperRef.current &&
+        !swiperRef.current.destroyed
+      ) {
         swiperRef.current.slideNext();
       }
     }, 1800);
-  }, []);
+  }, [clearSlideTimer]);
 
   /* =========================================================
-     CLEANUP TIMER
+     CLEANUP
   ========================================================= */
 
   useEffect(() => {
     return () => {
-      if (slideTimerRef.current) {
-        clearTimeout(slideTimerRef.current);
-      }
+      clearSlideTimer();
     };
-  }, []);
+  }, [clearSlideTimer]);
+
+  /* =========================================================
+     SLIDE CHANGE
+  ========================================================= */
+
+  const handleSlideChange = useCallback(
+    (swiper) => {
+      clearSlideTimer();
+
+      setActiveSlideIndex(swiper.realIndex);
+    },
+    [clearSlideTimer]
+  );
 
   /* =========================================================
      CONSULTATION
   ========================================================= */
 
-  const handleConsultation = () => {
+  const handleConsultation = useCallback(() => {
     setOpen(true);
-  };
-
-  /* =========================================================
-     VIDEO SPEED
-  ========================================================= */
-
-  useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.playbackRate = 0.8;
-    }
   }, []);
 
   return (
     <>
       {/* =====================================================
-          HERO SECTION
+          HERO
       ===================================================== */}
 
-      <section className="w-full bg-white text-black font-sans antialiased pt-2 sm:pt-3 lg:pt-4 pb-8 sm:pb-10 lg:pb-12">
-        <div className="mx-auto max-w-[1750px] px-4 lg:px-10">
+      <section className="w-full bg-white pt-2 pb-8 font-sans text-black antialiased sm:pt-3 sm:pb-10 lg:pt-4 lg:pb-12">
+        <div className="mx-auto w-full max-w-[1750px] px-4 lg:px-10">
+
           {/* =================================================
-              ACTION BUTTON + DESCRIPTION
+              DESKTOP CTA + DESCRIPTION
           ================================================= */}
 
-          <div className="mt-4 hidden md:flex flex-col sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
-            {/* CTA BUTTON */}
-
+          <div className="mt-4 hidden items-center gap-5 md:flex sm:gap-8 lg:gap-10">
             <button
               type="button"
               onClick={handleConsultation}
               className="
                 inline-flex
+                w-fit
+                shrink-0
+                cursor-pointer
                 items-center
                 justify-center
                 gap-2.5
@@ -202,28 +245,22 @@ export default function Hero2() {
                 px-6
                 py-2.5
                 text-xs
-                sm:text-sm
                 font-medium
                 text-black
-                transition-all
+                transition-colors
                 duration-200
                 hover:bg-black
                 hover:text-white
-                cursor-pointer
-                w-fit
-                shrink-0
+                sm:text-sm
               "
             >
               <span>Book a Free Consultation</span>
-
-              <span className="text-sm leading-none">→</span>
+              <span className="text-sm leading-none">
+                →
+              </span>
             </button>
 
-            {/* =================================================
-                TYPEWRITER DESCRIPTION
-            ================================================= */}
-
-            <p className="max-w-3xl text-xs sm:text-sm leading-relaxed text-gray-500 min-h-[48px]">
+            <p className="min-h-[48px] max-w-3xl text-xs leading-relaxed text-gray-500 sm:text-sm">
               <TypewriterText
                 key={`description-${activeSlideIndex}`}
                 text={currentSlide.description}
@@ -234,48 +271,48 @@ export default function Hero2() {
           </div>
 
           {/* =================================================
-              BOTTOM FEATURE GRID
+              HERO SLIDER
           ================================================= */}
 
-          <div className="mt-5 sm:mt-8 grid grid-cols-1 lg:grid-cols-1 gap-4 md:gap-6 items-stretch">
-            {/* =================================================
-                RIGHT SHOWCASE SLIDER
-            ================================================= */}
-
+          <div className="mt-5 grid items-stretch gap-4 sm:mt-8 md:gap-6">
             <div
               className="
+                group/slider
                 relative
-                h-full
+                h-[65vh]
+                min-h-[480px]
                 w-full
                 overflow-hidden
                 rounded-[22px]
                 shadow-sm
-                group/slider
+                md:h-[80vh]
+                md:min-h-[600px]
               "
             >
               {/* =================================================
-                  DYNAMIC HEADING
+                  HEADING
               ================================================= */}
 
               <h1
                 className="
                   absolute
-                  z-[50]
-                  
-                  top-25
                   left-5
-                  md:left-30
-                  max-w-7xl
+                  top-20
+                  z-20
+                  max-w-[90%]
                   text-3xl
+                  font-semibold
+                  leading-[1.02]
+                  tracking-[-0.04em]
+                  transition-colors
+                  duration-500
                   sm:text-6xl
+                  md:left-20
+                  md:top-24
+                  md:max-w-7xl
+                  lg:left-30
                   lg:text-[68px]
                   xl:text-[76px]
-                  font-semibold
-                  tracking-[-0.04em]
-                  leading-[1.02]
-                  transition-colors
-                  duration-700
-                  ease-in-out
                 "
                 style={{
                   color: currentSlide.color,
@@ -299,39 +336,40 @@ export default function Hero2() {
                   crossFade: true,
                 }}
                 loop={true}
-                speed={800}
+                speed={600}
                 pagination={{
                   clickable: true,
                 }}
                 onSwiper={(swiper) => {
                   swiperRef.current = swiper;
                 }}
-                onSlideChange={(swiper) => {
-                  setActiveSlideIndex(swiper.realIndex);
-                }}
-                className="w-full md:h-[80vh] h-full hero-swiper text-white"
+                onSlideChange={handleSlideChange}
+                className="hero-swiper h-full w-full text-white"
               >
-                {HERO_SLIDES.map((slide) => (
+                {HERO_SLIDES.map((slide, index) => (
                   <SwiperSlide
                     key={slide.id}
-                    className="
-                      relative
-                      w-full
-                      h-full
-                    "
+                    className="relative h-full w-full"
                   >
-                    {/* IMAGE */}
-
                     <Image
                       src={slide.src}
                       alt={slide.alt}
-                      width={100}
-                      height={100}
-                      priority={slide.id === 1}
-                      className="object-cover h-full w-full"
+                      fill
+                      priority={index === 0}
+                      loading={
+                        index === 0 ? "eager" : "lazy"
+                      }
+                      sizes="
+                        (max-width: 640px) 100vw,
+                        (max-width: 1024px) 100vw,
+                        1750px
+                      "
+                      quality={75}
+                      className="object-cover"
                     />
 
-                    <div className="absolute inset-0 bg-black/40 pointer-events-none z-10" />
+                    {/* Overlay */}
+                    <div className="pointer-events-none absolute inset-0 z-10 bg-black/40" />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -341,118 +379,61 @@ export default function Hero2() {
       </section>
 
       {/* =====================================================
-          POPUP FORM
+          MOBILE CTA + DESCRIPTION
       ===================================================== */}
 
-      <PopupForm isOpen={open} onClose={() => setOpen(false)} />
-
-      {/* =====================================================
-          VIDEO MODAL
-      ===================================================== */}
-
-      {isVideoOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-md p-4 sm:p-6 animate-in fade-in duration-300">
-          <div className="relative w-full max-w-5xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
-            {/* =================================================
-                MODAL HEADER
-            ================================================= */}
-
-            <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-gradient-to-r from-[#0d2461] to-black">
-              <div className="flex items-center gap-2.5">
-                <div className="w-2.5 h-2.5 rounded-full bg-[#f5bd24] animate-pulse" />
-
-                <span className="text-xs font-semibold uppercase tracking-wider text-white">
-                  Megha Systems — Brand Showreel
-                </span>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setIsVideoOpen(false)}
-                className="
-                  p-1.5
-                  rounded-full
-                  bg-white/10
-                  text-white
-                  hover:bg-white/20
-                  transition-colors
-                  cursor-pointer
-                "
-                aria-label="Close video"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* =================================================
-                VIDEO PLAYER
-            ================================================= */}
-
-            {/* 
-            <div className="relative aspect-video w-full bg-black">
-
-              <video
-                src="/assets/video/video_1.mp4"
-                controls
-                autoPlay
-                className="w-full h-full object-contain"
-              >
-                Your browser does not support the video tag.
-              </video>
-
-            </div>
-            */}
-          </div>
-        </div>
-      )}
-
-      <div className="mt-0 flex flex-col py-5 px-5 md:hidden bg-white sm:flex-row sm:items-center gap-5 sm:gap-8 lg:gap-10">
-        {/* CTA BUTTON */}
-
+      <div className="flex flex-col gap-5 bg-white px-5 py-5 md:hidden">
         <button
           type="button"
           onClick={handleConsultation}
           className="
-                inline-flex
-                items-center
-                justify-center
-                gap-2.5
-                border
-                border-black
-                bg-transparent
-                px-6
-                py-2.5
-                text-xs
-                sm:text-sm
-                font-medium
-                text-black
-                transition-all
-                duration-200
-                hover:bg-black
-                hover:text-white
-                cursor-pointer
-                w-fit
-                shrink-0
-              "
+            inline-flex
+            w-fit
+            shrink-0
+            cursor-pointer
+            items-center
+            justify-center
+            gap-2.5
+            border
+            border-black
+            bg-transparent
+            px-6
+            py-2.5
+            text-xs
+            font-medium
+            text-black
+            transition-colors
+            duration-200
+            active:bg-black
+            active:text-white
+          "
         >
           <span>Book a Free Consultation</span>
 
-          <span className="text-sm leading-none">→</span>
+          <span className="text-sm leading-none">
+            →
+          </span>
         </button>
 
-        {/* =================================================
-                TYPEWRITER DESCRIPTION
-            ================================================= */}
-
-        <p className="max-w-3xl text-xs sm:text-sm leading-relaxed text-gray-500 min-h-[48px]">
+        <p className="min-h-[48px] max-w-3xl text-xs leading-relaxed text-gray-500 sm:text-sm">
           <TypewriterText
-            key={`description-${activeSlideIndex}`}
+            key={`mobile-description-${activeSlideIndex}`}
             text={currentSlide.description}
             speed={12}
             onComplete={handleTypewriterComplete}
           />
         </p>
       </div>
+
+      {/* =====================================================
+          POPUP
+      ===================================================== */}
+
+      <PopupForm
+        isOpen={open}
+        onClose={() => setOpen(false)}
+      />
     </>
   );
 }
+
