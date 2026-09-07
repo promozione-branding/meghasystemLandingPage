@@ -1,8 +1,21 @@
+
 "use client";
 
 import React, { useState } from "react";
 import axios from "axios";
 import { Phone, Mail, MapPin } from "lucide-react";
+
+const products = [
+  "Corporate office",
+  "Hotel",
+  "Hospital",
+  "Shopping mall",
+  "School / University",
+  "Airport",
+  "Factory / Industrial",
+  "Government / Public infrastructure",
+  "Residential",
+];
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -17,7 +30,6 @@ export default function ContactSection() {
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  // Handle input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
 
@@ -30,14 +42,12 @@ export default function ContactSection() {
     setSuccess(false);
   };
 
-  // Submit form
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     setError("");
     setSuccess(false);
 
-    // Validation
     if (
       !formData.contactPerson.trim() ||
       !formData.email.trim() ||
@@ -54,7 +64,6 @@ export default function ContactSection() {
       const data = {
         platform: "Megha System Contact Form",
         platformEmail: "contact@meghasystems.com",
-
         name: formData.contactPerson.trim(),
         email: formData.email.trim(),
         company: "NA",
@@ -71,15 +80,13 @@ export default function ContactSection() {
           headers: {
             "Content-Type": "application/json",
           },
-        },
+        }
       );
 
       console.log("Form submitted successfully:", response.data);
 
-      // Show success
       setSuccess(true);
 
-      // Reset form
       setFormData({
         contactPerson: "",
         email: "",
@@ -88,7 +95,6 @@ export default function ContactSection() {
         message: "",
       });
 
-      // Hide success message
       setTimeout(() => {
         setSuccess(false);
       }, 3000);
@@ -97,7 +103,7 @@ export default function ContactSection() {
 
       setError(
         err?.response?.data?.message ||
-          "Unable to submit your enquiry. Please try again.",
+          "Unable to submit your enquiry. Please try again."
       );
     } finally {
       setLoading(false);
@@ -111,15 +117,16 @@ export default function ContactSection() {
     >
       <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-8 lg:p-12">
         <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
-          {/* ================= LEFT INFO PANEL ================= */}
+
+          {/* LEFT INFO PANEL */}
           <aside className="flex flex-col justify-between space-y-6 rounded-[16px] bg-[#E5E2E0] p-6 sm:p-8 lg:col-span-4">
             <div className="space-y-6">
               <h2 className="text-4xl font-bold leading-[1.2] tracking-tight text-black">
                 Let's Talk Beautiful Spaces.
               </h2>
 
-              {/* Info Cards */}
               <div className="space-y-4 pt-1">
+
                 {/* Phone */}
                 <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4.5">
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
@@ -177,11 +184,12 @@ export default function ContactSection() {
                     </p>
                   </div>
                 </div>
+
               </div>
             </div>
           </aside>
 
-          {/* ================= RIGHT FORM PANEL ================= */}
+          {/* RIGHT FORM PANEL */}
           <main className="flex flex-col justify-between py-2 sm:pr-2 lg:col-span-8">
             <header>
               <h2 className="text-5xl font-bold leading-tight tracking-tight text-black">
@@ -193,8 +201,10 @@ export default function ContactSection() {
               onSubmit={handleSubmit}
               className="relative z-10 mt-8 space-y-5"
             >
+
               {/* Name + Email */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
                 {/* Name */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
@@ -234,6 +244,7 @@ export default function ContactSection() {
 
               {/* Phone + Product */}
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
                 {/* Phone */}
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-slate-800">
@@ -252,32 +263,65 @@ export default function ContactSection() {
                   />
                 </div>
 
-                {/* Product */}
+                {/* Product Dropdown */}
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-slate-800">
+                  <label
+                    htmlFor="product"
+                    className="text-sm font-medium text-slate-800"
+                  >
                     Product <span className="text-rose-500">*</span>
                   </label>
 
-                  <input
-                    type="text"
+                  <select
+                    id="product"
                     name="product"
                     required
-                    placeholder="Enter Product"
                     value={formData.product}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
-                  />
+                    className="
+                      w-full
+                      appearance-none
+                      rounded-[8px]
+                      border
+                      border-slate-100
+                      bg-[#F8F7F7]
+                      px-5
+                      py-3.5
+                      text-base
+                      text-slate-900
+                      transition-all
+                      focus:outline-none
+                      focus:ring-1
+                      focus:ring-slate-300
+                      disabled:cursor-not-allowed
+                      disabled:opacity-60
+                    "
+                  >
+                    <option value="" disabled>
+                      Select Product
+                    </option>
+
+                    {products.map((product) => (
+                      <option key={product} value={product}>
+                        {product}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
               {/* Message */}
               <div className="space-y-2">
-                <label className="text-sm font-medium text-slate-800">
+                <label
+                  htmlFor="message"
+                  className="text-sm font-medium text-slate-800"
+                >
                   Message
                 </label>
 
                 <textarea
+                  id="message"
                   name="message"
                   rows={4}
                   placeholder="Write your message here..."
@@ -288,14 +332,14 @@ export default function ContactSection() {
                 />
               </div>
 
-              {/* Error Message */}
+              {/* Error */}
               {error && (
                 <div className="rounded-[8px] bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
                   {error}
                 </div>
               )}
 
-              {/* Success Message */}
+              {/* Success */}
               {success && (
                 <div className="rounded-[8px] bg-green-50 px-4 py-3 text-sm font-medium text-green-600">
                   Thank you! Your enquiry has been submitted successfully.
@@ -316,7 +360,7 @@ export default function ContactSection() {
           </main>
         </div>
 
-        {/* ================= BACKGROUND SVG ================= */}
+        {/* BACKGROUND SVG */}
         <div className="pointer-events-none absolute -bottom-8 -right-8 z-0 h-[380px] w-[380px] opacity-[0.14] sm:h-[460px] sm:w-[460px]">
           <svg
             viewBox="0 0 500 500"
@@ -326,8 +370,8 @@ export default function ContactSection() {
             strokeLinecap="round"
             strokeLinejoin="round"
             className="h-full w-full"
+            aria-hidden="true"
           >
-            {/* Floor Grid */}
             <path
               d="M250 100 L450 200 L250 300 L50 200 Z"
               strokeDasharray="4 4"
@@ -340,17 +384,14 @@ export default function ContactSection() {
               strokeWidth="1"
             />
 
-            {/* Central Cubicle */}
             <path d="M250 160 L330 200 L330 290 L250 250 Z" />
             <path d="M250 160 L170 200 L170 290 L250 250 Z" />
             <path d="M250 160 L330 120 L250 80 L170 120 Z" />
 
-            {/* Partition */}
             <path d="M250 80 L250 160" strokeWidth="2.5" />
             <path d="M170 120 L170 200" strokeWidth="2" />
             <path d="M330 120 L330 200" strokeWidth="2" />
 
-            {/* Desk */}
             <path
               d="M210 200 L290 160 L320 175 L240 215 Z"
               fill="#0F172A"
@@ -360,21 +401,17 @@ export default function ContactSection() {
             <path d="M240 215 L240 255" />
             <path d="M320 175 L320 215" />
 
-            {/* Monitor */}
             <path d="M270 170 L285 162 L285 178 L270 186 Z" />
             <path d="M277 183 L277 190" />
 
-            {/* Right Pod */}
             <path d="M330 200 L410 240 L410 330 L330 290 Z" />
             <path d="M330 200 L410 160 L330 120" />
             <path d="M410 160 L410 240" strokeWidth="2" />
 
-            {/* Left Pod */}
             <path d="M170 200 L90 240 L90 330 L170 290 Z" />
             <path d="M170 200 L90 160 L170 120" />
             <path d="M90 160 L90 240" strokeWidth="2" />
 
-            {/* Office Chair */}
             <ellipse cx="260" cy="275" rx="14" ry="8" />
             <path d="M260 275 L260 300" />
             <path d="M260 300 L248 310" />
@@ -387,3 +424,4 @@ export default function ContactSection() {
     </section>
   );
 }
+
