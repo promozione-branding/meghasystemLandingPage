@@ -52,6 +52,7 @@ export default function Form2() {
       setLoading(true);
 
       const data = {
+        supplierToken: "6a9fb2bdd936bdc2bb1d6df7",
         platform: "Megha System Contact Form",
         platformEmail: "contact@meghasystems.com",
         name: formData.contactPerson,
@@ -95,7 +96,7 @@ export default function Form2() {
   return (
     <section className="w-full bg-white py-2 md:py-5">
       <div className="mx-auto w-full max-w-7xl px-5">
-        
+
         {/* HEADING */}
         <div className="mb-7 text-center md:mb-5">
           <h2
