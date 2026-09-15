@@ -29,7 +29,7 @@ const projects = [
   },
   {
     number: "02",
-    title: "Urinal Cubicles",
+    title: "Urinal Modesty Panels",
     description:
       "Our urinal cubicle solutions are designed for busy washrooms, combining smart space utilization, durable construction, and easy maintenance.",
     image: "/unimod.webp",
