@@ -10,28 +10,28 @@ const projects = [
     title: "Kora",
     category: "Consulting Site",
     image:
-      "/char-dham-6778afd0ed68bd0a4db07577.jpeg",
+      "/p1.webp",
   },
   {
     id: 2,
     title: "KYMA",
     category: "AI Agency",
     image:
-      "/6.jpeg",
+      "/p2.webp",
   },
   {
     id: 3,
     title: "Mugen Studio",
     category: "Design Studio",
     image:
-      "/pd doors images.jpg",
+    "/p3.webp",
   },
   {
     id: 4,
     title: "Axiom Performance",
     category: "Ecommerce Site",
     image:
-      "/1.png",
+     "/p4.webp",
   },
 ];
 

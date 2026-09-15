@@ -258,20 +258,32 @@ ${formData.message.trim() || "No additional message provided."}
                 </div>
 
                 {/* ================= ADDRESS ================= */}
-                <div className="flex items-start gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
-                  <div className="mt-0.5 flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
-                    <MapPin className="h-5 w-5 stroke-[1.5]" />
+                 <div className="bg-[#F0EDED] rounded-[12px] p-2 lg:p-3 xl:p-4 flex items-start xl:gap-3.5">
+
+                  <div className="w-11 h-11 rounded-full flex items-center justify-center text-slate-800 shrink-0 mt-0.5">
+                    <MapPin className="w-5 h-5 stroke-[1.5]" />
                   </div>
 
                   <div>
-                    <p className="text-[12px] leading-tight text-slate-600">
-                      Head Office &amp; Factory
+
+                    <p className="text-[12px] text-slate-600 leading-tight">
+                      Head Office
                     </p>
 
-                    <p className="mt-0.5 text-base font-semibold leading-snug tracking-tight text-black">
-                      Plot P10/J-3, Adore Business City, Sector 72-73,
-                      Faridabad, Haryana 121004
+                    <p className="text-base font-semibold text-black tracking-tight leading-snug mt-0.5">
+                      Plot Number-P10/J-3, Adore Business City, Sector 72-73,
+                      Faridabad, Haryana, 121004
                     </p>
+
+                    <p className="text-[12px] mt-3 text-slate-600 leading-tight">
+                      Branch Office
+                    </p>
+
+                    <p className="text-base font-semibold text-black tracking-tight leading-snug mt-0.5">
+                      Plot No.341/1,2,3 &amp; 4, Safdar Nagar, Borabanda,
+                      Hyderabad-500018
+                    </p>
+
                   </div>
                 </div>
               </div>

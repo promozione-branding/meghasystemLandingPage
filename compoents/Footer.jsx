@@ -22,7 +22,6 @@ export default function FooterSection() {
 
   return (
     <footer className="relative overflow-hidden border-t border-white/10 bg-gradient-to-b from-[#1a2942] via-[#0e172e] to-[#040812] pt-10 font-sans text-white antialiased sm:pt-14 sm:pb-16">
-
       {/* =====================================================
           GIANT BACKGROUND WATERMARK
       ===================================================== */}
@@ -33,17 +32,14 @@ export default function FooterSection() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 sm:px-10 lg:px-14">
-
         {/* =====================================================
             TOP GRID
         ===================================================== */}
         <div className="grid grid-cols-1 gap-12 pb-10 md:grid-cols-12 lg:gap-16 sm:pb-12">
-
           {/* =================================================
               LEFT COLUMN
           ================================================= */}
           <div className="space-y-8 md:col-span-6 lg:col-span-7">
-
             {/* Logo */}
             <div className="flex items-center gap-3.5">
               <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/20 bg-white/10 text-white shadow-lg shadow-black/20">
@@ -68,12 +64,8 @@ export default function FooterSection() {
                 Newsletter
               </h4>
 
-              <form
-                onSubmit={handleSubscribe}
-                className="relative max-w-md"
-              >
+              <form onSubmit={handleSubscribe} className="relative max-w-md">
                 <div className="flex items-center rounded-full border border-white/25 bg-white/10 p-2 shadow-inner transition-all focus-within:border-white/60 focus-within:ring-2 focus-within:ring-white/20">
-
                   <input
                     type="email"
                     required
@@ -91,7 +83,6 @@ export default function FooterSection() {
 
                     <ChevronRight className="h-4 w-4 stroke-[2.5]" />
                   </button>
-
                 </div>
               </form>
             </div>
@@ -101,7 +92,6 @@ export default function FooterSection() {
               RIGHT COLUMNS
           ================================================= */}
           <div className="grid grid-cols-2 gap-8 pt-2 sm:gap-12 md:col-span-6 lg:col-span-5">
-
             {/* Navigation */}
             <div className="space-y-6">
               <h4 className="text-sm font-bold uppercase tracking-widest text-white/90">
@@ -109,82 +99,60 @@ export default function FooterSection() {
               </h4>
 
               <ul className="space-y-3.5 text-base font-normal text-white/80">
-
                 <li>
-                  <a
-                    href="/"
-                    className="transition-colors hover:text-white"
-                  >
+                  <a href="/" className="transition-colors hover:text-white">
                     Home
                   </a>
                 </li>
 
                 <li>
-                  <a
-                    href="/"
-                    className="transition-colors hover:text-white"
-                  >
+                  <a href="/" className="transition-colors hover:text-white">
                     About
                   </a>
                 </li>
 
                 <li>
-                  <a
-                    href="/"
-                    className="transition-colors hover:text-white"
-                  >
+                  <a href="/" className="transition-colors hover:text-white">
                     Cubicle Systems
                   </a>
                 </li>
 
                 <li>
-                  <a
-                    href="/"
-                    className="transition-colors hover:text-white"
-                  >
+                  <a href="/" className="transition-colors hover:text-white">
                     Marble Finishes
                   </a>
                 </li>
 
                 <li>
-                  <a
-                    href="/"
-                    className="transition-colors hover:text-white"
-                  >
+                  <a href="/" className="transition-colors hover:text-white">
                     Testimonials
                   </a>
                 </li>
-
               </ul>
             </div>
 
             {/* Contact */}
             <div className="space-y-6">
-
               <h4 className="text-sm font-bold uppercase tracking-widest text-white/90">
                 Contact
               </h4>
 
               <div className="space-y-3.5 text-base font-normal text-white/80">
-
-                <p className="leading-relaxed">
-                  Plot Number-P10/J-3, Adore Business City, Sector 72-73,
-                  Faridabad, Haryana, 121004
-                </p>
-
+                {/* Email */}
                 <p>
                   <a
                     href="mailto:contact@meghasystems.com"
-                    className="font-medium text-white transition-colors hover:text-white/70"
+                    className="hover:text-white wrap-break-word transition-colors font-medium text-white"
                   >
                     contact@meghasystems.com
                   </a>
                 </p>
 
+                {/* Phone */}
                 <p>
                   <a
                     href="tel:+919873735716"
-                    className="font-medium text-white transition-colors hover:text-white/70"
+                    className="hover:text-white transition-colors font-medium text-white"
                   >
                     +91 9873735716
                   </a>
@@ -193,12 +161,32 @@ export default function FooterSection() {
                 <p>
                   <a
                     href="tel:+919873735713"
-                    className="font-medium text-white transition-colors hover:text-white/70"
+                    className="hover:text-white transition-colors font-medium text-white"
                   >
                     +91 9873735713
                   </a>
                 </p>
 
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-wider text-white mb-1.5">
+                    Head Office
+                  </p>
+                  <p className="leading-relaxed">
+                    Plot Number-P10/J-3, Adore Business City, Sector 72-73,
+                    Faridabad, Haryana, 121004
+                  </p>
+                </div>
+
+                {/* Branch Office */}
+                <div>
+                  <p className="text-sm font-bold uppercase tracking-wider text-white mb-1.5">
+                    Branch Office
+                  </p>
+                  <p className="leading-relaxed">
+                    Plot No.341/1,2,3 & 4, Safdar Nagar, Borabanda,
+                    Hyderabad-500018
+                  </p>
+                </div>
               </div>
 
               {/* Social Icons */}
@@ -245,27 +233,17 @@ export default function FooterSection() {
             BOTTOM BAR
         ===================================================== */}
         <div className="relative z-20 flex flex-col items-center justify-between gap-4 border-t border-white/15 pb-10 pt-8 text-sm text-white/70 sm:flex-row">
-
-          <p>
-            © 2026 Megha Systems. All rights reserved.
-          </p>
+          <p>© 2026 Megha Systems. All rights reserved.</p>
 
           <div className="flex items-center gap-8">
-            <a
-              href="#terms"
-              className="transition-colors hover:text-white"
-            >
+            <a href="#terms" className="transition-colors hover:text-white">
               Terms & Conditions
             </a>
 
-            <a
-              href="#privacy"
-              className="transition-colors hover:text-white"
-            >
+            <a href="#privacy" className="transition-colors hover:text-white">
               Privacy Policy
             </a>
           </div>
-
         </div>
       </div>
     </footer>

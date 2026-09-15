@@ -17,7 +17,7 @@ const projects = [
     title: "Luxury Toilet Cubicles",
     description:
       "Created for premium environments, our luxury cubicles bring together sophisticated finishes, premium materials, and precision detailing to make every washroom feel considered.",
-    image: "/11.avif",
+    image: "/lux2.webp",
     details:
       "Our luxury toilet cubicles are designed for premium commercial and hospitality environments where aesthetics, durability, and attention to detail matter. We offer refined finishes and practical configurations that create a sophisticated washroom experience.",
     features: [
@@ -32,7 +32,7 @@ const projects = [
     title: "Urinal Cubicles",
     description:
       "Our urinal cubicle solutions are designed for busy washrooms, combining smart space utilization, durable construction, and easy maintenance.",
-    image: "/new1.webp",
+    image: "/unimod.webp",
     details:
       "Megha Systems urinal partitions provide privacy and efficient space utilization for commercial, institutional, and high-traffic washrooms. Our systems are manufactured using durable materials designed for regular use and easy maintenance.",
     features: [
