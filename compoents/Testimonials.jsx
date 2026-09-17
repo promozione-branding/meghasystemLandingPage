@@ -12,39 +12,39 @@ import "swiper/css/pagination";
 const testimonials = [
   {
     text: "We were looking for a reliable toilet cubicle manufacturer who could understand our requirements and deliver quality work. Megha Systems handled the project smoothly from start to finish.",
-    name: "Jonathan Pierce",
+    name: "Rahul Sharma",
     role: "Project Manager",
-    image: "https://i.pravatar.cc/100?img=12",
+    image: "https://ui-avatars.com/api/?name=Rahul+Sharma&background=0d2461&color=fff&size=100",
   },
   {
     text: "The cubicles are well-finished, sturdy, and easy to maintain. The team was professional throughout the process and made sure everything was installed properly.",
-    name: "Emma Caldwell",
+    name: "Priya Mehta",
     role: "Facility Manager",
-    image: "https://i.pravatar.cc/100?img=47",
+    image: "https://ui-avatars.com/api/?name=Priya+Mehta&background=0d2461&color=fff&size=100",
   },
   {
     text: "What impressed us most was the quality of the materials and attention to detail. The finished washroom looks modern, clean, and built to handle regular use.",
-    name: "Michael Tan",
+    name: "Amit Verma",
     role: "Architect",
-    image: "https://i.pravatar.cc/100?img=11",
+    image: "https://ui-avatars.com/api/?name=Amit+Verma&background=0d2461&color=fff&size=100",
   },
   {
     text: "Megha Systems offered exactly the kind of customized toilet cubicle solution our project required. Their team was responsive, technically sound, and easy to work with.",
-    name: "David Wilson",
+    name: "Rohit Kapoor",
     role: "Project Consultant",
-    image: "https://i.pravatar.cc/100?img=13",
+    image: "https://ui-avatars.com/api/?name=Rohit+Kapoor&background=0d2461&color=fff&size=100",
   },
   {
     text: "From choosing the right material to the final installation, the entire process was well managed. We received a practical washroom solution without compromising on the overall design.",
-    name: "Sarah Mitchell",
+    name: "Neha Gupta",
     role: "Commercial Client",
-    image: "https://i.pravatar.cc/100?img=32",
+    image: "https://ui-avatars.com/api/?name=Neha+Gupta&background=0d2461&color=fff&size=100",
   },
 ];
 
 export default function Testimonials() {
   return (
-    <section className="w-full overflow-hidden bg-white pt-10 pb-20">
+    <section className="w-full overflow-hidden bg-white pt-10 pb-10 md:pb-30">
       <div className="mx-auto max-w-[1536px] px-5 sm:px-8 lg:px-12">
         {/* ================= MAIN AREA ================= */}
         <div className="relative grid grid-cols-1 lg:grid-cols-[48%_52%]">
@@ -112,10 +112,7 @@ export default function Testimonials() {
                 prevEl: ".testimonial-prev",
                 nextEl: ".testimonial-next",
               }}
-              pagination={{
-                el: ".testimonial-pagination",
-                clickable: true,
-              }}
+             
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -147,8 +144,8 @@ export default function Testimonials() {
                       bg-[#f9f7f3]
                       p-6
                       shadow-[0_4px_18px_rgba(0,0,0,0.04)]
-                      sm:p-7
-                      lg:min-h-[260px]
+                      sm:p-4
+                      lg:min-h-[230px]
                     "
                   >
                     {/* Stars */}
@@ -168,7 +165,7 @@ export default function Testimonials() {
                     </p>
 
                     {/* User */}
-                    <div className="mt-auto flex items-center gap-3 pt-7">
+                    <div className="mt-auto flex items-center gap-3 pt-3">
                       <Image
                         src={testimonial.image}
                         alt={testimonial.name}
@@ -198,62 +195,7 @@ export default function Testimonials() {
             </Swiper>
 
             {/* ================= SLIDER CONTROLS ================= */}
-            <div className="mt-6 flex items-center justify-center gap-5">
-              {/* Previous */}
-              <button
-                type="button"
-                aria-label="Previous testimonial"
-                className="
-                  testimonial-prev
-                  flex
-                  h-9
-                  w-9
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-gray-200
-                  bg-white
-                  text-[#0d2461]
-                  transition-all
-                  duration-300
-                  hover:border-[#0d2461]
-                  hover:bg-[#0d2461]
-                  hover:text-white
-                "
-              >
-                <ChevronLeft size={17} />
-              </button>
-
-              {/* Pagination */}
-              <div className="testimonial-pagination flex items-center justify-center gap-2" />
-
-              {/* Next */}
-              <button
-                type="button"
-                aria-label="Next testimonial"
-                className="
-                  testimonial-next
-                  flex
-                  h-9
-                  w-9
-                  items-center
-                  justify-center
-                  rounded-full
-                  border
-                  border-gray-200
-                  bg-white
-                  text-[#0d2461]
-                  transition-all
-                  duration-300
-                  hover:border-[#0d2461]
-                  hover:bg-[#0d2461]
-                  hover:text-white
-                "
-              >
-                <ChevronRight size={17} />
-              </button>
-            </div>
+            
           </div>
         </div>
       </div>

@@ -16,7 +16,7 @@ export default function AboutUs() {
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1750px] px-6 sm:px-10 lg:px-16 xl:px-24">
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12 lg:gap-10">
+        <div className="grid grid-cols-1 items-start gap-5 md:gap-8  lg:grid-cols-12 ">
 
           {/* ================= LEFT COLUMN ================= */}
           <motion.div
@@ -46,23 +46,12 @@ export default function AboutUs() {
 
             {/* Heading */}
             <h2 className="text-3xl font-extrabold leading-[1.04] tracking-tight sm:text-5xl lg:text-[55px]">
+             
+             Toilet Cubicle Partition,
               <span className="font-medium text-[#0d2461]/40">
-                From
+                Built to Perform.
               </span>{" "}
-              Expertise{" "}
-              <span className="font-medium text-[#0d2461]/40">
-                to
-              </span>{" "}
-              Excellence,
-              <br className="hidden sm:block" />
-
-              <span className="block font-medium text-[#0d2461]/40">
-                Built around precision.
-              </span>
-
-              <span className="block text-[#0d2461]">
-                Designed for performance.
-              </span>
+              
             </h2>
           </motion.div>
 
