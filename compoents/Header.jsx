@@ -195,7 +195,7 @@ export default function Header() {
                 onClick={() => setOpen(true)}
                 className="px-4.5 sm:px-5 py-2.5 text-[14px] font-bold text-[#0d2461] border border-[#0d2461]/30 rounded-lg hover:border-[#0d2461] hover:bg-[#0d2461]/5 transition-all duration-200"
               >
-                Get in Touch
+                Get Free Quote
               </button>
 
               {/* <Link
@@ -283,10 +283,9 @@ export default function Header() {
               duration-300
               ease-out
 
-              ${
-                mobileMenuOpen
-                  ? "opacity-100 translate-y-0 visible"
-                  : "opacity-0 -translate-y-3 invisible pointer-events-none"
+              ${mobileMenuOpen
+                ? "opacity-100 translate-y-0 visible"
+                : "opacity-0 -translate-y-3 invisible pointer-events-none"
               }
             `}
           >

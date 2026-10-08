@@ -330,11 +330,11 @@ export default function Hero2() {
               ================================================= */}
 
               <Swiper
-                modules={[EffectFade, Pagination]}
-                effect="fade"
-                fadeEffect={{
-                  crossFade: true,
-                }}
+                modules={[Pagination]}
+                // effect="fade"
+                // fadeEffect={{
+                //   crossFade: true,
+                // }}
                 loop={true}
                 speed={600}
                 pagination={{
@@ -355,10 +355,10 @@ export default function Hero2() {
                       src={slide.src}
                       alt={slide.alt}
                       fill
-                      priority={index === 0}
-                      loading={
-                        index === 0 ? "eager" : "lazy"
-                      }
+                      // priority={index === 0}
+                      // loading={
+                      //   index === 0 ? "eager" : "lazy"
+                      // }
                       sizes="
                         (max-width: 640px) 100vw,
                         (max-width: 1024px) 100vw,

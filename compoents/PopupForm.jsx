@@ -275,7 +275,7 @@ export default function PopupForm({ isOpen, onClose }) {
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="overflow-y-auto p-6 sm:p-8 lg:p-10">
+              <div className="overflow p-6 sm:p-8">
 
                 {success ? (
                   /* SUCCESS */
@@ -301,11 +301,8 @@ export default function PopupForm({ isOpen, onClose }) {
                   <>
                     {/* Form heading */}
                     <div className="mb-4 pr-10 md:mb-8">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#0d2461]/40">
-                        Project Enquiry
-                      </p>
 
-                      <h3 className="mt-2 text-xl font-extrabold tracking-tight text-[#0d2461] md:text-3xl">
+                      <h3 className="text-xl font-extrabold tracking-tight text-[#0d2461] md:text-3xl">
                         Tell us what you need.
                       </h3>
 
@@ -416,7 +413,7 @@ export default function PopupForm({ isOpen, onClose }) {
                         <textarea
                           id="message"
                           name="message"
-                          rows={4}
+                          rows={3}
                           value={formData.message}
                           onChange={handleChange}
                           placeholder="Tell us about your project..."

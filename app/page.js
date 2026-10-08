@@ -31,7 +31,7 @@ export default function page() {
       <Hero4 />
       <BuyNowBanner />
       <ClientMarquee />
-      <TextMaskScroll />
+      {/* <TextMaskScroll /> */}
       <CertificatesMarquee />
       <Testimonials />
       {/* <WashroomCubiclesFAQ/> */}

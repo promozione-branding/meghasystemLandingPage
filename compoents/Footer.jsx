@@ -142,7 +142,7 @@ export default function FooterSection() {
                 <p>
                   <a
                     href="mailto:contact@meghasystems.com"
-                    className="hover:text-white wrap-break-word transition-colors font-medium text-white"
+                    className="hover:text-white transition-colors font-medium text-white"
                   >
                     contact@meghasystems.com
                   </a>
