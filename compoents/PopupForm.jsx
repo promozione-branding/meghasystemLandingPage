@@ -275,7 +275,7 @@ export default function PopupForm({ isOpen, onClose }) {
                 <X className="h-4 w-4" />
               </button>
 
-              <div className="overflow p-6 sm:p-8">
+              <div className="overflow-y-auto p-6 sm:p-8">
 
                 {success ? (
                   /* SUCCESS */
