@@ -26,10 +26,28 @@ export default function Form2() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    if (name === "phone") {
+      // Remove all non-digit characters
+      let digits = value.replace(/\D/g, "");
+
+      // Remove India's country code if already entered
+      if (digits.startsWith("91") && digits.length > 10) {
+        digits = digits.slice(2);
+      }
+
+      // Keep only 10 digits
+      digits = digits.slice(0, 10);
+
+      setFormData((prev) => ({
+        ...prev,
+        phone: digits,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
 
     setError("");
   };
@@ -63,6 +81,11 @@ export default function Form2() {
         place: "N/A",
         message: "Product enquiry",
       };
+
+      if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+        setError("Please enter a valid 10-digit Indian mobile number.");
+        return;
+      }
 
       const res = await axios.post(
         "https://brandbnalo.com/api/form/add",
@@ -203,14 +226,11 @@ export default function Form2() {
 
             {/* MOBILE */}
             <input
-              type="tel"
               name="phone"
+              type="tel"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="Mobile Number"
-              maxLength={10}
-              inputMode="numeric"
-              autoComplete="tel"
+              placeholder="+91 XXXXX XXXXX"
               className="
                 h-14
                 w-full

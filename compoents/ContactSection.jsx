@@ -47,13 +47,30 @@ export default function ContactSection() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    if (name === "phone") {
+      // Remove all non-digit characters
+      let digits = value.replace(/\D/g, "");
+
+      // Remove India's country code if already entered
+      if (digits.startsWith("91") && digits.length > 10) {
+        digits = digits.slice(2);
+      }
+
+      // Keep only 10 digits
+      digits = digits.slice(0, 10);
+
+      setFormData((prev) => ({
+        ...prev,
+        phone: digits,
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
+    }
 
     setError("");
-    setSuccess(false);
   };
 
   const handleSubmit = async (e) => {
@@ -111,7 +128,10 @@ Message:
 ${formData.message.trim() || "No additional message provided."}
         `.trim(),
       };
-
+      if (!/^[6-9]\d{9}$/.test(formData.phone)) {
+        setError("Please enter a valid 10-digit Indian mobile number.");
+        return;
+      }
       const response = await axios.post(
         "https://brandbnalo.com/api/form/add",
         data,
@@ -258,7 +278,7 @@ ${formData.message.trim() || "No additional message provided."}
                 </div>
 
                 {/* ================= ADDRESS ================= */}
-                 <div className="bg-[#F0EDED] rounded-[12px] p-2 lg:p-3 xl:p-4 flex items-start xl:gap-3.5">
+                <div className="bg-[#F0EDED] rounded-[12px] p-2 lg:p-3 xl:p-4 flex items-start xl:gap-3.5">
 
                   <div className="w-11 h-11 rounded-full flex items-center justify-center text-slate-800 shrink-0 mt-0.5">
                     <MapPin className="w-5 h-5 stroke-[1.5]" />
@@ -399,7 +419,7 @@ ${formData.message.trim() || "No additional message provided."}
                     type="tel"
                     name="phone"
                     required
-                    placeholder="+91"
+                    placeholder="+91 XXXXX XXXXX"
                     value={formData.phone}
                     onChange={handleChange}
                     disabled={loading}
