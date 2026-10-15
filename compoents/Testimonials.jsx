@@ -112,7 +112,7 @@ export default function Testimonials() {
                 prevEl: ".testimonial-prev",
                 nextEl: ".testimonial-next",
               }}
-             
+
               autoplay={{
                 delay: 3000,
                 disableOnInteraction: false,
@@ -195,7 +195,7 @@ export default function Testimonials() {
             </Swiper>
 
             {/* ================= SLIDER CONTROLS ================= */}
-            
+
           </div>
         </div>
       </div>

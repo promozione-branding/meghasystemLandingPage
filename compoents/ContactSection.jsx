@@ -178,7 +178,7 @@ ${formData.message.trim() || "No additional message provided."}
 
   return (
     <section
-      id="quote"
+      id="contact"
       className="flex items-center justify-center bg-slate-50 p-4 py-12 font-sans antialiased text-slate-900 sm:p-6 lg:p-8"
     >
       <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-8 lg:p-12">

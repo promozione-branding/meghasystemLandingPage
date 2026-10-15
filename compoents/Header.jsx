@@ -151,13 +151,13 @@ export default function Header() {
               </div>
 
               {/* About */}
-              <a
+              <Link
                 href="#about"
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 About Us
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
-              </a>
+              </Link>
 
               {/* Contact */}
               <Link
@@ -165,15 +165,6 @@ export default function Header() {
                 className="px-3 sm:px-3.5 py-1.5 rounded-lg text-nowrap hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
               >
                 Contact Us
-                <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
-              </Link>
-
-              {/* Articles */}
-              <Link
-                href="/"
-                className="px-3 sm:px-3.5 py-1.5 rounded-lg hover:bg-[#0d2461]/6 transition-all duration-200 relative group"
-              >
-                Articles
                 <span className="absolute bottom-0.5 left-3 right-3 h-[2px] bg-[#f5bd24] scale-x-0 group-hover:scale-x-100 transition-transform duration-200 rounded-full" />
               </Link>
 
