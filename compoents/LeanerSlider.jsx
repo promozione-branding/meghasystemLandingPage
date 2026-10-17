@@ -9,7 +9,7 @@ const barLocations = [
 
 const ITEMS_PER_GROUP = 6;
 
-const MarqueeGroup = ({ text, hidden = false }: { text: string; hidden?: boolean }) => (
+const MarqueeGroup = ({ text, hidden = false }) => (
     <div className="flex shrink-0 items-center" aria-hidden={hidden}>
         {Array.from({ length: ITEMS_PER_GROUP }).map((_, i) => (
             <span

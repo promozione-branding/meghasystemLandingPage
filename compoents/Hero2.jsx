@@ -327,9 +327,6 @@ const ConsultButton = memo(function ConsultButton({ onClick }) {
   );
 });
 
-/* =========================================================
-   PRODUCT TILES
-========================================================= */
 
 function FeatureTile({ tile, priority }) {
   return (
@@ -621,13 +618,8 @@ export default function Hero2() {
                         md:px-12
                       "
                     >
-                      <FeatureTile
-                        tile={slide.tiles[0]}
-                        priority={index === 0}
-                      />
+                    
                       {slide.tiles.slice(1).map((tile, i) => {
-                        /* Use the real product images from the other slides
-                           so each card on a slide shows a different photo. */
                         const pool = HERO_SLIDES.map((s) => s.tiles[0].src);
                         const src = pool[(index + i + 1) % pool.length];
 
@@ -638,6 +630,10 @@ export default function Hero2() {
                           />
                         );
                       })}
+                        <FeatureTile
+                        tile={slide.tiles[0]}
+                        priority={index === 0}
+                      />
                     </div>
                   </SwiperSlide>
                 ))}
