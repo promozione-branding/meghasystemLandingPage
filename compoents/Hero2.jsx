@@ -362,17 +362,17 @@ function FeatureTile({ tile, priority }) {
         />
       </div>
 
-      <div className="relative z-10 mx-3 mb-3 mt-4 min-h-0 flex-1 overflow-hidden rounded-xl sm:mx-4 sm:mb-4 sm:mt-6">
-        <Image
-          src={tile.src}
-          alt={tile.label}
-          fill
-          priority={priority}
-          sizes="(max-width: 768px) 100vw, 900px"
-          quality={75}
-          className="object-cover"
-        />
-      </div>
+     <div className="relative z-10 mx-3 mb-3 mt-4 h-[200px] flex-none overflow-hidden rounded-xl bg-white/5 sm:mx-4 sm:mb-4 sm:mt-6 sm:h-[320px] md:h-auto md:min-h-0 md:flex-1">
+  <Image
+    src={tile.src}
+    alt={tile.label}
+    fill
+    priority={priority}
+    sizes="(max-width: 768px) 100vw, 900px"
+    quality={75}
+    className="object-cover"
+  />
+</div>
     </div>
   );
 }
@@ -512,16 +512,16 @@ export default function Hero2() {
               className="
                 relative
                 flex
-                h-[1020px]
-                w-full
-                flex-col
+            h-[880px]
+w-full
+flex-col
                 overflow-hidden
                 rounded-[22px]
                 border
                 border-slate-200/70
                 shadow-sm
                 md:h-[105vh]
-                md:min-h-[860px]
+md:min-h-[860px]
               "
               style={{
                 background:
@@ -531,7 +531,7 @@ export default function Hero2() {
               {/* decorative diagonal stripes */}
               <div
                 aria-hidden="true"
-                className="pointer-events-none absolute right-0 top-0 z-0 h-24 w-48 sm:h-40 sm:w-80 lg:h-48 lg:w-[420px]"
+                className="pointer-events-none absolute right-0 top-0 z-0 h-8 w-12 sm:h-40 sm:w-80 lg:h-48 lg:w-[420px]"
               >
                 <span
                   className="absolute inset-0"
@@ -608,7 +608,8 @@ export default function Hero2() {
     grid
     h-full
     grid-cols-2
-    grid-rows-[auto_auto_1fr]
+    grid-rows-[auto_auto_auto]
+md:grid-rows-2
     gap-3
     px-4
     pb-10

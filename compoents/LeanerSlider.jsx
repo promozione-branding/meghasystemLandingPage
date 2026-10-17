@@ -23,7 +23,7 @@ const MarqueeGroup = ({ text, hidden = false }) => (
     </div>
 );
 
-const LocationWarrantyBar = ({ text = '25 Years of Warranty' }) => {
+const LocationWarrantyBar = ({ text = '25 Years Warranty' }) => {
     return (
         <>
             <style>{`
@@ -39,7 +39,7 @@ const LocationWarrantyBar = ({ text = '25 Years of Warranty' }) => {
                         {idx > 0 && <span className="text-white/40">|</span>}
                         <Link
                             href={item.slug}
-                            className="hover:text-amber-400 hover:underline hover:duration-300"
+                            className="hover:text-amber-400 hover:underline hover:duration-300 font-extrabold"
                         >
                             {item.label}
                         </Link>
