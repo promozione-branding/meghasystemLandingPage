@@ -25,7 +25,7 @@ const MarqueeGroup = ({ text, hidden = false }) => (
 
 const LocationWarrantyBar = ({ text = '25 Years of Warranty' }) => {
     return (
-        <section className="w-full">
+        <>
             <style>{`
                 @keyframes marquee-ltr {
                     from { transform: translateX(0); }
@@ -33,8 +33,7 @@ const LocationWarrantyBar = ({ text = '25 Years of Warranty' }) => {
                 }
             `}</style>
 
-            {/* Line 1: locations strip */}
-            <div className="flex items-center gap-2 bg-[#304B99] px-4 py-1 text-[8px] font-semibold uppercase tracking-[0.25em] text-white md:px-20 md:text-[9px]">
+            <div className="sticky top-[69px] z-[90] flex w-full items-center gap-2 bg-[#304B99] px-4 py-1 text-[8px] font-semibold uppercase tracking-[0.25em] text-white md:top-[101px] md:px-20 md:text-[9px] xl:top-[113px]">
                 {barLocations.map((item, idx) => (
                     <React.Fragment key={idx}>
                         {idx > 0 && <span className="text-white/40">|</span>}
@@ -48,20 +47,19 @@ const LocationWarrantyBar = ({ text = '25 Years of Warranty' }) => {
                 ))}
             </div>
 
-            {/* Line 2: full-width marquee */}
             <div
                 className="group relative w-full overflow-hidden bg-blue-200 py-2"
                 aria-label={text}
             >
                 <div
                     className="flex w-max animate-[marquee-ltr_25s_linear_infinite] will-change-transform group-hover:[animation-play-state:paused] motion-reduce:animate-none"
-                    style={{ backfaceVisibility: 'hidden' }} // helps mobile rendering
+                    style={{ backfaceVisibility: 'hidden' }}
                 >
                     <MarqueeGroup text={text} />
                     <MarqueeGroup text={text} hidden />
                 </div>
             </div>
-        </section>
+        </>
     );
 };
 
