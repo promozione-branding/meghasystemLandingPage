@@ -199,30 +199,30 @@ export default function Header() {
                 <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition-transform duration-200" />
               </Link> */}
             </div>
-
-            <button
-              type="button"
-              onClick={handleGetInTouch}
-              className="
-                  md:hidden
-                    w-30
-                    flex
-                    items-center
-                    justify-center
-                    gap-2
-                    border
-                    border-[#0d2461]/55
-                    text-[#0d2461]
-                    py-3.5
-                    text-sm
-                    font-semibold
-                    rounded-xl
-                    hover:bg-[#0d2461]/5
-                    transition-colors
-                  "
-            >
-              Get Free Quote
-            </button>
+<button
+  type="button"
+  onClick={handleGetInTouch}
+  className="
+    md:hidden
+    flex
+    items-center
+    justify-center
+    gap-2
+    border
+    border-[#0d2461]/55
+    text-[#0d2461]
+    px-4
+    py-1.5
+    text-[13px]
+    font-semibold
+    leading-tight
+    rounded-lg
+    hover:bg-[#0d2461]/5
+    transition-colors
+  "
+>
+  Get Free Quote
+</button>
 
             {/* =================================================
                 MOBILE TOGGLE
