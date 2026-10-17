@@ -583,7 +583,7 @@ export default function Hero2() {
                  
                 </div>
               </div>
-
+    
               {/* SWIPER */}
               <Swiper
                 modules={[EffectFade, Pagination]}
