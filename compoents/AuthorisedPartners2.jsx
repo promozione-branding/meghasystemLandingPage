@@ -88,7 +88,6 @@ export default function AuthorisedPartners2() {
         </Swiper>
       </div>
 
-      {/* Reduced motion */}
       <style jsx global>{`
         @media (prefers-reduced-motion: reduce) {
           .partners-swiper .swiper-wrapper {

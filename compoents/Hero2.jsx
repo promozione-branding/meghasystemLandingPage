@@ -331,7 +331,7 @@ const ConsultButton = memo(function ConsultButton({ onClick }) {
 function FeatureTile({ tile, priority }) {
   return (
     <div
-      className="group/tile relative col-span-2 flex min-h-0 flex-col overflow-hidden rounded-[18px] shadow-lg md:col-span-1 md:row-span-2 md:rounded-[22px]"
+      className="group/tile relative order-last col-span-2 flex min-h-0 flex-col overflow-hidden rounded-[18px] shadow-lg md:order-none md:col-span-1 md:row-span-2 md:rounded-[22px]"
       style={{
         background: `linear-gradient(160deg, ${NAVY} 0%, #0A2255 100%)`,
       }}
@@ -408,7 +408,7 @@ function SmallTile({ tile }) {
         />
       </div>
 
-      <div className="relative mt-2 min-h-[120px] flex-1 overflow-hidden rounded-lg sm:mt-3 sm:min-h-[220px] sm:rounded-xl">
+      <div className="relative mt-2 min-h-[85px] flex-1 overflow-hidden rounded-lg sm:mt-3 sm:min-h-[220px] sm:rounded-xl">
         <Image
           src={tile.src}
           alt={tile.label}
@@ -605,21 +605,26 @@ export default function Hero2() {
                       role="group"
                       aria-label={slide.alt}
                       className="
-                        grid
-                        h-full
-                        grid-cols-2
-                        grid-rows-[1.3fr_1fr_1fr]
-                        gap-3
-                        px-4
-                        pb-10
-                        sm:gap-4
-                        md:grid-cols-[1.7fr_1fr_1fr]
-                        md:grid-rows-2
-                        md:px-12
-                      "
+    grid
+    h-full
+    grid-cols-2
+    grid-rows-[auto_auto_1fr]
+    gap-3
+    px-4
+    pb-10
+    sm:gap-4
+    md:grid-cols-[1.7fr_1fr_1fr]
+    md:grid-rows-2
+    md:px-12
+  "
                     >
-                    
+                      <FeatureTile
+                        tile={slide.tiles[0]}
+                        priority={index === 0}
+                      />
                       {slide.tiles.slice(1).map((tile, i) => {
+                        /* Use the real product images from the other slides
+                           so each card on a slide shows a different photo. */
                         const pool = HERO_SLIDES.map((s) => s.tiles[0].src);
                         const src = pool[(index + i + 1) % pool.length];
 
@@ -630,10 +635,6 @@ export default function Hero2() {
                           />
                         );
                       })}
-                        <FeatureTile
-                        tile={slide.tiles[0]}
-                        priority={index === 0}
-                      />
                     </div>
                   </SwiperSlide>
                 ))}
