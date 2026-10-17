@@ -505,16 +505,16 @@ export default function Hero2() {
               className="
                 relative
                 flex
-            h-[880px]
-w-full
-flex-col
+                h-[880px]
+                w-full
+                flex-col
                 overflow-hidden
                 rounded-[22px]
                 border
                 border-slate-200/70
                 shadow-sm
                 md:h-[105vh]
-md:min-h-[860px]
+                md:min-h-[860px]
               "
               style={{
                 background:
@@ -546,16 +546,30 @@ md:min-h-[860px]
               <div className="relative z-10 flex items-start justify-between px-5 pt-6 md:px-12 md:pt-8">
                 <div>
                   <h1
-                    className="h-[2.1em] max-w-[10ch] text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:max-w-[22ch] sm:text-5xl lg:text-[60px]"
+                    className="grid max-w-full pr-10 text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:max-w-[22ch] sm:pr-0 sm:text-5xl lg:text-[60px]"
                     style={{ color: NAVY }}
                   >
-                    <TypewriterText
-                      key={`title-${activeSlideIndex}`}
-                      text={currentSlide.title}
-                      speed={45}
-                      highlight={currentSlide.highlight}
-                      highlightColor={GOLD}
-                    />
+                    {/* invisible copies reserve the height of the longest title */}
+                    {HERO_SLIDES.map((s) => (
+                      <span
+                        key={s.id}
+                        aria-hidden="true"
+                        className="invisible col-start-1 row-start-1"
+                      >
+                        {s.title}
+                      </span>
+                    ))}
+
+                    {/* visible typewriter text sits on top in the same cell */}
+                    <span className="col-start-1 row-start-1">
+                      <TypewriterText
+                        key={`title-${activeSlideIndex}`}
+                        text={currentSlide.title}
+                        speed={45}
+                        highlight={currentSlide.highlight}
+                        highlightColor={GOLD}
+                      />
+                    </span>
                   </h1>
                   <span
                     className="mt-3 block h-1 w-16 rounded-full"
@@ -566,15 +580,7 @@ md:min-h-[860px]
                 </div>
 
                 <div className="mr-[26rem] mt-4 hidden lg:block">
-                  <p className="text-xs font-medium uppercase tracking-[0.25em] text-slate-500">
-                    Premium Restroom
-                    <br />
-                    Cubicle Solutions
-                  </p>
-                  <span
-                    className="mt-3 block h-[3px] w-12"
-                    style={{ background: GOLD }}
-                  />
+                 
                 </div>
               </div>
 
@@ -598,19 +604,18 @@ md:min-h-[860px]
                       role="group"
                       aria-label={slide.alt}
                       className="
-    grid
-    h-full
-    grid-cols-2
-    grid-rows-[auto_auto_auto]
-md:grid-rows-2
-    gap-3
-    px-4
-    pb-10
-    sm:gap-4
-    md:grid-cols-[1.7fr_1fr_1fr]
-    md:grid-rows-2
-    md:px-12
-  "
+                        grid
+                        h-full
+                        grid-cols-2
+                        grid-rows-[auto_auto_auto]
+                        gap-3
+                        px-4
+                        pb-10
+                        sm:gap-4
+                        md:grid-cols-[1.7fr_1fr_1fr]
+                        md:grid-rows-2
+                        md:px-12
+                      "
                     >
                       <FeatureTile
                         tile={slide.tiles[0]}
