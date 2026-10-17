@@ -125,9 +125,6 @@ export default function Header() {
               </div>
             </Link>
 
-            {/* =================================================
-                DESKTOP NAVIGATION
-            ================================================= */}
             <nav className="hidden xl:flex items-center gap-1 text-[15px] sm:text-[15.5px] font-bold text-[#0d2461]">
               {/* Home */}
               <Link

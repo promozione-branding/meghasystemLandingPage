@@ -10,6 +10,7 @@ import Form2 from '@/compoents/Form2'
 import Header from '@/compoents/Header'
 import Hero2 from '@/compoents/Hero2'
 import Hero4 from '@/compoents/Hero4'
+import LocationWarrantyBar from '@/compoents/LeanerSlider'
 import OurProjectsSection2 from '@/compoents/OurProjectsSection2'
 import Testimonials from '@/compoents/Testimonials'
 import TextMaskScroll from '@/compoents/TextMaskScroll'
@@ -22,6 +23,7 @@ export default function page() {
     <>
       <WhatsApp />
       <Header />
+      <LocationWarrantyBar/>
       <Hero2 />
       <Form2 />
       <AuthorisedPartners2 />
