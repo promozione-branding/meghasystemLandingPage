@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import axios from "axios";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 
 const PROJECT_TYPES = [
   "Corporate office",
@@ -25,6 +25,17 @@ const PRODUCTS = [
   "Hardware & accessories",
   "Custom washroom solution",
 ];
+
+const inputClass =
+  "w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-3.5 py-2 text-sm text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60";
+
+const labelClass = "text-xs font-medium text-slate-800";
+
+const cardClass =
+  "flex items-center gap-3 rounded-[12px] bg-[#F0EDED] px-3 py-2.5";
+
+const iconWrapClass =
+  "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-800";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -169,7 +180,7 @@ ${formData.message.trim() || "No additional message provided."}
 
       setError(
         err?.response?.data?.message ||
-        "Unable to submit your enquiry. Please try again.",
+          "Unable to submit your enquiry. Please try again.",
       );
     } finally {
       setLoading(false);
@@ -179,132 +190,100 @@ ${formData.message.trim() || "No additional message provided."}
   return (
     <section
       id="contact"
-      className="flex items-center justify-center bg-slate-50 p-4 py-12 font-sans antialiased text-slate-900 sm:p-6 lg:p-8"
+      className="flex items-center justify-center bg-slate-50 p-4 py-6 font-sans antialiased text-slate-900 sm:p-6 lg:px-8 lg:py-6"
     >
-      <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-8 lg:p-12">
-        <div className="relative z-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-12">
+      <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-5 lg:p-6">
+        <div className="relative z-10 grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
           {/* =====================================================
               LEFT CONTACT PANEL
           ====================================================== */}
-          <aside className="flex flex-col justify-between space-y-6 rounded-[16px] bg-[#E5E2E0] p-6 sm:p-8 lg:col-span-4">
-            <div className="space-y-6">
-              {/* Heading */}
-              <div>
-                <p className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-slate-600">
-                  Get a quote
-                </p>
+          <aside className="flex flex-col space-y-4 rounded-[16px] bg-[#E5E2E0] p-5 lg:col-span-4">
+            {/* Heading */}
+            <div>
+              <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.15em] text-slate-600">
+                Get a quote
+              </p>
 
-                <h2 className="text-4xl font-bold leading-[1.2] tracking-tight text-black">
-                  Planning a washroom project?
-                  <br />
-                  Let&apos;s build it right.
-                </h2>
+              <h2 className="text-2xl font-bold leading-[1.2] tracking-tight text-black">
+                Planning a washroom project? Let&apos;s build it right.
+              </h2>
+            </div>
 
-                <p className="mt-4 text-sm leading-6 text-slate-600">
-                  Share a few details and our team will get back to you with a
-                  proposal and next steps.
-                </p>
+            {/* Contact Details */}
+            <div className="space-y-2.5">
+              {/* ================= PHONE + WHATSAPP ================= */}
+              <div className={cardClass}>
+                <div className={iconWrapClass}>
+                  <Phone className="h-5 w-5 stroke-[1.5]" />
+                </div>
+
+                <div>
+                  <p className="text-[11px] leading-tight text-slate-600">
+                    Call Us
+                  </p>
+
+                  <p className="text-sm font-semibold tracking-tight text-black">
+                    <a href="tel:+919873735713">+91 98737 35713</a>
+                    <span className="mx-1.5 text-slate-400">|</span>
+                    <a href="tel:+919873735716">+91 98737 35716</a>
+                  </p>
+
+                  <a
+                    href="https://wa.me/919873735713"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-slate-700 underline-offset-2 hover:underline"
+                  >
+                    <MessageCircle className="h-3.5 w-3.5" />
+                    WhatsApp us
+                  </a>
+                </div>
               </div>
 
-              {/* Contact Details */}
-              <div className="space-y-4 pt-1">
-                {/* ================= PHONE ================= */}
-                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
-                    <Phone className="h-5 w-5 stroke-[1.5]" />
-                  </div>
-
-                  <div>
-                    <p className="text-[12px] leading-tight text-slate-600">
-                      Call Us
-                    </p>
-
-                    <a
-                      href="tel:+919873735713"
-                      className="mt-0.5 block text-base font-semibold tracking-tight text-black"
-                    >
-                      +91 98737 35713
-                    </a>
-
-                    <a
-                      href="tel:+919873735716"
-                      className="block text-sm font-medium text-slate-700"
-                    >
-                      +91 98737 35716
-                    </a>
-                  </div>
+              {/* ================= EMAIL ================= */}
+              <div className={cardClass}>
+                <div className={iconWrapClass}>
+                  <Mail className="h-5 w-5 stroke-[1.5]" />
                 </div>
 
-                {/* ================= EMAIL ================= */}
-                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
-                    <Mail className="h-5 w-5 stroke-[1.5]" />
-                  </div>
+                <div className="min-w-0">
+                  <p className="text-[11px] leading-tight text-slate-600">
+                    Mail Us
+                  </p>
 
-                  <div className="min-w-0">
-                    <p className="text-[12px] leading-tight text-slate-600">
-                      Mail Us
-                    </p>
+                  <a
+                    href="mailto:contact@meghasystems.com"
+                    className="block break-all text-sm font-semibold tracking-tight text-black"
+                  >
+                    contact@meghasystems.com
+                  </a>
+                </div>
+              </div>
 
-                    <a
-                      href="mailto:contact@meghasystems.com"
-                      className="mt-0.5 block break-all text-base font-semibold tracking-tight text-black"
-                    >
-                      contact@meghasystems.com
-                    </a>
-                  </div>
+              {/* ================= ADDRESS ================= */}
+              <div className="flex items-start gap-3 rounded-[12px] bg-[#F0EDED] px-3 py-2.5">
+                <div className={iconWrapClass}>
+                  <MapPin className="h-5 w-5 stroke-[1.5]" />
                 </div>
 
-                {/* ================= WHATSAPP ================= */}
-                <div className="flex items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4">
-                  <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-slate-800">
-                    <Phone className="h-5 w-5 stroke-[1.5]" />
-                  </div>
+                <div>
+                  <p className="text-[11px] leading-tight text-slate-600">
+                    Head Office
+                  </p>
 
-                  <div>
-                    <p className="text-[12px] leading-tight text-slate-600">
-                      WhatsApp
-                    </p>
+                  <p className="text-[13px] font-semibold leading-snug tracking-tight text-black">
+                    Plot Number-P10/J-3, Adore Business City, Sector 72-73,
+                    Faridabad, Haryana, 121004
+                  </p>
 
-                    <a
-                      href="https://wa.me/919873735713"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-0.5 block text-base font-semibold tracking-tight text-black"
-                    >
-                      +91 98737 35713
-                    </a>
-                  </div>
-                </div>
+                  <p className="mt-2 text-[11px] leading-tight text-slate-600">
+                    Branch Office
+                  </p>
 
-                {/* ================= ADDRESS ================= */}
-                <div className="bg-[#F0EDED] rounded-[12px] p-2 lg:p-3 xl:p-4 flex items-start xl:gap-3.5">
-
-                  <div className="w-11 h-11 rounded-full flex items-center justify-center text-slate-800 shrink-0 mt-0.5">
-                    <MapPin className="w-5 h-5 stroke-[1.5]" />
-                  </div>
-
-                  <div>
-
-                    <p className="text-[12px] text-slate-600 leading-tight">
-                      Head Office
-                    </p>
-
-                    <p className="text-base font-semibold text-black tracking-tight leading-snug mt-0.5">
-                      Plot Number-P10/J-3, Adore Business City, Sector 72-73,
-                      Faridabad, Haryana, 121004
-                    </p>
-
-                    <p className="text-[12px] mt-3 text-slate-600 leading-tight">
-                      Branch Office
-                    </p>
-
-                    <p className="text-base font-semibold text-black tracking-tight leading-snug mt-0.5">
-                      Plot No.341/1,2,3 &amp; 4, Safdar Nagar, Borabanda,
-                      Hyderabad-500018
-                    </p>
-
-                  </div>
+                  <p className="text-[13px] font-semibold leading-snug tracking-tight text-black">
+                    Plot No.341/1,2,3 &amp; 4, Safdar Nagar, Borabanda,
+                    Hyderabad-500018
+                  </p>
                 </div>
               </div>
             </div>
@@ -313,14 +292,14 @@ ${formData.message.trim() || "No additional message provided."}
           {/* =====================================================
               RIGHT FORM PANEL
           ====================================================== */}
-          <main className="flex flex-col justify-between py-2 sm:pr-2 lg:col-span-8">
+          <main className="flex flex-col justify-center sm:pr-2 lg:col-span-8">
             {/* Heading */}
             <header>
-              <h2 className="text-4xl font-bold leading-tight tracking-tight text-black sm:text-5xl">
+              <h2 className="text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl">
                 Request a Quote
               </h2>
 
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
+              <p className="mt-1 max-w-2xl text-sm leading-5 text-slate-600">
                 Tell us about your project and requirements. Our team will
                 contact you with the right solution.
               </p>
@@ -329,21 +308,15 @@ ${formData.message.trim() || "No additional message provided."}
             {/* ================= FORM ================= */}
             <form
               onSubmit={handleSubmit}
-              className="relative z-10 mt-8 space-y-5"
+              className="relative z-10 mt-4 space-y-3"
             >
-              {/* =================================================
-                  NAME + COMPANY
-              ================================================== */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+              {/* All short fields in one 3-column grid */}
+              <div className="grid grid-cols-1 gap-x-3 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-3">
                 {/* Name */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="name"
-                    className="text-sm font-medium text-slate-800"
-                  >
+                <div className="space-y-1">
+                  <label htmlFor="name" className={labelClass}>
                     Name <span className="text-rose-500">*</span>
                   </label>
-
                   <input
                     id="name"
                     type="text"
@@ -353,45 +326,15 @@ ${formData.message.trim() || "No additional message provided."}
                     value={formData.name}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={inputClass}
                   />
                 </div>
 
-                {/* Company */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="company"
-                    className="text-sm font-medium text-slate-800"
-                  >
-                    Company
-                  </label>
-
-                  <input
-                    id="company"
-                    type="text"
-                    name="company"
-                    placeholder="Company Name"
-                    value={formData.company}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
-                  />
-                </div>
-              </div>
-
-              {/* =================================================
-                  EMAIL + PHONE
-              ================================================== */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {/* Email */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium text-slate-800"
-                  >
+                <div className="space-y-1">
+                  <label htmlFor="email" className={labelClass}>
                     Email <span className="text-rose-500">*</span>
                   </label>
-
                   <input
                     id="email"
                     type="email"
@@ -401,19 +344,15 @@ ${formData.message.trim() || "No additional message provided."}
                     value={formData.email}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={inputClass}
                   />
                 </div>
 
                 {/* Phone */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="phone"
-                    className="text-sm font-medium text-slate-800"
-                  >
+                <div className="space-y-1">
+                  <label htmlFor="phone" className={labelClass}>
                     Phone <span className="text-rose-500">*</span>
                   </label>
-
                   <input
                     id="phone"
                     type="tel"
@@ -423,24 +362,32 @@ ${formData.message.trim() || "No additional message provided."}
                     value={formData.phone}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={inputClass}
                   />
                 </div>
-              </div>
 
-              {/* =================================================
-                  PROJECT LOCATION + PROJECT TYPE
-              ================================================== */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                {/* Company */}
+                <div className="space-y-1">
+                  <label htmlFor="company" className={labelClass}>
+                    Company
+                  </label>
+                  <input
+                    id="company"
+                    type="text"
+                    name="company"
+                    placeholder="Company Name"
+                    value={formData.company}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className={inputClass}
+                  />
+                </div>
+
                 {/* Location */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="location"
-                    className="text-sm font-medium text-slate-800"
-                  >
+                <div className="space-y-1">
+                  <label htmlFor="location" className={labelClass}>
                     Project Location
                   </label>
-
                   <input
                     id="location"
                     type="text"
@@ -449,29 +396,24 @@ ${formData.message.trim() || "No additional message provided."}
                     value={formData.location}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={inputClass}
                   />
                 </div>
 
                 {/* Project Type */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="projectType"
-                    className="text-sm font-medium text-slate-800"
-                  >
+                <div className="space-y-1">
+                  <label htmlFor="projectType" className={labelClass}>
                     Project Type
                   </label>
-
                   <select
                     id="projectType"
                     name="projectType"
                     value={formData.projectType}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full appearance-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={`${inputClass} appearance-none`}
                   >
                     <option value="">Select Project Type</option>
-
                     {PROJECT_TYPES.map((type) => (
                       <option key={type} value={type}>
                         {type}
@@ -479,21 +421,12 @@ ${formData.message.trim() || "No additional message provided."}
                     ))}
                   </select>
                 </div>
-              </div>
 
-              {/* =================================================
-                  CUBICLES + PRODUCT
-              ================================================== */}
-              <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {/* Cubicles */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="cubicles"
-                    className="text-sm font-medium text-slate-800"
-                  >
-                    Approx. Number of Cubicles
+                <div className="space-y-1">
+                  <label htmlFor="cubicles" className={labelClass}>
+                    Approx. No. of Cubicles
                   </label>
-
                   <input
                     id="cubicles"
                     type="number"
@@ -503,29 +436,24 @@ ${formData.message.trim() || "No additional message provided."}
                     value={formData.cubicles}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={inputClass}
                   />
                 </div>
 
                 {/* Product */}
-                <div className="space-y-2">
-                  <label
-                    htmlFor="product"
-                    className="text-sm font-medium text-slate-800"
-                  >
+                <div className="space-y-1">
+                  <label htmlFor="product" className={labelClass}>
                     Product / Solution
                   </label>
-
                   <select
                     id="product"
                     name="product"
                     value={formData.product}
                     onChange={handleChange}
                     disabled={loading}
-                    className="w-full appearance-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                    className={`${inputClass} appearance-none`}
                   >
                     <option value="">Select Product / Solution</option>
-
                     {PRODUCTS.map((product) => (
                       <option key={product} value={product}>
                         {product}
@@ -533,85 +461,65 @@ ${formData.message.trim() || "No additional message provided."}
                     ))}
                   </select>
                 </div>
+
+                {/* Timeline */}
+                <div className="space-y-1">
+                  <label htmlFor="timeline" className={labelClass}>
+                    Expected Timeline
+                  </label>
+                  <input
+                    id="timeline"
+                    type="text"
+                    name="timeline"
+                    placeholder="e.g. Within 3 months"
+                    value={formData.timeline}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className={inputClass}
+                  />
+                </div>
               </div>
 
-              {/* =================================================
-                  EXPECTED TIMELINE
-              ================================================== */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="timeline"
-                  className="text-sm font-medium text-slate-800"
-                >
-                  Expected Timeline
-                </label>
-
-                <input
-                  id="timeline"
-                  type="text"
-                  name="timeline"
-                  placeholder="e.g. Within 3 months"
-                  value={formData.timeline}
-                  onChange={handleChange}
-                  disabled={loading}
-                  className="w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
-                />
-              </div>
-
-              {/* =================================================
-                  MESSAGE
-              ================================================== */}
-              <div className="space-y-2">
-                <label
-                  htmlFor="message"
-                  className="text-sm font-medium text-slate-800"
-                >
+              {/* MESSAGE */}
+              <div className="space-y-1">
+                <label htmlFor="message" className={labelClass}>
                   Message
                 </label>
-
                 <textarea
                   id="message"
                   name="message"
-                  rows={4}
+                  rows={2}
                   placeholder="Tell us about your project..."
                   value={formData.message}
                   onChange={handleChange}
                   disabled={loading}
-                  className="w-full resize-none rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-5 py-3.5 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+                  className={`${inputClass} resize-none`}
                 />
               </div>
 
-              {/* =================================================
-                  ERROR
-              ================================================== */}
+              {/* ERROR */}
               {error && (
-                <div className="rounded-[8px] bg-red-50 px-4 py-3 text-sm font-medium text-red-600">
+                <div className="rounded-[8px] bg-red-50 px-4 py-2.5 text-sm font-medium text-red-600">
                   {error}
                 </div>
               )}
 
-              {/* =================================================
-                  SUCCESS
-              ================================================== */}
+              {/* SUCCESS */}
               {success && (
-                <div className="rounded-[8px] bg-green-50 px-4 py-3 text-sm font-medium text-green-600">
+                <div className="rounded-[8px] bg-green-50 px-4 py-2.5 text-sm font-medium text-green-600">
                   Thank you — your enquiry has been received. Our team will get
                   back to you shortly.
                 </div>
               )}
 
-              {/* =================================================
-                  SUBMIT BUTTON
-              ================================================== */}
-              <div className="pt-2">
-                <button
-                  type="submit"
-                  disabled={loading}
-                  className="inline-flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-4 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {loading ? "Submitting..." : "Request a Quote"}
-                </button>
-              </div>
+              {/* SUBMIT BUTTON */}
+              <button
+                type="submit"
+                disabled={loading}
+                className="inline-flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-2.5 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {loading ? "Submitting..." : "Request a Quote"}
+              </button>
             </form>
           </main>
         </div>
