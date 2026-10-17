@@ -17,18 +17,11 @@ import "swiper/css/pagination";
 
 import PopupForm from "./PopupForm";
 
-/* =========================================================
-   THEME
-========================================================= */
+
 
 const NAVY = "#0B2A66";
 const GOLD = "#D9A83A";
 
-/* =========================================================
-   HERO SLIDES
-   tiles[0] = large navy card, tiles[1..4] = small white cards.
-   Replace each tile `src` with its own image when available.
-========================================================= */
 
 const HERO_SLIDES = [
   {
@@ -39,11 +32,11 @@ const HERO_SLIDES = [
       "Designed with precision. With 500+ toilet cubicles installed at the Foxconn facility for Apple, our solutions bring together scale, precision, and dependable performance.",
     alt: "Apple BKC Architectural Showcase",
     tiles: [
-      { label: "Foxconn Facility", sub: "500+ Cubicles", icon: "door", src: "/1.png" },
-      { label: "Premium Finish", icon: "factory", src: "/1.png" },
-      { label: "Precision Build", icon: "layers", src: "/1.png" },
-      { label: "Easy Maintenance", icon: "shield", src: "/1.png" },
-      { label: "Hygiene Ready", icon: "clock", src: "/1.png" },
+      { label: "Classic Range", sub: "8 Products", icon: "door", src: "https://toiletcubiclemanufacturer.com/product/Black%20Maxi.webp" },
+      { label: "Black Maxi", icon: "factory", src: "https://toiletcubiclemanufacturer.com/product/Maxi%20Pro.webp" },
+      { label: "Maxi PRO", icon: "layers", src: "https://toiletcubiclemanufacturer.com/product/Duro-Toilet-Cubicles.webp" },
+      { label: "Duro", icon: "shield", src: "https://toiletcubiclemanufacturer.com/product/duro%20pro%20toilet%20cubicles.webp" },
+      { label: "NEO", icon: "clock", src: "https://toiletcubiclemanufacturer.com/product/Neo.webp" },
     ],
   },
   {
@@ -54,11 +47,11 @@ const HERO_SLIDES = [
       "Built around performance. Delivered for Maruti Suzuki. With 4,000+ toilet cubicles installed at the Kadkhoda plant, our solutions are made for scale, precision, and demanding environments.",
     alt: "Maruti Suzuki",
     tiles: [
-      { label: "Maruti Suzuki", sub: "4,000+ Cubicles", icon: "door", src: "/2.png" },
-      { label: "Kadkhoda Plant", icon: "factory", src: "/2.png" },
-      { label: "Built for Scale", icon: "layers", src: "/2.png" },
-      { label: "Heavy Duty", icon: "shield", src: "/2.png" },
-      { label: "Long Lasting", icon: "clock", src: "/2.png" },
+      { label: "Luxe Range", sub: "3 Products", icon: "door", src: "https://toiletcubiclemanufacturer.com/product/Cielo.webp" },
+      { label: "Cielo", icon: "factory", src: "https://toiletcubiclemanufacturer.com/product/Premia.webp" },
+      { label: "Premia", icon: "layers", src: "https://toiletcubiclemanufacturer.com/product/Rove.webp" },
+      { label: "Rove", icon: "shield", src: "https://toiletcubiclemanufacturer.com/product/Maxi.webp" },
+      { label: "Luron", icon: "clock", src: "https://toiletcubiclemanufacturer.com/product/Luron.webp" },
     ],
   },
   {
@@ -69,11 +62,11 @@ const HERO_SLIDES = [
       "Designed for demanding footfall. Delivered across 50+ MCD & McDonald's outlets, our toilet cubicles combine durability, hygiene, and consistent performance across every location.",
     alt: "McDonald's",
     tiles: [
-      { label: "McDonald's", sub: "50+ Outlets", icon: "door", src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png" },
-      { label: "High Footfall", icon: "factory", src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png" },
-      { label: "Durable", icon: "layers", src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png" },
-      { label: "Hygienic", icon: "shield", src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png" },
-      { label: "Consistent", icon: "clock", src: "/ChatGPT Image Jan 20, 2026, 05_48_24 PM - Copy.png" },
+      { label: "Kids Range", sub: "3 Products", icon: "door", src: "https://toiletcubiclemanufacturer.com/product/Kiddiez.webp" },
+      { label: "Kiddiez", icon: "factory", src: "https://toiletcubiclemanufacturer.com/product/Kiddiez%20Pro.webp" },
+      { label: "Kiddiez Pro", icon: "layers", src: "https://toiletcubiclemanufacturer.com/product/kids2.webp" },
+      { label: "Nylon Kiddiez", icon: "shield", src: "https://toiletcubiclemanufacturer.com/product/Cubi%20Doorz.webp" },
+      { label: "Cubic Doorz", icon: "clock", src: "https://toiletcubiclemanufacturer.com/product/Duro-Toilet-Cubicles.webp" },
     ],
   },
   {
@@ -84,18 +77,14 @@ const HERO_SLIDES = [
       "Made for high-traffic environments. Our toilet cubicle solutions across KFC outlets are built for everyday performance, easy maintenance, and lasting durability.",
     alt: "KFC",
     tiles: [
-      { label: "KFC Outlets", sub: "Pan-India", icon: "door", src: "/4.png" },
-      { label: "Everyday Use", icon: "factory", src: "/4.png" },
-      { label: "Low Upkeep", icon: "layers", src: "/4.png" },
-      { label: "Modern Look", icon: "shield", src: "/4.png" },
-      { label: "Lasting Quality", icon: "clock", src: "/4.png" },
+      { label: "Urinal Partitions", sub: "Modesty Panels", icon: "door", src: "https://toiletcubiclemanufacturer.com/product/Commercial%20Urinal%20Partitions.webp" },
+      { label: "Maxi", icon: "factory", src: "https://toiletcubiclemanufacturer.com/product/Maxi.webp" },
+      { label: "Duro Pro", icon: "layers", src: "https://toiletcubiclemanufacturer.com/product/duro%20pro%20toilet%20cubicles.webp" },
+      { label: "Black Maxi", icon: "shield", src: "https://toiletcubiclemanufacturer.com/product/Black%20Maxi.webp" },
+      { label: "Premia", icon: "clock", src: "https://toiletcubiclemanufacturer.com/product/Premia.webp" },
     ],
   },
 ];
-
-/* =========================================================
-   ICONS
-========================================================= */
 
 const ICONS = {
   door: (
