@@ -345,14 +345,7 @@ function FeatureTile({ tile, priority }) {
           <h3 className="truncate text-lg font-bold text-white sm:text-2xl lg:text-3xl">
             {tile.label}
           </h3>
-          {tile.sub && (
-            <p
-              className="text-sm font-semibold sm:text-xl"
-              style={{ color: GOLD }}
-            >
-              {tile.sub}
-            </p>
-          )}
+         
         </div>
 
         <ArrowCircle
@@ -553,7 +546,7 @@ md:min-h-[860px]
               <div className="relative z-10 flex items-start justify-between px-5 pt-6 md:px-12 md:pt-8">
                 <div>
                   <h1
-                    className="h-[2.1em] max-w-[20ch] text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:max-w-[22ch] sm:text-5xl lg:text-[60px]"
+                    className="h-[2.1em] max-w-[10ch] text-3xl font-extrabold leading-[1.05] tracking-[-0.03em] sm:max-w-[22ch] sm:text-5xl lg:text-[60px]"
                     style={{ color: NAVY }}
                   >
                     <TypewriterText
