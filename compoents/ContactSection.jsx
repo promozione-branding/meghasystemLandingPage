@@ -26,16 +26,32 @@ const PRODUCTS = [
   "Custom washroom solution",
 ];
 
-const inputClass =
-  "w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-3.5 py-2 text-sm text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60";
+/*
+  Responsive approach:
+  - Base classes (no prefix)  = compact MOBILE layout
+  - sm: / lg: / xl: classes   = ORIGINAL desktop layout (restored exactly)
 
-const labelClass = "text-xs font-medium text-slate-800";
+  IMPORTANT: inputs keep text-base (16px) on every screen size.
+  iOS Safari auto-zooms the page when a focused input has a font-size
+  below 16px, so never drop this to text-sm / text-xs.
+*/
+const inputClass =
+  "w-full rounded-[8px] border border-slate-100 bg-[#F8F7F7] px-3.5 py-2 text-base text-slate-900 placeholder:text-slate-400 transition-all focus:outline-none focus:ring-1 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60 sm:px-5 sm:py-3.5";
+
+const labelClass = "text-xs font-medium text-slate-800 sm:text-sm";
+
+const fieldClass = "space-y-1 sm:space-y-2";
+
+const rowClass = "grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5";
 
 const cardClass =
-  "flex items-center gap-3 rounded-[12px] bg-[#F0EDED] px-3 py-2.5";
+  "flex items-center gap-3 rounded-[12px] bg-[#F0EDED] px-3 py-2.5 sm:gap-3.5 sm:p-4";
 
 const iconWrapClass =
-  "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-800";
+  "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-800 sm:h-11 sm:w-11";
+
+const cardLabelClass =
+  "text-[11px] leading-tight text-slate-600 sm:text-[12px]";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -190,100 +206,140 @@ ${formData.message.trim() || "No additional message provided."}
   return (
     <section
       id="contact"
-      className="flex items-center justify-center bg-slate-50 p-4 py-6 font-sans antialiased text-slate-900 sm:p-6 lg:px-8 lg:py-6"
+      className="flex items-center justify-center bg-slate-50 p-4 py-6 font-sans antialiased text-slate-900 sm:p-6 lg:p-8"
     >
-      <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-5 lg:p-6">
-        <div className="relative z-10 grid grid-cols-1 gap-5 lg:grid-cols-12 lg:gap-6">
+      <div className="relative w-full max-w-[1400px] overflow-hidden rounded-[16px] border border-slate-100 bg-white p-2 sm:p-8 lg:p-12">
+        <div className="relative z-10 grid grid-cols-1 gap-5 sm:gap-8 lg:grid-cols-12 lg:gap-12">
           {/* =====================================================
               LEFT CONTACT PANEL
           ====================================================== */}
-          <aside className="flex flex-col space-y-4 rounded-[16px] bg-[#E5E2E0] p-5 lg:col-span-4">
-            {/* Heading */}
-            <div>
-              <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.15em] text-slate-600">
-                Get a quote
-              </p>
+          <aside className="flex flex-col justify-between space-y-4 rounded-[16px] bg-[#E5E2E0] p-5 sm:space-y-6 sm:p-8 lg:col-span-4">
+            <div className="space-y-4 sm:space-y-6">
+              {/* Heading */}
+              <div>
+                <p className="mb-1.5 text-xs font-medium uppercase tracking-[0.15em] text-slate-600 sm:mb-3 sm:text-sm">
+                  Get a quote
+                </p>
 
-              <h2 className="text-2xl font-bold leading-[1.2] tracking-tight text-black">
-                Planning a washroom project? Let&apos;s build it right.
-              </h2>
-            </div>
+                <h2 className="text-2xl font-bold leading-[1.2] tracking-tight text-black sm:text-4xl">
+                  Planning a washroom project?{" "}
+                  <br className="hidden sm:block" />
+                  Let&apos;s build it right.
+                </h2>
 
-            {/* Contact Details */}
-            <div className="space-y-2.5">
-              {/* ================= PHONE + WHATSAPP ================= */}
-              <div className={cardClass}>
-                <div className={iconWrapClass}>
-                  <Phone className="h-5 w-5 stroke-[1.5]" />
-                </div>
-
-                <div>
-                  <p className="text-[11px] leading-tight text-slate-600">
-                    Call Us
-                  </p>
-
-                  <p className="text-sm font-semibold tracking-tight text-black">
-                    <a href="tel:+919873735713">+91 98737 35713</a>
-                    <span className="mx-1.5 text-slate-400">|</span>
-                    <a href="tel:+919873735716">+91 98737 35716</a>
-                  </p>
-
-                  <a
-                    href="https://wa.me/919873735713"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-slate-700 underline-offset-2 hover:underline"
-                  >
-                    <MessageCircle className="h-3.5 w-3.5" />
-                    WhatsApp us
-                  </a>
-                </div>
+                {/* Hidden on mobile to save height */}
+                <p className="mt-4 hidden text-sm leading-6 text-slate-600 sm:block">
+                  Share a few details and our team will get back to you with a
+                  proposal and next steps.
+                </p>
               </div>
 
-              {/* ================= EMAIL ================= */}
-              <div className={cardClass}>
-                <div className={iconWrapClass}>
-                  <Mail className="h-5 w-5 stroke-[1.5]" />
+              {/* Contact Details */}
+              <div className="space-y-2.5 pt-1 sm:space-y-4">
+                {/* ================= PHONE ================= */}
+                <div className={cardClass}>
+                  <div className={iconWrapClass}>
+                    <Phone className="h-5 w-5 stroke-[1.5]" />
+                  </div>
+
+                  <div>
+                    <p className={cardLabelClass}>Call Us</p>
+
+                    <div>
+                      <a
+                        href="tel:+919873735713"
+                        className="text-sm font-semibold tracking-tight text-black sm:mt-0.5 sm:block sm:text-base"
+                      >
+                        +91 98737 35713
+                      </a>
+
+                      {/* Separator only on mobile (numbers sit on one line) */}
+                      <span className="mx-1.5 text-slate-400 sm:hidden">
+                        |
+                      </span>
+
+                      <a
+                        href="tel:+919873735716"
+                        className="text-sm font-semibold text-black sm:block sm:font-medium sm:text-slate-700"
+                      >
+                        +91 98737 35716
+                      </a>
+                    </div>
+
+                    {/* Mobile-only WhatsApp link (separate card on larger screens) */}
+                    <a
+                      href="https://wa.me/919873735713"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-slate-700 sm:hidden"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5" />
+                      WhatsApp us
+                    </a>
+                  </div>
                 </div>
 
-                <div className="min-w-0">
-                  <p className="text-[11px] leading-tight text-slate-600">
-                    Mail Us
-                  </p>
+                {/* ================= EMAIL ================= */}
+                <div className={cardClass}>
+                  <div className={iconWrapClass}>
+                    <Mail className="h-5 w-5 stroke-[1.5]" />
+                  </div>
 
-                  <a
-                    href="mailto:contact@meghasystems.com"
-                    className="block break-all text-sm font-semibold tracking-tight text-black"
-                  >
-                    contact@meghasystems.com
-                  </a>
-                </div>
-              </div>
+                  <div className="min-w-0">
+                    <p className={cardLabelClass}>Mail Us</p>
 
-              {/* ================= ADDRESS ================= */}
-              <div className="flex items-start gap-3 rounded-[12px] bg-[#F0EDED] px-3 py-2.5">
-                <div className={iconWrapClass}>
-                  <MapPin className="h-5 w-5 stroke-[1.5]" />
+                    <a
+                      href="mailto:contact@meghasystems.com"
+                      className="block break-all text-sm font-semibold tracking-tight text-black sm:mt-0.5 sm:text-base"
+                    >
+                      contact@meghasystems.com
+                    </a>
+                  </div>
                 </div>
 
-                <div>
-                  <p className="text-[11px] leading-tight text-slate-600">
-                    Head Office
-                  </p>
+                {/* ================= WHATSAPP (sm and up only) ================= */}
+                <div className="hidden items-center gap-3.5 rounded-[12px] bg-[#F0EDED] p-4 sm:flex">
+                  <div className={iconWrapClass}>
+                    <Phone className="h-5 w-5 stroke-[1.5]" />
+                  </div>
 
-                  <p className="text-[13px] font-semibold leading-snug tracking-tight text-black">
-                    Plot Number-P10/J-3, Adore Business City, Sector 72-73,
-                    Faridabad, Haryana, 121004
-                  </p>
+                  <div>
+                    <p className={cardLabelClass}>WhatsApp</p>
 
-                  <p className="mt-2 text-[11px] leading-tight text-slate-600">
-                    Branch Office
-                  </p>
+                    <a
+                      href="https://wa.me/919873735713"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 block text-base font-semibold tracking-tight text-black"
+                    >
+                      +91 98737 35713
+                    </a>
+                  </div>
+                </div>
 
-                  <p className="text-[13px] font-semibold leading-snug tracking-tight text-black">
-                    Plot No.341/1,2,3 &amp; 4, Safdar Nagar, Borabanda,
-                    Hyderabad-500018
-                  </p>
+                {/* ================= ADDRESS ================= */}
+                <div className="flex items-start gap-3 rounded-[12px] bg-[#F0EDED] px-3 py-2.5 sm:gap-0 sm:p-2 lg:p-3 xl:gap-3.5 xl:p-4">
+                  <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-slate-800 sm:h-11 sm:w-11">
+                    <MapPin className="h-5 w-5 stroke-[1.5]" />
+                  </div>
+
+                  <div>
+                    <p className={cardLabelClass}>Head Office</p>
+
+                    <p className="mt-0.5 text-[13px] font-semibold leading-snug tracking-tight text-black sm:text-base">
+                      Plot Number-P10/J-3, Adore Business City, Sector 72-73,
+                      Faridabad, Haryana, 121004
+                    </p>
+
+                    <p className="mt-2 text-[11px] leading-tight text-slate-600 sm:mt-3 sm:text-[12px]">
+                      Branch Office
+                    </p>
+
+                    <p className="mt-0.5 text-[13px] font-semibold leading-snug tracking-tight text-black sm:text-base">
+                      Plot No.341/1,2,3 &amp; 4, Safdar Nagar, Borabanda,
+                      Hyderabad-500018
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -292,14 +348,14 @@ ${formData.message.trim() || "No additional message provided."}
           {/* =====================================================
               RIGHT FORM PANEL
           ====================================================== */}
-          <main className="flex flex-col justify-center sm:pr-2 lg:col-span-8">
+          <main className="flex flex-col justify-between sm:py-2 sm:pr-2 lg:col-span-8">
             {/* Heading */}
             <header>
-              <h2 className="text-2xl font-bold leading-tight tracking-tight text-black sm:text-3xl">
+              <h2 className="text-2xl font-bold leading-tight tracking-tight text-black sm:text-5xl">
                 Request a Quote
               </h2>
 
-              <p className="mt-1 max-w-2xl text-sm leading-5 text-slate-600">
+              <p className="mt-1 max-w-2xl text-sm leading-5 text-slate-600 sm:mt-3 sm:leading-6">
                 Tell us about your project and requirements. Our team will
                 contact you with the right solution.
               </p>
@@ -308,15 +364,15 @@ ${formData.message.trim() || "No additional message provided."}
             {/* ================= FORM ================= */}
             <form
               onSubmit={handleSubmit}
-              className="relative z-10 mt-4 space-y-3"
+              className="relative z-10 mt-4 space-y-3 sm:mt-8 sm:space-y-5"
             >
-              {/* All short fields in one 3-column grid */}
-              <div className="grid grid-cols-1 gap-x-3 gap-y-2.5 sm:grid-cols-2 lg:grid-cols-3">
-                {/* Name */}
-                <div className="space-y-1">
+              {/* NAME + COMPANY */}
+              <div className={rowClass}>
+                <div className={fieldClass}>
                   <label htmlFor="name" className={labelClass}>
                     Name <span className="text-rose-500">*</span>
                   </label>
+
                   <input
                     id="name"
                     type="text"
@@ -330,11 +386,31 @@ ${formData.message.trim() || "No additional message provided."}
                   />
                 </div>
 
-                {/* Email */}
-                <div className="space-y-1">
+                <div className={fieldClass}>
+                  <label htmlFor="company" className={labelClass}>
+                    Company
+                  </label>
+
+                  <input
+                    id="company"
+                    type="text"
+                    name="company"
+                    placeholder="Company Name"
+                    value={formData.company}
+                    onChange={handleChange}
+                    disabled={loading}
+                    className={inputClass}
+                  />
+                </div>
+              </div>
+
+              {/* EMAIL + PHONE */}
+              <div className={rowClass}>
+                <div className={fieldClass}>
                   <label htmlFor="email" className={labelClass}>
                     Email <span className="text-rose-500">*</span>
                   </label>
+
                   <input
                     id="email"
                     type="email"
@@ -348,11 +424,11 @@ ${formData.message.trim() || "No additional message provided."}
                   />
                 </div>
 
-                {/* Phone */}
-                <div className="space-y-1">
+                <div className={fieldClass}>
                   <label htmlFor="phone" className={labelClass}>
                     Phone <span className="text-rose-500">*</span>
                   </label>
+
                   <input
                     id="phone"
                     type="tel"
@@ -365,29 +441,15 @@ ${formData.message.trim() || "No additional message provided."}
                     className={inputClass}
                   />
                 </div>
+              </div>
 
-                {/* Company */}
-                <div className="space-y-1">
-                  <label htmlFor="company" className={labelClass}>
-                    Company
-                  </label>
-                  <input
-                    id="company"
-                    type="text"
-                    name="company"
-                    placeholder="Company Name"
-                    value={formData.company}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className={inputClass}
-                  />
-                </div>
-
-                {/* Location */}
-                <div className="space-y-1">
+              {/* PROJECT LOCATION + PROJECT TYPE */}
+              <div className={rowClass}>
+                <div className={fieldClass}>
                   <label htmlFor="location" className={labelClass}>
                     Project Location
                   </label>
+
                   <input
                     id="location"
                     type="text"
@@ -400,11 +462,11 @@ ${formData.message.trim() || "No additional message provided."}
                   />
                 </div>
 
-                {/* Project Type */}
-                <div className="space-y-1">
+                <div className={fieldClass}>
                   <label htmlFor="projectType" className={labelClass}>
                     Project Type
                   </label>
+
                   <select
                     id="projectType"
                     name="projectType"
@@ -414,6 +476,7 @@ ${formData.message.trim() || "No additional message provided."}
                     className={`${inputClass} appearance-none`}
                   >
                     <option value="">Select Project Type</option>
+
                     {PROJECT_TYPES.map((type) => (
                       <option key={type} value={type}>
                         {type}
@@ -421,12 +484,15 @@ ${formData.message.trim() || "No additional message provided."}
                     ))}
                   </select>
                 </div>
+              </div>
 
-                {/* Cubicles */}
-                <div className="space-y-1">
+              {/* CUBICLES + PRODUCT */}
+              <div className={rowClass}>
+                <div className={fieldClass}>
                   <label htmlFor="cubicles" className={labelClass}>
-                    Approx. No. of Cubicles
+                    Approx. Number of Cubicles
                   </label>
+
                   <input
                     id="cubicles"
                     type="number"
@@ -440,11 +506,11 @@ ${formData.message.trim() || "No additional message provided."}
                   />
                 </div>
 
-                {/* Product */}
-                <div className="space-y-1">
+                <div className={fieldClass}>
                   <label htmlFor="product" className={labelClass}>
                     Product / Solution
                   </label>
+
                   <select
                     id="product"
                     name="product"
@@ -454,6 +520,7 @@ ${formData.message.trim() || "No additional message provided."}
                     className={`${inputClass} appearance-none`}
                   >
                     <option value="">Select Product / Solution</option>
+
                     {PRODUCTS.map((product) => (
                       <option key={product} value={product}>
                         {product}
@@ -461,65 +528,70 @@ ${formData.message.trim() || "No additional message provided."}
                     ))}
                   </select>
                 </div>
+              </div>
 
-                {/* Timeline */}
-                <div className="space-y-1">
-                  <label htmlFor="timeline" className={labelClass}>
-                    Expected Timeline
-                  </label>
-                  <input
-                    id="timeline"
-                    type="text"
-                    name="timeline"
-                    placeholder="e.g. Within 3 months"
-                    value={formData.timeline}
-                    onChange={handleChange}
-                    disabled={loading}
-                    className={inputClass}
-                  />
-                </div>
+              {/* EXPECTED TIMELINE */}
+              <div className={fieldClass}>
+                <label htmlFor="timeline" className={labelClass}>
+                  Expected Timeline
+                </label>
+
+                <input
+                  id="timeline"
+                  type="text"
+                  name="timeline"
+                  placeholder="e.g. Within 3 months"
+                  value={formData.timeline}
+                  onChange={handleChange}
+                  disabled={loading}
+                  className={inputClass}
+                />
               </div>
 
               {/* MESSAGE */}
-              <div className="space-y-1">
+              <div className={fieldClass}>
                 <label htmlFor="message" className={labelClass}>
                   Message
                 </label>
+
+                {/* Fixed short height on mobile, original 4 rows on sm+ */}
                 <textarea
                   id="message"
                   name="message"
-                  rows={2}
+                  rows={4}
                   placeholder="Tell us about your project..."
                   value={formData.message}
                   onChange={handleChange}
                   disabled={loading}
-                  className={`${inputClass} resize-none`}
+                  className={`${inputClass} h-[68px] resize-none sm:h-auto`}
                 />
               </div>
 
               {/* ERROR */}
               {error && (
-                <div className="rounded-[8px] bg-red-50 px-4 py-2.5 text-sm font-medium text-red-600">
+                <div className="rounded-[8px] bg-red-50 px-4 py-2.5 text-sm font-medium text-red-600 sm:py-3">
                   {error}
                 </div>
               )}
 
               {/* SUCCESS */}
               {success && (
-                <div className="rounded-[8px] bg-green-50 px-4 py-2.5 text-sm font-medium text-green-600">
+                <div className="rounded-[8px] bg-green-50 px-4 py-2.5 text-sm font-medium text-green-600 sm:py-3">
                   Thank you — your enquiry has been received. Our team will get
                   back to you shortly.
                 </div>
               )}
 
               {/* SUBMIT BUTTON */}
-              <button
-                type="submit"
-                disabled={loading}
-                className="inline-flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-2.5 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {loading ? "Submitting..." : "Request a Quote"}
-              </button>
+              <div className="sm:pt-2">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="inline-flex w-full cursor-pointer items-center justify-center rounded-[4px] bg-black px-8 py-2.5 text-sm font-medium tracking-wide text-white transition-all hover:bg-neutral-900 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-60 sm:py-4"
+                >
+                  {loading ? "Submitting..." : "Request a Quote"}
+                </button>
+              </div>
             </form>
           </main>
         </div>
