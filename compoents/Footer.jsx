@@ -2,14 +2,7 @@
 
 import React, { useState } from "react";
 import { handleCallClick } from "@/libs/track";
-import {
-  ChevronRight,
-  Share2,
-  Globe,
-  Camera,
-  Send,
-  Building2,
-} from "lucide-react";
+import { ChevronRight, Share2, Globe, Camera, Send, Building2, } from "lucide-react";
 
 export default function FooterSection() {
   const [email, setEmail] = useState("");
