@@ -10,6 +10,7 @@ import {
   Phone,
 } from "lucide-react";
 import Link from "next/link";
+import { handleCallClick } from "@/libs/track";
 import PopupForm from "./PopupForm";
 
 export default function Header() {
@@ -62,6 +63,7 @@ export default function Header() {
 
           <a
             href="tel:+919873735713"
+            onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
             className="inline-flex items-center gap-1.5 text-[#f5bd24] hover:text-white transition-colors font-bold"
           >
             <Phone className="w-3.5 h-3.5" />
@@ -455,7 +457,10 @@ export default function Header() {
               {/* Mobile phone */}
               <a
                 href="tel:+919873735716"
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  handleCallClick({ source: "Landing page", obj: "N/A" });
+                  closeMobileMenu();
+                }}
                 className="
                   mt-3
                   flex

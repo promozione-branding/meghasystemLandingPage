@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { handleCallClick } from "@/libs/track";
 import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowRight,
@@ -244,6 +245,7 @@ export default function PopupForm({ isOpen, onClose }) {
                 {/* Phone */}
                 <a
                   href="tel:+919873735713"
+                  onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
                   className="group flex items-center gap-3"
                 >
                   <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-[#f5bd24] transition-colors group-hover:bg-[#f5bd24] group-hover:text-[#0d2461]">

@@ -1,24 +1,27 @@
+"use client"
 import React from 'react'
 import { Phone } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
+import { handleCallClick, handleWhatsappClick } from "@/libs/track";
 
 export default function WhatsApp() {
   return (
     <>
-    {/* =====================================================
+      {/* =====================================================
     STICKY CALL + WHATSAPP BUTTONS
 ===================================================== */}
 
-<div className="fixed bottom-5 right-5 z-[9999] flex flex-col gap-3 sm:bottom-6 sm:right-6">
+      <div className="fixed bottom-5 right-5 z-[9999] flex flex-col gap-3 sm:bottom-6 sm:right-6">
 
-  {/* WhatsApp */}
- 
+        {/* WhatsApp */}
 
-  {/* Call */}
-  <a
-    href="tel:+919873735713"
-    aria-label="Call 98737 35713"
-    className="
+
+        {/* Call */}
+        <a
+          href="tel:+919873735713"
+          onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
+          aria-label="Call 98737 35713"
+          className="
       group
       flex
       h-12
@@ -36,12 +39,12 @@ export default function WhatsApp() {
       sm:h-14
       sm:w-14
     "
-  >
-    <Phone className="h-5 w-5 sm:h-8 sm:w-8" />
+        >
+          <Phone className="h-5 w-5 sm:h-8 sm:w-8" />
 
-    {/* Tooltip */}
-    <span
-      className="
+          {/* Tooltip */}
+          <span
+            className="
         pointer-events-none
         absolute
         right-full
@@ -60,16 +63,17 @@ export default function WhatsApp() {
         duration-200
         group-hover:opacity-100
       "
-    >
-      Call 98737 35713
-    </span>
-  </a>
-   <a
-    href="https://wa.me/919873735713"
-    target="_blank"
-    rel="noopener noreferrer"
-    aria-label="Chat on WhatsApp"
-    className="
+          >
+            Call 98737 35713
+          </span>
+        </a>
+        <a
+          href="https://wa.me/919873735713"
+          onClick={() => handleWhatsappClick({ source: "Landing page", obj: "N/A" })}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat on WhatsApp"
+          className="
       group
       flex
       h-12
@@ -87,12 +91,12 @@ export default function WhatsApp() {
       sm:h-14
       sm:w-14
     "
-  >
-    <FaWhatsapp className="h-6 w-6 sm:h-9 sm:w-9" />
+        >
+          <FaWhatsapp className="h-6 w-6 sm:h-9 sm:w-9" />
 
-    {/* Tooltip */}
-    <span
-      className="
+          {/* Tooltip */}
+          <span
+            className="
         pointer-events-none
         absolute
         right-full
@@ -111,12 +115,12 @@ export default function WhatsApp() {
         duration-200
         group-hover:opacity-100
       "
-    >
-      WhatsApp Us
-    </span>
-  </a>
+          >
+            WhatsApp Us
+          </span>
+        </a>
 
-</div>
+      </div>
     </>
   )
 }

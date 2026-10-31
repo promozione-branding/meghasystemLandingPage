@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
+import { handleCallClick, handleWhatsappClick } from "@/libs/track";
 
 const PROJECT_TYPES = [
   "Corporate office",
@@ -248,6 +249,7 @@ ${formData.message.trim() || "No additional message provided."}
                     <div>
                       <a
                         href="tel:+919873735713"
+                        onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
                         className="text-sm font-semibold tracking-tight text-black sm:mt-0.5 sm:block sm:text-base"
                       >
                         +91 98737 35713
@@ -260,6 +262,7 @@ ${formData.message.trim() || "No additional message provided."}
 
                       <a
                         href="tel:+919873735716"
+                        onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
                         className="text-sm font-semibold text-black sm:block sm:font-medium sm:text-slate-700"
                       >
                         +91 98737 35716
@@ -269,6 +272,7 @@ ${formData.message.trim() || "No additional message provided."}
                     {/* Mobile-only WhatsApp link (separate card on larger screens) */}
                     <a
                       href="https://wa.me/919873735713"
+                      onClick={() => handleWhatsappClick({ source: "Landing page", obj: "N/A" })}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-0.5 inline-flex items-center gap-1 text-xs font-medium text-slate-700 sm:hidden"
@@ -308,6 +312,7 @@ ${formData.message.trim() || "No additional message provided."}
 
                     <a
                       href="https://wa.me/919873735713"
+                      onClick={() => handleWhatsappClick({ source: "Landing page", obj: "N/A" })}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-0.5 block text-base font-semibold tracking-tight text-black"

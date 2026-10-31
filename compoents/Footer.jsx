@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { handleCallClick } from "@/libs/track";
 import {
   ChevronRight,
   Share2,
@@ -152,6 +153,7 @@ export default function FooterSection() {
                 <p>
                   <a
                     href="tel:+919873735716"
+                    onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
                     className="hover:text-white transition-colors font-medium text-white"
                   >
                     +91 9873735716
@@ -161,6 +163,7 @@ export default function FooterSection() {
                 <p>
                   <a
                     href="tel:+919873735713"
+                    onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
                     className="hover:text-white transition-colors font-medium text-white"
                   >
                     +91 9873735713

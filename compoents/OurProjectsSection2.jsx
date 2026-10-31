@@ -10,6 +10,7 @@ import {
   X,
 } from "lucide-react";
 import PopupForm from "./PopupForm";
+import { handleCallClick } from "@/libs/track";
 
 const projects = [
   {
@@ -485,6 +486,7 @@ function ProjectCTA({ onClick, className = "" }) {
 
             <a
               href="tel:+919873735713"
+              onClick={() => handleCallClick({ source: "Landing page", obj: "N/A" })}
               className="text-[13px] font-bold text-neutral-900 transition-colors hover:text-neutral-600 sm:text-sm"
             >
               +91 9873735713
