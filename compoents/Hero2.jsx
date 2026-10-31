@@ -571,12 +571,12 @@ export default function Hero2() {
                       />
                     </span>
                   </h1>
-                  <span
+                  {/* <span
                     className="mt-3 block h-1 w-16 rounded-full"
                     style={{
                       background: `linear-gradient(90deg, ${NAVY} 50%, ${GOLD} 50%)`,
                     }}
-                  />
+                  /> */}
                 </div>
 
                 <div className="mr-[26rem] mt-4 hidden lg:block">

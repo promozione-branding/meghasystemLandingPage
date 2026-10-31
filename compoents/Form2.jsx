@@ -143,188 +143,226 @@ export default function Form2() {
         </div>
 
         {/* FORM */}
-        <form
-          onSubmit={handleSubmit}
-          className="
-            w-full
-            rounded-2xl
-            border
-            border-slate-200
-            bg-white
-            p-4
-            shadow-lg
-            md:p-5
-          "
-        >
-          <div
-            className="
-              flex
-              w-full
-              flex-col
-              gap-3
-              lg:flex-row
-              lg:items-center
-            "
+      <form
+  onSubmit={handleSubmit}
+  className="
+    relative w-full
+    rounded-2xl
+    border-2 border-[#042555]
+    bg-white
+    p-4 md:p-5
+    shadow-[0_8px_35px_rgba(4,37,85,0.15)]
+    transition-all duration-300
+    hover:shadow-[0_12px_40px_rgba(4,37,85,0.22)]
+  "
+>
+  {/* TOP HIGHLIGHT */}
+  <div className="mb-4 flex items-center justify-between gap-3">
+    <div>
+      <h3 className="text-base font-bold text-[#042555] md:text-lg">
+        Get a Quick Quote
+      </h3>
+      <p className="mt-1 text-xs text-slate-500">
+        Share your requirements and our team will contact you.
+      </p>
+    </div>
+
+    <div className="
+      flex h-10 w-10 shrink-0 items-center justify-center
+      rounded-xl bg-[#042555]
+      text-white shadow-md
+    ">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.8}
+        stroke="currentColor"
+        className="h-5 w-5"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M21.75 6.75v10.5A2.25 2.25 0 0 1 19.5 19.5h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0-9.25 6.25a.9.9 0 0 1-1 0L2.25 6.75"
+        />
+      </svg>
+    </div>
+  </div>
+
+  {/* FORM FIELDS */}
+  <div className="
+    flex w-full flex-col gap-3
+    lg:flex-row lg:items-center
+  ">
+    <input
+      type="text"
+      name="contactPerson"
+      value={formData.contactPerson}
+      onChange={handleChange}
+      placeholder="Your Name"
+      autoComplete="name"
+      className="
+        h-14 w-full rounded-xl
+        border border-slate-200
+        bg-slate-50 px-4
+        text-sm text-slate-900
+        outline-none transition-all duration-200
+        placeholder:text-slate-400
+        hover:border-slate-300
+        focus:border-[#042555]
+        focus:bg-white
+        focus:ring-4 focus:ring-[#042555]/10
+        lg:flex-1
+      "
+    />
+
+    <input
+      type="email"
+      name="email"
+      value={formData.email}
+      onChange={handleChange}
+      placeholder="Email Address"
+      autoComplete="email"
+      className="
+        h-14 w-full rounded-xl
+        border border-slate-200
+        bg-slate-50 px-4
+        text-sm text-slate-900
+        outline-none transition-all duration-200
+        placeholder:text-slate-400
+        hover:border-slate-300
+        focus:border-[#042555]
+        focus:bg-white
+        focus:ring-4 focus:ring-[#042555]/10
+        lg:flex-1
+      "
+    />
+
+    <input
+      name="phone"
+      type="tel"
+      value={formData.phone}
+      onChange={handleChange}
+      placeholder="+91 XXXXX XXXXX"
+      autoComplete="tel"
+      className="
+        h-14 w-full rounded-xl
+        border border-slate-200
+        bg-slate-50 px-4
+        text-sm text-slate-900
+        outline-none transition-all duration-200
+        placeholder:text-slate-400
+        hover:border-slate-300
+        focus:border-[#042555]
+        focus:bg-white
+        focus:ring-4 focus:ring-[#042555]/10
+        lg:flex-1
+      "
+    />
+
+    <select
+      name="product"
+      value={formData.product}
+      onChange={handleChange}
+      className="
+        h-14 w-full rounded-xl
+        border border-slate-200
+        bg-slate-50 px-4
+        text-sm text-slate-700
+        outline-none transition-all duration-200
+        hover:border-slate-300
+        focus:border-[#042555]
+        focus:bg-white
+        focus:ring-4 focus:ring-[#042555]/10
+        lg:flex-1
+      "
+    >
+      <option value="">Select Product</option>
+
+      {products.map((product) => (
+        <option key={product} value={product}>
+          {product}
+        </option>
+      ))}
+    </select>
+
+    <button
+      type="submit"
+      disabled={loading}
+      className="
+        group relative h-14 w-full shrink-0
+        overflow-hidden rounded-xl
+        bg-[#042555] px-7
+        text-sm font-semibold text-white
+        shadow-lg shadow-[#042555]/20
+        transition-all duration-300
+        hover:-translate-y-0.5
+        hover:bg-[#0d3975]
+        hover:shadow-xl
+        disabled:cursor-not-allowed
+        disabled:opacity-60
+        lg:w-auto lg:min-w-[130px]
+      "
+    >
+      <span className="relative z-10 flex items-center justify-center gap-2">
+        {loading ? "Sending..." : "Send Enquiry"}
+
+        {!loading && (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
           >
-            {/* NAME */}
-            <input
-              type="text"
-              name="contactPerson"
-              value={formData.contactPerson}
-              onChange={handleChange}
-              placeholder="Your Name"
-              autoComplete="name"
-              className="
-                h-14
-                w-full
-                rounded-xl
-                border
-                border-slate-200
-                bg-slate-50
-                px-4
-                text-sm
-                text-slate-900
-                outline-none
-                transition
-                placeholder:text-slate-400
-                focus:border-[#042555]
-                focus:bg-white
-                focus:ring-2
-                focus:ring-[#042555]/10
-                lg:flex-1
-              "
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
             />
+          </svg>
+        )}
+      </span>
+    </button>
+  </div>
 
-            {/* EMAIL */}
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email Address"
-              autoComplete="email"
-              className="
-                h-14
-                w-full
-                rounded-xl
-                border
-                border-slate-200
-                bg-slate-50
-                px-4
-                text-sm
-                text-slate-900
-                outline-none
-                transition
-                placeholder:text-slate-400
-                focus:border-[#042555]
-                focus:bg-white
-                focus:ring-2
-                focus:ring-[#042555]/10
-                lg:flex-1
-              "
-            />
+  {/* ERROR */}
+  {error && (
+    <p className="mt-3 text-center text-sm font-medium text-red-500">
+      {error}
+    </p>
+  )}
 
-            {/* MOBILE */}
-            <input
-              name="phone"
-              type="tel"
-              value={formData.phone}
-              onChange={handleChange}
-              placeholder="+91 XXXXX XXXXX"
-              className="
-                h-14
-                w-full
-                rounded-xl
-                border
-                border-slate-200
-                bg-slate-50
-                px-4
-                text-sm
-                text-slate-900
-                outline-none
-                transition
-                placeholder:text-slate-400
-                focus:border-[#042555]
-                focus:bg-white
-                focus:ring-2
-                focus:ring-[#042555]/10
-                lg:flex-1
-              "
-            />
+  {/* SUCCESS */}
+  {success && (
+    <p className="mt-3 text-center text-sm font-medium text-green-600">
+      Thank you! Your enquiry has been submitted successfully.
+    </p>
+  )}
 
-            {/* PRODUCT */}
-            <select
-              name="product"
-              value={formData.product}
-              onChange={handleChange}
-              className="
-                h-14
-                w-full
-                rounded-xl
-                border
-                border-slate-200
-                bg-slate-50
-                px-4
-                text-sm
-                text-slate-700
-                outline-none
-                transition
-                focus:border-[#042555]
-                focus:bg-white
-                focus:ring-2
-                focus:ring-[#042555]/10
-                lg:flex-1
-              "
-            >
-              <option value="">Select Product</option>
+  {/* BOTTOM TRUST TEXT */}
+  <div className="
+    mt-4 flex flex-wrap items-center justify-center gap-x-5 gap-y-2
+    border-t border-slate-100 pt-3
+    text-xs text-slate-500
+  ">
+    <span className="flex items-center font-bold gap-1.5">
+      <span className="text-green-600">✓</span>
+      Quick Response
+    </span>
 
-              {products.map((product) => (
-                <option key={product} value={product}>
-                  {product}
-                </option>
-              ))}
-            </select>
+    <span className="flex items-center font-bold gap-1.5">
+      <span className="text-green-600 font-bold">✓</span>
+      Expert Assistance
+    </span>
 
-            {/* SEND */}
-            <button
-              type="submit"
-              disabled={loading}
-              className="
-                h-14
-                w-full
-                rounded-xl
-                bg-[#042555]
-                px-7
-                text-sm
-                font-semibold
-                text-white
-                shadow-md
-                transition-all
-                hover:bg-[#0f172a]
-                disabled:cursor-not-allowed
-                disabled:opacity-60
-                lg:w-auto
-                lg:min-w-[130px]
-              "
-            >
-              {loading ? "Sending..." : "Send"}
-            </button>
-          </div>
-
-          {/* ERROR */}
-          {error && (
-            <p className="mt-3 text-center text-sm font-medium text-red-500">
-              {error}
-            </p>
-          )}
-
-          {/* SUCCESS */}
-          {success && (
-            <p className="mt-3 text-center text-sm font-medium text-green-600">
-              Thank you! Your enquiry has been submitted successfully.
-            </p>
-          )}
-        </form>
+    <span className="flex items-center font-bold gap-1.5">
+      <span className="text-green-600">✓</span>
+      Secure Enquiry
+    </span>
+  </div>
+</form>
       </div>
     </section>
   );
